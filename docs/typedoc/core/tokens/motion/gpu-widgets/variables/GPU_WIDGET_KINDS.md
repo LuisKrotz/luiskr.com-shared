@@ -12,7 +12,6 @@ const GPU_WIDGET_KINDS: Readonly<{
   THEME_SLIDER: 4
   CLOSE_BUTTON: 5
   MENU_BACKGROUND: 6
-  SKELETON: 7
   BURN: 8
   MEDIA: 9
   GLITCH: 10
@@ -26,7 +25,7 @@ const GPU_WIDGET_KINDS: Readonly<{
 }>
 ```
 
-Defined in: core/tokens/motion/gpu-widgets.ts:21
+Defined in: core/tokens/motion/gpu-widgets.ts:22
 
 Widget kinds — one per animation domain migrated from a standalone
 WebGL canvas to a dedicated WebGPU wasm artifact on the widget's own

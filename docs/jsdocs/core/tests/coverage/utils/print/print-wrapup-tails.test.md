@@ -87,28 +87,3 @@ Stubs a painted sibling box so bleedAtStart's flow check reads it as
 real content ahead of the plate.
 
 - `@param` {HTMLElement} el Element to stub.
-
-### `SpyMutationObserver`
-
-Recording MutationObserver — the idle sweep's callback is fired by hand.
-
-### `constructor`
-
-- `@param` {MutationCallback} cb The observer callback to capture.
-
-### `observe`
-
-Records the observe() call.
-
-- `@param` {Node} target Observation root.
-- `@param` {MutationObserverInit} options Observation options.
-
-### `disconnect`
-
-No-op disconnect.
-
-### `takeRecords`
-
-Empty record queue.
-
-- `@returns` Empty record list.

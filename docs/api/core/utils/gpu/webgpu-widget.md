@@ -171,17 +171,6 @@ instantiation; later callers join it.
 - `@param` mod The loaded artifact glue module.
 - `@returns` The shared instantiation promise.
 
-### `warmWidgetArtifacts`
-
-Fire-and-forget fetch+compile for every `eager` artifact in the
-registry — currently just the skeleton, the loading placeholder
-itself. Calling this at the first skeleton mount starts the
-artifact fetch before `init` would, so the widget is ready the
-moment its canvas needs it; failures are swallowed because mount
-re-attempts and falls back anyway.
-
-- `@param` loadModule Injectable module loader (tests substitute a stub).
-
 ### (module scope)
 
 Mounts a widget artifact on `canvas`: loads its wasm module, calls
@@ -220,6 +209,16 @@ the caller's mount-in-flight flag and starve its WebGL/CSS fallback.
 - `@param` p The promise to bound.
 - `@param` ms Deadline in milliseconds.
 - `@returns` The bounded promise.
+
+### `markPainted`
+
+Graduates a canvas out of its born-fallback state: removes the
+`is-fallback` stamp placed at mount entry and marks `is-painted`
+so every `:has(canvas:not(.is-fallback))` fallback gate swaps the
+live canvas in for the img/knob/label it was holding. Idempotent —
+repeated frames re-add the same two class ops for free.
+
+- `@param` canvas The widget's canvas element.
 
 ### `wire`
 
@@ -299,6 +298,12 @@ Async call/probe reply resolvers — replyId → resolve(result).
 ### `deadWatchers`
 
 Widget death watchers — id → callback when the worker reports dead.
+
+### `liveCanvases`
+
+Worker-mounted widget id → its transferred canvas — the `painted`
+reply stamps `is-painted` on the element so DOM fallbacks (flag
+SVGs) swap out only once the worker's first real frame lands.
 
 ### `workerWidgetSeq`
 

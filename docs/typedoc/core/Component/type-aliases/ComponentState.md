@@ -8,7 +8,7 @@
 type ComponentState = Record<string, any>
 ```
 
-Defined in: core/Component.ts:76
+Defined in: core/Component.ts:74
 
 Component state bag — keys are declared per-component and narrowed by
 each subclass's own types; `any` is deliberate (unknown would force a

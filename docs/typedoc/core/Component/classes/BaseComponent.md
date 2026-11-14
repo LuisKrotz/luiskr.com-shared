@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../README.md) / [core/Component](../README.md) / BaseComponent
 
-Defined in: core/Component.ts:96
+Defined in: core/Component.ts:94
 
 Base class every view/component extends. Owns the four things the app
 relies on being uniform:
@@ -12,8 +12,8 @@ relies on being uniform:
 1.  Shadow root + one stylesheet injection strategy (adoptedStyleSheets
     with a shared-sheet cache, `<style>` fallback on old engines);
 2.  `setState → render → _updateDom` reactive cycle;
-3.  automatic teardown — scoped listeners, store subs, and the WebGL
-    skeleton layer are released in disconnectedCallback;
+3.  automatic teardown — scoped listeners, store subs, and the
+    skeleton shimmer sync are released in disconnectedCallback;
 4.  lifecycle hooks subclasses implement: render(), onInit, onMounted,
     onUpdated, onStoreUpdate(store), onDestroy.
 
@@ -78,7 +78,7 @@ relies on being uniform:
 new BaseComponent(styles?): BaseComponent;
 ```
 
-Defined in: core/Component.ts:207
+Defined in: core/Component.ts:202
 
 Attach an open shadow root and stash the component's `?inline` CSS text.
 `mode: 'open'` keeps `element.shadowRoot` readable — the codebase and the
@@ -114,7 +114,7 @@ protected _componentStyles:
   | TieredStyles;
 ```
 
-Defined in: core/Component.ts:102
+Defined in: core/Component.ts:100
 
 Component-local SCSS — either the `?inline` css text or a `?tiers`
 {base, tiers} module whose base is adopted synchronously while the
@@ -128,7 +128,7 @@ viewport's cumulative media tier loads lazily.
 protected _eventDisposers: () => void[] = [];
 ```
 
-Defined in: core/Component.ts:149
+Defined in: core/Component.ts:147
 
 Disposers for listeners added via addScopedListener(). Drained in
 disconnectedCallback so elements never leak listeners across mounts —
@@ -146,7 +146,7 @@ critical for elements that move in the DOM (carousel reorder, route swap).
 protected _storeUnsubscribers: () => void[] = [];
 ```
 
-Defined in: core/Component.ts:155
+Defined in: core/Component.ts:153
 
 Unsubscribe callbacks from store.subscribe(). Drained on disconnect so a
 detached element stops receiving store pushes and can be GC'd.
@@ -163,7 +163,7 @@ detached element stops receiving store pushes and can be GC'd.
 _isMounted: boolean = false
 ```
 
-Defined in: core/Component.ts:162
+Defined in: core/Component.ts:160
 
 Whether the element is currently connected. Read by the store-subscription
 wrapper to skip onStoreUpdate on detached elements (a store push arriving
@@ -177,7 +177,7 @@ between disconnect and GC must not re-render into a dead shadow root).
 protected _styleNode: Element | HTMLStyleElement | null = null;
 ```
 
-Defined in: core/Component.ts:165
+Defined in: core/Component.ts:163
 
 The `<style>` fallback node, only populated on engines without constructable stylesheets.
 
@@ -189,25 +189,11 @@ The `<style>` fallback node, only populated on engines without constructable sty
 _contentNode: Element | HTMLElement | null = null;
 ```
 
-Defined in: core/Component.ts:172
+Defined in: core/Component.ts:170
 
 Persistent content wrapper inside the shadow root. _updateDom swaps only
 this node's children — the style mechanism stays untouched (see file
 header for why that split exists).
-
----
-
-### \_skeletonLayer
-
-```ts
-_skeletonLayer:
-  | SkeletonWebGL
-  | null = null;
-```
-
-Defined in: core/Component.ts:175
-
-Live WebGL skeleton layer, owned by syncSkeletonLayer()/destroySkeletonLayer().
 
 ---
 
@@ -217,7 +203,7 @@ Live WebGL skeleton layer, owned by syncSkeletonLayer()/destroySkeletonLayer().
 state: ComponentState = {}
 ```
 
-Defined in: core/Component.ts:178
+Defined in: core/Component.ts:173
 
 Reactive state bag — written only through setState() so updates always re-render.
 
@@ -4890,9 +4876,7 @@ The **`textContent`** property of the Node interface represents the text content
 
 #### Inherited from
 
-```ts
-HTMLElement.textContent
-```
+[`AppRoot`](../../../shared/src/App/classes/AppRoot.md).[`textContent`](../../../shared/src/App/classes/AppRoot.md#textcontent)
 
 ---
 
@@ -4944,7 +4928,7 @@ HTMLElement.style
 optional onInit(): void;
 ```
 
-Defined in: core/Component.ts:185
+Defined in: core/Component.ts:180
 
 Lifecycle hooks — declared on the base so `?.()` calls are type-safe and
 subclasses get a documented override point. Order on first connect:
@@ -4962,7 +4946,7 @@ onInit → _renderInitial → onMounted → onUpdated.
 optional onMounted(): void;
 ```
 
-Defined in: core/Component.ts:186
+Defined in: core/Component.ts:181
 
 #### Returns
 
@@ -4976,7 +4960,7 @@ Defined in: core/Component.ts:186
 optional onUpdated(): void;
 ```
 
-Defined in: core/Component.ts:187
+Defined in: core/Component.ts:182
 
 #### Returns
 
@@ -4990,7 +4974,7 @@ Defined in: core/Component.ts:187
 optional onStoreUpdate(_store): void;
 ```
 
-Defined in: core/Component.ts:188
+Defined in: core/Component.ts:183
 
 #### Parameters
 
@@ -5010,7 +4994,7 @@ Defined in: core/Component.ts:188
 onDestroy(): void;
 ```
 
-Defined in: core/Component.ts:198
+Defined in: core/Component.ts:193
 
 Teardown hook — invoked once per disconnect by the base
 `disconnectedCallback`. Declared as a concrete no-op (unlike the
@@ -5031,7 +5015,7 @@ method.
 setState(updater): void;
 ```
 
-Defined in: core/Component.ts:228
+Defined in: core/Component.ts:219
 
 Set partial state and re-render content (NOT styles). Accepts either a
 patch object or a React-style updater function — the function form is
@@ -5061,12 +5045,12 @@ Partial state patch, or (prevState) => patch.
 connectedCallback(): void;
 ```
 
-Defined in: core/Component.ts:246
+Defined in: core/Component.ts:237
 
 DOM insertion — runs onInit (data setup), the one-time style/content
 build (_renderInitial), then onMounted + onUpdated so a first render is
 indistinguishable from an update, and finally registers this element
-with the WebGL skeleton scanner (no-op when no skeletons are present).
+with the skeleton shimmer sync (no-op when no skeletons are present).
 Per the Custom Elements spec this callback can fire multiple times —
 every branch below is written to be idempotent on re-mount.
 
@@ -5082,10 +5066,10 @@ every branch below is written to be idempotent on re-mount.
 disconnectedCallback(): void;
 ```
 
-Defined in: core/Component.ts:262
+Defined in: core/Component.ts:253
 
 DOM removal — tears down in reverse order: scoped listeners, store
-subscriptions, the WebGL skeleton layer for this element, then the
+subscriptions, the skeleton shimmer sync for this element, then the
 subclass's onDestroy (engine/audio/observer cleanup). `_isMounted` flips
 first so an in-flight store push during teardown hits the guard in
 subscribe() rather than rendering into a disconnecting root.
@@ -5102,7 +5086,7 @@ subscribe() rather than rendering into a disconnecting root.
 $<T>(selector): T | null;
 ```
 
-Defined in: core/Component.ts:284
+Defined in: core/Component.ts:275
 
 Safe scoped querySelector inside Shadow Root. Returns null instead of
 throwing when the shadow root is absent (detached construction in tests).
@@ -5135,7 +5119,7 @@ First matching element or null.
 $$<T>(selector): T[];
 ```
 
-Defined in: core/Component.ts:295
+Defined in: core/Component.ts:286
 
 Safe scoped querySelectorAll inside Shadow Root — materialized into a
 real Array so callers get .map/.filter/forEach (NodeList lacks some
@@ -5174,7 +5158,7 @@ addScopedListener(
 ): void;
 ```
 
-Defined in: core/Component.ts:310
+Defined in: core/Component.ts:301
 
 Scoped event listener with automatic lifecycle cleanup.
 Prevents duplicate listeners: the DOM itself dedupes identical
@@ -5220,7 +5204,7 @@ Passive/capture/once options forwarded verbatim.
 subscribe(store): void;
 ```
 
-Defined in: core/Component.ts:331
+Defined in: core/Component.ts:322
 
 Subscribe to store changes with automatic lifecycle cleanup. The wrapper
 gates on _isMounted: a store push landing while the element is detached
@@ -5247,7 +5231,7 @@ Store-like object exposing subscribe(); null/invalid → no-op.
 protected _renderInitial(): void;
 ```
 
-Defined in: core/Component.ts:362
+Defined in: core/Component.ts:353
 
 Initial render: injects styles ONCE and creates the content node.
 Called exactly once from connectedCallback() — but on re-mount the shadow
@@ -5266,7 +5250,7 @@ paths reuse existing nodes instead of duplicating them.
 _updateDom(): void;
 ```
 
-Defined in: core/Component.ts:620
+Defined in: core/Component.ts:611
 
 Update content without touching the style node.
 Only the content wrapper is replaced — the <style> node
@@ -5287,7 +5271,7 @@ tracked element on every state change).
 protected _applyRenderOutput(output): void;
 ```
 
-Defined in: core/Component.ts:647
+Defined in: core/Component.ts:638
 
 Applies the render output (DOM Node, DocumentFragment, or HTML string) to the content wrapper.
 Three accepted shapes, resolved in priority order:
@@ -5318,7 +5302,7 @@ Render result from render().
 render(): string | Node | (Node | null | undefined)[] | null;
 ```
 
-Defined in: core/Component.ts:667
+Defined in: core/Component.ts:658
 
 Subclasses render() to return a JSX DOM Node or HTML string for the content area.
 The base implementation returns an empty string so instantiating the base

@@ -8,7 +8,7 @@
 const bootPromise: Promise<void>
 ```
 
-Defined in: shared/src/main.ts:296
+Defined in: shared/src/main.ts:302
 
 Boot promise — resolves once the full start sequence (Safari lazy chunk,
 router init, mount/retry arming) has run. Tests await this so async boot

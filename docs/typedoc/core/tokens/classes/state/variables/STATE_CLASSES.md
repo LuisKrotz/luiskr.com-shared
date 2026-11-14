@@ -9,6 +9,7 @@ const STATE_CLASSES: Readonly<{
   ACTIVE: 'active'
   IS_OPEN: 'is-open'
   IS_FALLBACK: 'is-fallback'
+  IS_PAINTED: 'is-painted'
   HAS_FALLBACK: 'has-fallback'
   IS_SAFARI: 'is-safari'
   IS_SCROLLING: 'is-scrolling'

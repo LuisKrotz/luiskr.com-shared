@@ -16,6 +16,7 @@ const CMS_KEYS: Readonly<{
   APP: 'APP'
   HOME: 'HOME'
   ABOUT: 'about'
+  PROFILE_PICTURE: 'profilePicture'
   PORTFOLIOLIST: 'portfoliolist'
   MEDIA: 'media'
   EARTH_PLAYGROUND: 'earthPlayground'

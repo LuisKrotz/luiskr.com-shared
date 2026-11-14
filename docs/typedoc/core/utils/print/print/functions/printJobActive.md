@@ -8,7 +8,7 @@
 function printJobActive(): boolean
 ```
 
-Defined in: core/utils/print/print.ts:3210
+Defined in: core/utils/print/print.ts:3144
 
 True while a print job owns the document — set at prepPrint's stamp
 and held through exit's restore. Screen-time DOM publishers (figure

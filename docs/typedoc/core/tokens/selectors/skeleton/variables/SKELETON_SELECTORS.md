@@ -1,14 +1,13 @@
 [**luiskr.com**](../../../../../README.md)
 
-***
+---
 
 [luiskr.com](../../../../../README.md) / [core/tokens/selectors/skeleton](../README.md) / SKELETON\_SELECTORS
 
 ```ts
 const SKELETON_SELECTORS: Readonly<{
-  SKELETON_ANY: "[class*=\"skeleton-\"]:not(.skeleton-layer):not(.has-skeleton-layer)";
-  SKELETON_TEXT_LIKE: "[class*=\"skeleton--para\"], [class*=\"skeleton--title\"], [class*=\"skeleton-about-\"], [class*=\"skeleton--footer\"], [class*=\"skeleton--section\"]";
-}>;
+  SKELETON_ANY: '[class*="skeleton-"]'
+}>
 ```
 
 Defined in: core/tokens/selectors/skeleton.ts:14

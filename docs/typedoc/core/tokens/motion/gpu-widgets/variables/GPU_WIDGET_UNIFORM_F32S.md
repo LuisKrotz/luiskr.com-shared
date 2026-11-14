@@ -12,7 +12,6 @@ const GPU_WIDGET_UNIFORM_F32S: Readonly<{
   4: 12
   5: 12
   6: 16
-  7: 12
   10: 16
   11: 16
   12: 16
@@ -23,7 +22,7 @@ const GPU_WIDGET_UNIFORM_F32S: Readonly<{
 }>
 ```
 
-Defined in: core/tokens/motion/gpu-widgets.ts:184
+Defined in: core/tokens/motion/gpu-widgets.ts:159
 
 Uniform f32 counts per kind — matches `UNIFORM_F32S` in each
 `rust/<slug>/src/lib.rs` block-layout doc. Used by the bridge to

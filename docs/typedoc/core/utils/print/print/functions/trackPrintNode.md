@@ -8,7 +8,7 @@
 function trackPrintNode(el): void
 ```
 
-Defined in: core/utils/print/print.ts:3197
+Defined in: core/utils/print/print.ts:3131
 
 Registers a listener-injected print node for the exit teardown — same
 fate as the adapter's own copies and covers: the node is removed when

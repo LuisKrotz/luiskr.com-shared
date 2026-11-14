@@ -8,7 +8,7 @@
 function animateFlag(flag): void
 ```
 
-Defined in: core/utils/canvas/widgets/flag/loop.ts:93
+Defined in: core/utils/canvas/widgets/flag/loop.ts:98
 
 Starts the shared-pool render loop (skipped under reduced motion).
 

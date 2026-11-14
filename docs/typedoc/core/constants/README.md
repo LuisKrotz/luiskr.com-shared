@@ -882,6 +882,12 @@ Re-exports [CACHE_CONFIG](../tokens/media/cache/variables/CACHE_CONFIG.md)
 
 ---
 
+### IDLE\_PREFETCH
+
+Re-exports [IDLE_PREFETCH](../tokens/media/cache/variables/IDLE_PREFETCH.md)
+
+---
+
 ### COVER\_DIMENSIONS
 
 Re-exports [COVER_DIMENSIONS](../tokens/media/dimensions/variables/COVER_DIMENSIONS.md)
@@ -1140,18 +1146,6 @@ Re-exports [NPU_PREDICT](../tokens/motion/prefetch/variables/NPU_PREDICT.md)
 
 ---
 
-### SKELETON\_RENDER
-
-Re-exports [SKELETON_RENDER](../tokens/motion/skeleton/variables/SKELETON_RENDER.md)
-
----
-
-### SKELETON\_GLYPH
-
-Re-exports [SKELETON_GLYPH](../tokens/motion/skeleton/variables/SKELETON_GLYPH.md)
-
----
-
 ### SKELETON\_RESOLVE
 
 Re-exports [SKELETON_RESOLVE](../tokens/motion/skeleton/variables/SKELETON_RESOLVE.md)
@@ -1161,12 +1155,6 @@ Re-exports [SKELETON_RESOLVE](../tokens/motion/skeleton/variables/SKELETON_RESOL
 ### SKELETON\_MOSAIC
 
 Re-exports [SKELETON_MOSAIC](../tokens/motion/skeleton/variables/SKELETON_MOSAIC.md)
-
----
-
-### SKELETON\_WARN
-
-Re-exports [SKELETON_WARN](../tokens/motion/skeleton/variables/SKELETON_WARN.md)
 
 ---
 

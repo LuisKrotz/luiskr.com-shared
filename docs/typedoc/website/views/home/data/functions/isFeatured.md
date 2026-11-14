@@ -1,14 +1,14 @@
 [**luiskr.com**](../../../../../README.md)
 
-***
+---
 
 [luiskr.com](../../../../../README.md) / [website/views/home/data](../README.md) / isFeatured
 
 ```ts
-function isFeatured(view, item): boolean;
+function isFeatured(view, item): boolean
 ```
 
-Defined in: website/views/home/data.ts:34
+Defined in: website/views/home/data.ts:35
 
 Featured detection accepts three sources: explicit boolean/string/1
 on the item itself (CMS stores typed values loosely), or membership

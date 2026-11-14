@@ -39,7 +39,7 @@ Modal close ✕ — liquid fill + rotating strokes (WebGL/canvas).
 
 ### `SKELETON`
 
-Loading skeleton — morphing glyph cells + traveling shimmer (canvas + CSS).
+Loading skeleton — traveling shimmer over grey placeholder wells (CSS).
 
 ### `INTRO_LOADER`
 
@@ -177,6 +177,10 @@ Docs root for website component pages (`website/components/…`).
 ### `_ANIM_DOC_GPU`
 
 Docs root for GPU utility pages (`core/utils/gpu/…`).
+
+### `_ANIM_DOC_MOTION`
+
+Docs root for motion utility pages (`core/utils/motion/…`).
 
 ### `_ANIM_SRC_COMPONENTS`
 

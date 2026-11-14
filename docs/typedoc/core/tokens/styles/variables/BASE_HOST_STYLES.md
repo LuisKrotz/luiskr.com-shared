@@ -8,7 +8,7 @@
 const BASE_HOST_STYLES: string
 ```
 
-Defined in: core/tokens/styles.ts:101
+Defined in: core/tokens/styles.ts:98
 
 The base stylesheet string injected into every component shadow root.
 UX notes per rule group:
@@ -18,8 +18,6 @@ UX notes per rule group:
 - `skeleton-*` — grey placeholder boxes with a diagonal shimmer
   (::before gradient sweeping left→right every 1.8s) so loading feels
   alive; `color: transparent` hides the reserve-space text;
-- `skeleton-layer` — absolutely-positioned WebGL canvas overlaying the
-  placeholders (has-skeleton-layer pauses the CSS shimmer to save paint);
 - `skeleton-content-in` — 0.45s fade when real content lands;
 - reduced-motion — collapses all animation/transition durations to
   ~0ms so motion-sensitive users see instant state changes.

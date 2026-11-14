@@ -508,8 +508,6 @@ _Shared primitives every surface builds on — no direct UI._
 | [`menu-background-wasm-tails.test.js`](core\tests\coverage\canvas\loaders/menu-background-wasm-tails.test.md)     | Coverage tail for the WebGPU/wasm menu-background path —                          |
 | [`menu-software-renderer-tails.test.js`](core\tests\coverage\canvas\loaders/menu-software-renderer-tails.test.md) | Coverage tail for the software-rasterizer rejection in                            |
 | [`page-backdrop-tails.test.js`](core\tests\coverage\canvas\loaders/page-backdrop-tails.test.md)                   | Coverage tail for the WebGL page backdrop — the facade's                          |
-| [`skeleton-measure-tails.test.js`](core\tests\coverage\canvas\loaders/skeleton-measure-tails.test.md)             | Coverage tails for skeleton measure/init edges: host-bounds                       |
-| [`skeleton-wasm-tails.test.js`](core\tests\coverage\canvas\loaders/skeleton-wasm-tails.test.md)                   | Coverage tail for the WebGPU/wasm skeleton path —                                 |
 
 ## Core engine
 
@@ -759,6 +757,7 @@ _Shared primitives every surface builds on — no direct UI._
 | File                                                                                                     | What it does                                                                           |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | [`accessibility-tails.test.js`](core\tests\coverage\utils\media/accessibility-tails.test.md)             | Coverage for core/utils/media/accessibility.ts — the naming                            |
+| [`idle-prefetch-tails.test.js`](core\tests\coverage\utils\media/idle-prefetch-tails.test.md)             | Coverage tails for utils/media/idle-prefetch.ts — the                                  |
 | [`local-media-cache-tails-2.test.js`](core\tests\coverage\utils\media/local-media-cache-tails-2.test.md) | Split from coverage-tails-4.test.js — covers the "local-media-cache tails 2" describe. |
 | [`local-media-cache-tails.test.js`](core\tests\coverage\utils\media/local-media-cache-tails.test.md)     | Split from coverage-tails-2.test.js — covers the "local-media-cache tails" describe.   |
 | [`media-policy-tails.test.js`](core\tests\coverage\utils\media/media-policy-tails.test.md)               | Coverage for core/utils/media/policy.ts — the connection- and                          |
@@ -788,6 +787,7 @@ _Shared primitives every surface builds on — no direct UI._
 | [`scroll-spring-tails.test.js`](core\tests\coverage\utils\motion/scroll-spring-tails.test.md)               | Coverage for core/utils/motion/scroll-spring.ts — the                           |
 | [`scroll-state-tails-test-js.test.js`](core\tests\coverage\utils\motion/scroll-state-tails-test-js.test.md) | Split from coverage-tails.test.js — covers the "scroll-state tails" describe.   |
 | [`scroll-state-tails.test.js`](core\tests\coverage\utils\motion/scroll-state-tails.test.md)                 | Split from coverage-tails-4.test.js — covers the "scroll-state tails" describe. |
+| [`skeleton-shimmer-tails.test.js`](core\tests\coverage\utils\motion/skeleton-shimmer-tails.test.md)         | Covers the "skeleton shimmer tails" describe — the CSS-only                     |
 
 ## Core engine
 
@@ -808,13 +808,12 @@ _Shared primitives every surface builds on — no direct UI._
 | [`print-gate-noarm-tails.test.js`](core\tests\coverage\utils\print/print-gate-noarm-tails.test.md)   | Coverage for core/utils/print/print.ts — the install arm       |
 | [`print-gate-tails.test.js`](core\tests\coverage\utils\print/print-gate-tails.test.md)               | Coverage for core/utils/print/print.ts — the gated print       |
 | [`print-init-ssr-tails.test.js`](core\tests\coverage\utils\print/print-init-ssr-tails.test.md)       | Coverage for core/utils/print/print.ts — the document-less     |
-| [`print-init-tails.test.js`](core\tests\coverage\utils\print/print-init-tails.test.md)               | Coverage for core/utils/print/print.ts — the install-time      |
+| [`print-init-tails.test.js`](core\tests\coverage\utils\print/print-init-tails.test.md)               | Coverage for core/utils/print/print.ts — initPrintSupport      |
 | [`print-oracle-tails.test.js`](core\tests\coverage\utils\print/print-oracle-tails.test.md)           | Coverage for core/utils/print/print.ts — the print-CSS         |
 | [`print-tails.test.js`](core\tests\coverage\utils\print/print-tails.test.md)                         | Coverage for core/utils/print/print.ts — the beforeprint/      |
 | [`print-video-cover-tails.test.js`](core\tests\coverage\utils\print/print-video-cover-tails.test.md) | Coverage for core/utils/print/print.ts video arms that the     |
 | [`print-wrapup-tails.test.js`](core\tests\coverage\utils\print/print-wrapup-tails.test.md)           | Coverage tail for core/utils/print/print.ts — the wrap-up      |
 | [`qr.test.js`](core\tests\coverage\utils\print/qr.test.md)                                           | Coverage for core/utils/print/qr.ts — the byte-mode level-M QR |
-| [`warm-bridge.test.js`](core\tests\coverage\utils\print/warm-bridge.test.md)                         | Coverage for core/utils/print/warm-bridge.ts — the eager       |
 
 ## Core engine
 
@@ -1248,7 +1247,7 @@ _Shared primitives every surface builds on — no direct UI._
 | [`prefetch.ts`](core\tokens\motion/prefetch.md)           | Predictive-prefetch tuning tokens.                            |
 | [`print.ts`](core\tokens\motion/print.md)                 | Print-lifecycle timing tokens.                                |
 | [`related.ts`](core\tokens\motion/related.md)             | Related-projects accordion-list timing/geometry tokens —      |
-| [`skeleton.ts`](core\tokens\motion/skeleton.md)           | WebGL skeleton-field configuration tokens — grouped subsets   |
+| [`skeleton.ts`](core\tokens\motion/skeleton.md)           | Skeleton-shimmer configuration tokens — grouped subsets       |
 | [`slider.ts`](core\tokens\motion/slider.md)               | —                                                             |
 
 ## Core engine
@@ -1429,7 +1428,6 @@ _Shared primitives every surface builds on — no direct UI._
 | [`intro-loader.ts`](core\utils\canvas\loaders/intro-loader.md)                   | Boot loader overlay — same visual language as the           |
 | [`menu-background-webgl.ts`](core\utils\canvas\loaders/menu-background-webgl.md) | Fullscreen WebGL background for the nav menu overlay: an    |
 | [`page-backdrop-webgl.ts`](core\utils\canvas\loaders/page-backdrop-webgl.md)     | Fullscreen WebGL lobe-field backdrop behind every route — a |
-| [`skeleton-webgl.ts`](core\utils\canvas\loaders/skeleton-webgl.md)               | WebGL skeleton/shimmer layer for loading states: a shared   |
 
 ## Core engine
 
@@ -1452,19 +1450,6 @@ _Shared primitives every surface builds on — no direct UI._
 | [`loop.ts`](core\utils\canvas\loaders\page-backdrop/loop.md)       | —                                                     |
 | [`shaders.ts`](core\utils\canvas\loaders\page-backdrop/shaders.md) | GLSL sources for PageBackdropWebGL — the grained lobe |
 | [`theme.ts`](core\utils\canvas\loaders\page-backdrop/theme.md)     | —                                                     |
-
-## Core engine
-
-_Shared primitives every surface builds on — no direct UI._
-
-| File                                                            | What it does                                           |
-| --------------------------------------------------------------- | ------------------------------------------------------ |
-| [`init.ts`](core\utils\canvas\loaders\skeleton/init.md)         | —                                                      |
-| [`loop.ts`](core\utils\canvas\loaders\skeleton/loop.md)         | —                                                      |
-| [`measure.ts`](core\utils\canvas\loaders\skeleton/measure.md)   | DOM measurement for SkeletonWebGL, extracted from      |
-| [`renderer.ts`](core\utils\canvas\loaders\skeleton/renderer.md) | Shared WebGL shimmer renderer for skeleton layers,     |
-| [`shaders.ts`](core\utils\canvas\loaders\skeleton/shaders.md)   | GLSL sources for the skeleton shimmer layer, extracted |
-| [`theme.ts`](core\utils\canvas\loaders\skeleton/theme.md)       | —                                                      |
 
 ## Core engine
 
@@ -1590,6 +1575,7 @@ _Shared primitives every surface builds on — no direct UI._
 | --------------------------------------------------------------- | ----------------------------------------------------------- |
 | [`accessibility.ts`](core\utils\media/accessibility.md)         | Accessibility metadata URL builders — the single naming     |
 | [`group.ts`](core\utils\media/group.md)                         | Media-group shape predicates shared by the project view and |
+| [`idle-prefetch.ts`](core\utils\media/idle-prefetch.md)         | Background asset warming while the tab is hidden.           |
 | [`local-media-cache.ts`](core\utils\media/local-media-cache.md) | Three-tier media cache: in-memory Map (object URLs) →       |
 | [`manifest.ts`](core\utils\media/manifest.md)                   | Runtime knowledge of which CDN objects exist, backed by the |
 | [`policy.ts`](core\utils\media/policy.md)                       | Connection- and box-aware media budgets                     |
@@ -1608,17 +1594,18 @@ _Shared primitives every surface builds on — no direct UI._
 
 _Shared primitives every surface builds on — no direct UI._
 
-| File                                                     | What it does                                                        |
-| -------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`bezier.ts`](core\utils\motion/bezier.md)               | Cubic-bezier easing evaluator — the CSS `cubic-bezier(x1,y1,x2,y2)` |
-| [`expand-spring.ts`](core\utils\motion/expand-spring.md) | Height chase spring — drives an element's inline                    |
-| [`frame.ts`](core\utils\motion/frame.md)                 | Shared frame scheduler — one requestAnimationFrame pump             |
-| [`genie.ts`](core\utils\motion/genie.md)                 | "Genie" dialog transition shared by the preferences modal,          |
-| [`intent.ts`](core\utils\motion/intent.md)               | User-intent gate for warm-path work                                 |
-| [`route-warmer.ts`](core\utils\motion/route-warmer.md)   | Post-load route-chunk warming.                                      |
-| [`scroll-spring.ts`](core\utils\motion/scroll-spring.md) | Scroll-position chase spring — the shared driver both               |
-| [`scroll-state.ts`](core\utils\motion/scroll-state.md)   | Global "is the window currently scrolling" flag plus an             |
-| [`spring.ts`](core\utils\motion/spring.md)               | Shared chase-spring integrator — a damped spring                    |
+| File                                                           | What it does                                                        |
+| -------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`bezier.ts`](core\utils\motion/bezier.md)                     | Cubic-bezier easing evaluator — the CSS `cubic-bezier(x1,y1,x2,y2)` |
+| [`expand-spring.ts`](core\utils\motion/expand-spring.md)       | Height chase spring — drives an element's inline                    |
+| [`frame.ts`](core\utils\motion/frame.md)                       | Shared frame scheduler — one requestAnimationFrame pump             |
+| [`genie.ts`](core\utils\motion/genie.md)                       | "Genie" dialog transition shared by the preferences modal,          |
+| [`intent.ts`](core\utils\motion/intent.md)                     | User-intent gate for warm-path work                                 |
+| [`route-warmer.ts`](core\utils\motion/route-warmer.md)         | Post-load route-chunk warming.                                      |
+| [`scroll-spring.ts`](core\utils\motion/scroll-spring.md)       | Scroll-position chase spring — the shared driver both               |
+| [`scroll-state.ts`](core\utils\motion/scroll-state.md)         | Global "is the window currently scrolling" flag plus an             |
+| [`skeleton-shimmer.ts`](core\utils\motion/skeleton-shimmer.md) | Component-level skeleton-shimmer sync — the CSS-only                |
+| [`spring.ts`](core\utils\motion/spring.md)                     | Shared chase-spring integrator — a damped spring                    |
 
 ## Core engine
 
@@ -1642,11 +1629,10 @@ _Shared primitives every surface builds on — no direct UI._
 
 _Shared primitives every surface builds on — no direct UI._
 
-| File                                                | What it does                                                  |
-| --------------------------------------------------- | ------------------------------------------------------------- |
-| [`print.ts`](core\utils\print/print.md)             | Print-mode DOM adapter                                        |
-| [`qr.ts`](core\utils\print/qr.md)                   | Dependency-free QR encoder for the print surfaces — byte-mode |
-| [`warm-bridge.ts`](core\utils\print/warm-bridge.md) | —                                                             |
+| File                                    | What it does                                                  |
+| --------------------------------------- | ------------------------------------------------------------- |
+| [`print.ts`](core\utils\print/print.md) | Print-mode DOM adapter                                        |
+| [`qr.ts`](core\utils\print/qr.md)       | Dependency-free QR encoder for the print surfaces — byte-mode |
 
 ## Core engine
 
@@ -2373,20 +2359,21 @@ _Boot surfaces: what the user sees first on each bundle._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                             | What it does                                               |
-| ---------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`a11y-checker.mjs`](shared\scripts\verify/a11y-checker.md)      | —                                                          |
-| [`chunk-budget.mjs`](shared\scripts\verify/chunk-budget.md)      | Minified chunk-size gate                                   |
-| [`console-scan.mjs`](shared\scripts\verify/console-scan.md)      | Scans every .ts/.tsx/.js file under src/ for console usage |
-| [`coverage-gaps.mjs`](shared\scripts\verify/coverage-gaps.md)    | —                                                          |
-| [`coverage-gate.mjs`](shared\scripts\verify/coverage-gate.md)    | Per-file coverage enforcement, per module                  |
-| [`print-check.mjs`](shared\scripts\verify/print-check.md)        | —                                                          |
-| [`scope-gates.mjs`](shared\scripts\verify/scope-gates.md)        | Scoped quality-gate runner for the module workspace        |
-| [`scroll-fps.mjs`](shared\scripts\verify/scroll-fps.md)          | —                                                          |
-| [`security-scan.mjs`](shared\scripts\verify/security-scan.md)    | Dependency vulnerability scan                              |
-| [`test-lighthouse.js`](shared\scripts\verify/test-lighthouse.md) | Backward-compatible Lighthouse entry point                 |
-| [`uncov.mjs`](shared\scripts\verify/uncov.md)                    | Coverage-gap reporter: for each source file passed on      |
-| [`verify.mjs`](shared\scripts\verify/verify.md)                  | Single quality gate shared by `prebuild` and the git       |
+| File                                                                  | What it does                                               |
+| --------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`a11y-checker.mjs`](shared\scripts\verify/a11y-checker.md)           | —                                                          |
+| [`chunk-budget.mjs`](shared\scripts\verify/chunk-budget.md)           | Minified chunk-size gate                                   |
+| [`console-scan.mjs`](shared\scripts\verify/console-scan.md)           | Scans every .ts/.tsx/.js file under src/ for console usage |
+| [`coverage-gaps.mjs`](shared\scripts\verify/coverage-gaps.md)         | —                                                          |
+| [`coverage-gate.mjs`](shared\scripts\verify/coverage-gate.md)         | Per-file coverage enforcement, per module                  |
+| [`print-check.mjs`](shared\scripts\verify/print-check.md)             | —                                                          |
+| [`scope-gates.mjs`](shared\scripts\verify/scope-gates.md)             | Scoped quality-gate runner for the module workspace        |
+| [`scroll-fps.mjs`](shared\scripts\verify/scroll-fps.md)               | —                                                          |
+| [`security-scan.mjs`](shared\scripts\verify/security-scan.md)         | Dependency vulnerability scan                              |
+| [`skeleton-geometry.mjs`](shared\scripts\verify/skeleton-geometry.md) | Skeleton geometry gate — validates that the CSS-only       |
+| [`test-lighthouse.js`](shared\scripts\verify/test-lighthouse.md)      | Backward-compatible Lighthouse entry point                 |
+| [`uncov.mjs`](shared\scripts\verify/uncov.md)                         | Coverage-gap reporter: for each source file passed on      |
+| [`verify.mjs`](shared\scripts\verify/verify.md)                       | Single quality gate shared by `prebuild` and the git       |
 
 ## Entry points
 
@@ -2893,14 +2880,6 @@ _Boot surfaces: what the user sees first on each bundle._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                                    | What it does |
-| ----------------------------------------------------------------------- | ------------ |
-| [`luiskr_skeleton.js`](website\public\wasm\skeleton/luiskr_skeleton.md) | —            |
-
-## Entry points
-
-_Boot surfaces: what the user sees first on each bundle._
-
 | File                                                                                   | What it does |
 | -------------------------------------------------------------------------------------- | ------------ |
 | [`luiskr_switch_slider.js`](website\public\wasm\switch-slider/luiskr_switch_slider.md) | —            |
@@ -3005,19 +2984,16 @@ _Boot surfaces: what the user sees first on each bundle._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                                                                                                         | What it does                                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [`canvas-widgets-burgerbuttonwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-burgerbuttonwebgl.test.md)               | Split from canvas-widgets.test.js — covers the "BurgerButtonWebGL" describe.        |
-| [`canvas-widgets-carouselarrowwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-carouselarrowwebgl.test.md)             | Split from canvas-widgets.test.js — covers the "CarouselArrowWebGL" describe.       |
-| [`canvas-widgets-checkboxwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-checkboxwebgl.test.md)                       | Split from canvas-widgets.test.js — covers the "CheckboxWebGL" describe.            |
-| [`canvas-widgets-closebuttonwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-closebuttonwebgl.test.md)                 | Split from canvas-widgets.test.js — covers the "CloseButtonWebGL" describe.         |
-| [`canvas-widgets-switchwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-switchwebgl.test.md)                           | Split from canvas-widgets.test.js — covers the "SwitchWebGL" describe.              |
-| [`canvas-widgets-themesliderwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-themesliderwebgl.test.md)                 | Split from canvas-widgets.test.js — covers the "ThemeSliderWebGL" describe.         |
-| [`canvas-widgets-webglpoolmanager.test.js`](website\tests\components\canvas\widgets/canvas-widgets-webglpoolmanager.test.md)                 | Split from canvas-widgets.test.js — covers the "WebGLPoolManager" describe.         |
-| [`webgl-widgets-flagwebgl.test.js`](website\tests\components\canvas\widgets/webgl-widgets-flagwebgl.test.md)                                 | Split from webgl-widgets.test.js — covers the "FlagWebGL" describe.                 |
-| [`webgl-widgets-skeleton-webgl-tails.test.js`](website\tests\components\canvas\widgets/webgl-widgets-skeleton-webgl-tails.test.md)           | Split from webgl-widgets.test.js — covers the "skeleton-webgl tails" describe.      |
-| [`webgl-widgets-skeletonwebgl.test.js`](website\tests\components\canvas\widgets/webgl-widgets-skeletonwebgl.test.md)                         | Split from webgl-widgets.test.js — covers the "SkeletonWebGL" describe.             |
-| [`webgl-widgets-syncskeletonlayer-helpers.test.js`](website\tests\components\canvas\widgets/webgl-widgets-syncskeletonlayer-helpers.test.md) | Split from webgl-widgets.test.js — covers the "syncSkeletonLayer helpers" describe. |
+| File                                                                                                                             | What it does                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`canvas-widgets-burgerbuttonwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-burgerbuttonwebgl.test.md)   | Split from canvas-widgets.test.js — covers the "BurgerButtonWebGL" describe.  |
+| [`canvas-widgets-carouselarrowwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-carouselarrowwebgl.test.md) | Split from canvas-widgets.test.js — covers the "CarouselArrowWebGL" describe. |
+| [`canvas-widgets-checkboxwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-checkboxwebgl.test.md)           | Split from canvas-widgets.test.js — covers the "CheckboxWebGL" describe.      |
+| [`canvas-widgets-closebuttonwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-closebuttonwebgl.test.md)     | Split from canvas-widgets.test.js — covers the "CloseButtonWebGL" describe.   |
+| [`canvas-widgets-switchwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-switchwebgl.test.md)               | Split from canvas-widgets.test.js — covers the "SwitchWebGL" describe.        |
+| [`canvas-widgets-themesliderwebgl.test.js`](website\tests\components\canvas\widgets/canvas-widgets-themesliderwebgl.test.md)     | Split from canvas-widgets.test.js — covers the "ThemeSliderWebGL" describe.   |
+| [`canvas-widgets-webglpoolmanager.test.js`](website\tests\components\canvas\widgets/canvas-widgets-webglpoolmanager.test.md)     | Split from canvas-widgets.test.js — covers the "WebGLPoolManager" describe.   |
+| [`webgl-widgets-flagwebgl.test.js`](website\tests\components\canvas\widgets/webgl-widgets-flagwebgl.test.md)                     | Split from webgl-widgets.test.js — covers the "FlagWebGL" describe.           |
 
 ## Entry points
 

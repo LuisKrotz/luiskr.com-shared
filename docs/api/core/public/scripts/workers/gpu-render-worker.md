@@ -41,6 +41,14 @@ Stop a record's pump loop.
 
 - `@param` rec The widget record.
 
+### (module scope)
+
+The worker-side render pump — owns `widget.frame(dt)` for
+RAF-driven kinds. A wasm-boundary throw or a false return disarms
+the pump and reports `dead` so the bridge can fall back.
+
+- `@param` rec The widget record.
+
 ### `pump`
 
 The worker-side render pump — owns `widget.frame(dt)` for

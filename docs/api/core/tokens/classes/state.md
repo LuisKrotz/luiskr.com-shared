@@ -15,6 +15,12 @@ Frozen state class-name map — sole declaration site for these tokens; consumer
 members and never re-declare the strings (zero-hardcoding rules 4–5). Object.freeze makes
 the token contract immutable at runtime.
 
+### `IS_PAINTED`
+
+The canvas painted at least one real frame — fallback/placeholder
+layers (flag SVGs) only swap out once actual pixels stand, so a
+mounted-but-still-initializing canvas never blacks out the slot.
+
 ### `IS_SCROLLING`
 
 Document-level live-scroll marker — set by utils/motion/scroll-state

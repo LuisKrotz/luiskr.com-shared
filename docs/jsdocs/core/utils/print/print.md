@@ -144,20 +144,13 @@ Marked `[data-print-link]` hrefs already emitted this pass — kept
 separate from the footer set so a directory row (sitemap) still shows
 its own code when a footer happens to link the same route.
 
-### `warmReady`
-
-Media URLs the browser is known to have fetched already — marked at
-each img's load resolution. The barrier-less beforeprint pass may
-only swap toward one of these: a cold swap trades a decoded screen
-src for a fetch that races the snapshot blank.
-
 ### `pendingPrint`
 
 Fetch/decode promises kicked by the prep pass — the gated entry
 (Ctrl/Cmd+P, window.print) awaits them before opening the dialog so
 the snapshot can't race a cold rung into a missing image. The
 beforeprint path never reads the list: menu-initiated jobs can't be
-deferred, so they hold decoded sources and floor-rung swaps instead.
+deferred, so they hold decoded sources and kicked rung swaps instead.
 
 ### `pendingSettled`
 
@@ -384,17 +377,6 @@ manifest hasn't landed, per the originals-only render contract).
 - `@param` stem Extensionless emission-encoded stem.
 - `@returns` Proven full-quality .jpg URL, or ''.
 
-### `stemFloorUrl`
-
-Smallest manifest-proven .jpg for one stem — the floor rung. The
-un-gated print path can't wait on a fetch, so an undecoded img swaps
-here instead of holding a multi-megabyte original: a ~100KB cold pull
-clears the snapshot window a multi-megabyte one never does. '' when
-the manifest proves nothing.
-
-- `@param` stem Extensionless emission-encoded stem.
-- `@returns` Proven floor .jpg URL, or ''.
-
 ### `PRINT_SMALL_BOX_RUNG_SKIP`
 
 Rungs skipped below the top for a small box the `-mobile` ladder can't
@@ -456,40 +438,6 @@ credit points at the full-quality file while the fetch stays sane.
 
 - `@param` img Image being upgraded.
 - `@returns` Proven print-resolution URL, or ''.
-
-### `warmPrintSource`
-
-Marks a resolved img's current URL as print-safe — `warmReady` is the
-swap gate's "already fetched" proof, so it records what the browser
-decoded rather than fetching anything itself. An idle pull of the
-print rung is a page-speed tax a print pass may never repay: warming
-only ever observes decoded bytes, never summons them. `currentSrc`
-leads because it is the URL the network actually settled — the bare
-attribute can still read a rung the loader swapped past.
-
-- `@param` img Image element that just finished loading on screen.
-
-### `sweepWarm`
-
-Idle mark sweep over the whole composed tree — every resolved img's
-current URL joins `warmReady` so a later barrier-less print pass can
-prove the swap target is already fetched. Runs after install and
-again whenever the MutationObserver sees new nodes (route renders
-mount fresh media long after the first sweep). Marks only — repeated
-sweeps cost a DOM walk and nothing else, and no idle pass ever pulls
-bytes the screen didn't already need.
-
-### `sweepQueued`
-
-True while a sweep is queued for the next idle slice — coalesces bursts.
-
-### `queueSweep`
-
-Defers one `sweepWarm` to the next idle slice — requestIdleCallback
-with a bounded timeout when available, the short setTimeout fallback
-otherwise (the same scheduler contract route-warmer uses). DOM growth
-fires this per mutation batch; the `sweepQueued` flag collapses a
-route render's many mutations into a single sweep.
 
 ### `qrLink`
 
@@ -871,19 +819,37 @@ route collects fewer than TOC_MIN_ITEMS heads.
 
 - `@returns` The `.print-toc` element, or null.
 
-### `coverPortrait`
+### (module scope)
 
-Finds the about portrait's Gravatar URL in the live composed tree and
-returns the cover-star <img> re-requesting it at the cover rung — the
-same CMS picture the about section shows fronts the printed issue,
-seated over the masthead's lower half (the magazine "name behind the
-cover star" move). The node is built fresh rather than cloned so it
-drops with the cover on exit; eager/high-priority attrs plus a decode
-kick make the preview hold on the in-flight fetch the way upgraded
-media does. Routes without the about section (project internals,
-legal, docs) simply print the masthead cover without the portrait.
+Builds the cover-star <img>: the Gravatar portrait — the person behind
+the masthead — re-requested at the cover rung and seated over the
+masthead's lower half (the magazine "name behind the cover star"
+move). The node is built fresh rather than cloned so it drops with
+the cover on exit; eager/high-priority attrs plus a decode kick make
+the preview hold on the in-flight fetch the way upgraded media does.
+On routes without the about section the CMS node's boot-chunk copy
+still resolves the URL — only a CMS that truly lacks a profilePicture
+falls back to the issue's feature still (or a masthead-only cover).
 
-- `@returns` The `.print-cover-photo` img, or null when no portrait exists.
+- `@returns` The `.print-cover-photo` img.
+
+### `coverPortraitPath`
+
+The `pages/<locale>/ABOUT/profilePicture` node the cover star's URL
+lives under — the same CMS key the about section binds.
+
+- `@returns` The database path for the profilePicture node.
+
+### `featureCoverUrl`
+
+The issue's feature-media cover still — a plate's injected `.print-copy`
+(a scene's captured frame, or a landscape hero's light-DOM copy) first,
+then the internal hero figure's own media at its top proven rung (a
+video hero falls to the manifest-proven `stem.mp4.jpg` still). '' when
+the route carries no feature media — the fallback for routes whose CMS
+has no profilePicture.
+
+- `@returns` The feature still's URL, or ''.
 
 ### `featureTitle`
 
@@ -966,10 +932,5 @@ media should be.
 Installs the print hooks once: the native before/afterprint pair plus the
 matchMedia('print') change channel — some engines skip the events but
 always flip the media query, so both paths feed the same enter/exit.
-A capture-phase `load` listener rides every img that resolves on screen
-(load doesn't bubble — capture reaches it) and marks its resolved URL
-in `warmReady`, so the beforeprint swap gate can prove a rung's bytes
-already sit in cache instead of gambling on a cold multi-megabyte pull
-at snapshot time. Marks only — the warm pass never summons a fetch the
-screen didn't already need; lazy/late-mounted layers are covered the
-moment their own load lands — no polling, no observer.
+The media manifest decides every print source, so its fetch kicks here
+rather than waiting on the idle boot slot.

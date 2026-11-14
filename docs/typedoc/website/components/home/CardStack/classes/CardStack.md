@@ -40,7 +40,7 @@ protected _componentStyles:
   | TieredStyles;
 ```
 
-Defined in: core/Component.ts:102
+Defined in: core/Component.ts:100
 
 Component-local SCSS — either the `?inline` css text or a `?tiers`
 {base, tiers} module whose base is adopted synchronously while the
@@ -58,7 +58,7 @@ viewport's cumulative media tier loads lazily.
 protected _eventDisposers: () => void[] = [];
 ```
 
-Defined in: core/Component.ts:149
+Defined in: core/Component.ts:147
 
 Disposers for listeners added via addScopedListener(). Drained in
 disconnectedCallback so elements never leak listeners across mounts —
@@ -80,7 +80,7 @@ critical for elements that move in the DOM (carousel reorder, route swap).
 protected _storeUnsubscribers: () => void[] = [];
 ```
 
-Defined in: core/Component.ts:155
+Defined in: core/Component.ts:153
 
 Unsubscribe callbacks from store.subscribe(). Drained on disconnect so a
 detached element stops receiving store pushes and can be GC'd.
@@ -101,7 +101,7 @@ detached element stops receiving store pushes and can be GC'd.
 _isMounted: boolean = false
 ```
 
-Defined in: core/Component.ts:162
+Defined in: core/Component.ts:160
 
 Whether the element is currently connected. Read by the store-subscription
 wrapper to skip onStoreUpdate on detached elements (a store push arriving
@@ -119,7 +119,7 @@ between disconnect and GC must not re-render into a dead shadow root).
 protected _styleNode: Element | HTMLStyleElement | null = null;
 ```
 
-Defined in: core/Component.ts:165
+Defined in: core/Component.ts:163
 
 The `<style>` fallback node, only populated on engines without constructable stylesheets.
 
@@ -135,7 +135,7 @@ The `<style>` fallback node, only populated on engines without constructable sty
 _contentNode: Element | HTMLElement | null = null;
 ```
 
-Defined in: core/Component.ts:172
+Defined in: core/Component.ts:170
 
 Persistent content wrapper inside the shadow root. _updateDom swaps only
 this node's children — the style mechanism stays untouched (see file
@@ -147,31 +147,13 @@ header for why that split exists).
 
 ---
 
-### \_skeletonLayer
-
-```ts
-_skeletonLayer:
-  | SkeletonWebGL
-  | null = null;
-```
-
-Defined in: core/Component.ts:175
-
-Live WebGL skeleton layer, owned by syncSkeletonLayer()/destroySkeletonLayer().
-
-#### Inherited from
-
-[`BaseComponent`](../../../../../core/Component/classes/BaseComponent.md).[`_skeletonLayer`](../../../../../core/Component/classes/BaseComponent.md#_skeletonlayer)
-
----
-
 ### state
 
 ```ts
 state: ComponentState = {}
 ```
 
-Defined in: core/Component.ts:178
+Defined in: core/Component.ts:173
 
 Reactive state bag — written only through setState() so updates always re-render.
 
@@ -4997,7 +4979,7 @@ Defined in: node\_modules/typescript/lib/lib.dom.d.ts:13931
 optional onStoreUpdate(_store): void;
 ```
 
-Defined in: core/Component.ts:188
+Defined in: core/Component.ts:183
 
 #### Parameters
 
@@ -5021,7 +5003,7 @@ Defined in: core/Component.ts:188
 setState(updater): void;
 ```
 
-Defined in: core/Component.ts:228
+Defined in: core/Component.ts:219
 
 Set partial state and re-render content (NOT styles). Accepts either a
 patch object or a React-style updater function — the function form is
@@ -5055,12 +5037,12 @@ Partial state patch, or (prevState) => patch.
 connectedCallback(): void;
 ```
 
-Defined in: core/Component.ts:246
+Defined in: core/Component.ts:237
 
 DOM insertion — runs onInit (data setup), the one-time style/content
 build (_renderInitial), then onMounted + onUpdated so a first render is
 indistinguishable from an update, and finally registers this element
-with the WebGL skeleton scanner (no-op when no skeletons are present).
+with the skeleton shimmer sync (no-op when no skeletons are present).
 Per the Custom Elements spec this callback can fire multiple times —
 every branch below is written to be idempotent on re-mount.
 
@@ -5080,10 +5062,10 @@ every branch below is written to be idempotent on re-mount.
 disconnectedCallback(): void;
 ```
 
-Defined in: core/Component.ts:262
+Defined in: core/Component.ts:253
 
 DOM removal — tears down in reverse order: scoped listeners, store
-subscriptions, the WebGL skeleton layer for this element, then the
+subscriptions, the skeleton shimmer sync for this element, then the
 subclass's onDestroy (engine/audio/observer cleanup). `_isMounted` flips
 first so an in-flight store push during teardown hits the guard in
 subscribe() rather than rendering into a disconnecting root.
@@ -5104,7 +5086,7 @@ subscribe() rather than rendering into a disconnecting root.
 $<T>(selector): T | null;
 ```
 
-Defined in: core/Component.ts:284
+Defined in: core/Component.ts:275
 
 Safe scoped querySelector inside Shadow Root. Returns null instead of
 throwing when the shadow root is absent (detached construction in tests).
@@ -5141,7 +5123,7 @@ First matching element or null.
 $$<T>(selector): T[];
 ```
 
-Defined in: core/Component.ts:295
+Defined in: core/Component.ts:286
 
 Safe scoped querySelectorAll inside Shadow Root — materialized into a
 real Array so callers get .map/.filter/forEach (NodeList lacks some
@@ -5184,7 +5166,7 @@ addScopedListener(
 ): void;
 ```
 
-Defined in: core/Component.ts:310
+Defined in: core/Component.ts:301
 
 Scoped event listener with automatic lifecycle cleanup.
 Prevents duplicate listeners: the DOM itself dedupes identical
@@ -5234,7 +5216,7 @@ Passive/capture/once options forwarded verbatim.
 subscribe(store): void;
 ```
 
-Defined in: core/Component.ts:331
+Defined in: core/Component.ts:322
 
 Subscribe to store changes with automatic lifecycle cleanup. The wrapper
 gates on _isMounted: a store push landing while the element is detached
@@ -5265,7 +5247,7 @@ Store-like object exposing subscribe(); null/invalid → no-op.
 protected _renderInitial(): void;
 ```
 
-Defined in: core/Component.ts:362
+Defined in: core/Component.ts:353
 
 Initial render: injects styles ONCE and creates the content node.
 Called exactly once from connectedCallback() — but on re-mount the shadow
@@ -5288,7 +5270,7 @@ paths reuse existing nodes instead of duplicating them.
 _updateDom(): void;
 ```
 
-Defined in: core/Component.ts:620
+Defined in: core/Component.ts:611
 
 Update content without touching the style node.
 Only the content wrapper is replaced — the <style> node
@@ -5313,7 +5295,7 @@ tracked element on every state change).
 protected _applyRenderOutput(output): void;
 ```
 
-Defined in: core/Component.ts:647
+Defined in: core/Component.ts:638
 
 Applies the render output (DOM Node, DocumentFragment, or HTML string) to the content wrapper.
 Three accepted shapes, resolved in priority order:
@@ -5485,7 +5467,7 @@ The fresh deck element (null on skeleton-less renders).
 measure(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:390
+Defined in: website/components/home/CardStack.tsx:412
 
 Deck measurement — see cardstack/deck.ts.
 
@@ -5501,7 +5483,7 @@ Deck measurement — see cardstack/deck.ts.
 applyPoses(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:396
+Defined in: website/components/home/CardStack.tsx:418
 
 Fan pose write — see cardstack/deck.ts.
 
@@ -5517,7 +5499,7 @@ Fan pose write — see cardstack/deck.ts.
 updateChrome(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:402
+Defined in: website/components/home/CardStack.tsx:424
 
 Counter/dots/a11y refresh — see cardstack/deck.ts.
 
@@ -5533,7 +5515,7 @@ Counter/dots/a11y refresh — see cardstack/deck.ts.
 goTo(idx): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:408
+Defined in: website/components/home/CardStack.tsx:430
 
 Navigate the fan to a deck index — see cardstack/interactions.ts.
 
@@ -5555,7 +5537,7 @@ Navigate the fan to a deck index — see cardstack/interactions.ts.
 onPrevClick(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:414
+Defined in: website/components/home/CardStack.tsx:436
 
 Prev control.
 
@@ -5571,7 +5553,7 @@ Prev control.
 onNextClick(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:420
+Defined in: website/components/home/CardStack.tsx:442
 
 Next control.
 
@@ -5587,7 +5569,7 @@ Next control.
 onDotClick(idx): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:426
+Defined in: website/components/home/CardStack.tsx:448
 
 Dot-nav click.
 
@@ -5609,7 +5591,7 @@ Dot-nav click.
 onCardClick(item, idx): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:432
+Defined in: website/components/home/CardStack.tsx:454
 
 Card activation — side cards reposition, front card navigates.
 
@@ -5635,7 +5617,7 @@ Card activation — side cards reposition, front card navigates.
 toggleIndex(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:438
+Defined in: website/components/home/CardStack.tsx:460
 
 Toggles the all-projects index overlay.
 
@@ -5651,7 +5633,7 @@ Toggles the all-projects index overlay.
 closeIndex(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:444
+Defined in: website/components/home/CardStack.tsx:466
 
 Closes the index overlay.
 
@@ -5667,7 +5649,7 @@ Closes the index overlay.
 onKeyDown(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:450
+Defined in: website/components/home/CardStack.tsx:472
 
 Delegated keydown — arrows step the fan, Escape closes the index.
 
@@ -5689,7 +5671,7 @@ Delegated keydown — arrows step the fan, Escape closes the index.
 onPointerDown(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:456
+Defined in: website/components/home/CardStack.tsx:478
 
 Pointer-down drag arm — see cardstack/gestures.ts.
 
@@ -5711,7 +5693,7 @@ Pointer-down drag arm — see cardstack/gestures.ts.
 onPointerMove(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:462
+Defined in: website/components/home/CardStack.tsx:484
 
 Pointer-move drag tracking — see cardstack/gestures.ts.
 
@@ -5733,7 +5715,7 @@ Pointer-move drag tracking — see cardstack/gestures.ts.
 onPointerEnd(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:468
+Defined in: website/components/home/CardStack.tsx:490
 
 Pointer-up/cancel settle — see cardstack/gestures.ts.
 
@@ -5755,7 +5737,7 @@ Pointer-up/cancel settle — see cardstack/gestures.ts.
 render(): Element;
 ```
 
-Defined in: website/components/home/CardStack.tsx:474
+Defined in: website/components/home/CardStack.tsx:496
 
 JSX template for the component's shadow DOM.
 

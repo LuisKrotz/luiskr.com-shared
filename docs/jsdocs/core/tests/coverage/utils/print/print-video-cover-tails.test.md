@@ -24,6 +24,11 @@ Dispatches the native beforeprint event the module listens for.
 
 Dispatches the native afterprint event the module listens for.
 
+### `wait`
+
+Flushes the portrait fetch arm — the CMS lookup + img.src assign
+resolve on microtasks after the synchronous prep pass returns.
+
 ### `mkArticle`
 
 Builds a reader mirror article in <body>.

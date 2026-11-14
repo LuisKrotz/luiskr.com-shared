@@ -16,5 +16,4 @@
 - [hasWebGpu](functions/hasWebGpu.md)
 - [webgpuWidgetsEnabled](functions/webgpuWidgetsEnabled.md)
 - [getSharedGpuDevice](functions/getSharedGpuDevice.md)
-- [warmWidgetArtifacts](functions/warmWidgetArtifacts.md)
 - [mountWebGpuWidget](functions/mountWebGpuWidget.md)

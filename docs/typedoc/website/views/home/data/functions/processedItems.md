@@ -1,14 +1,14 @@
 [**luiskr.com**](../../../../../README.md)
 
-***
+---
 
 [luiskr.com](../../../../../README.md) / [website/views/home/data](../README.md) / processedItems
 
 ```ts
-function processedItems(view): PortfolioItem[];
+function processedItems(view): PortfolioItem[]
 ```
 
-Defined in: website/views/home/data.ts:48
+Defined in: website/views/home/data.ts:49
 
 Projects list reshaped for the mosaic. The DB stores portfoliolist
 as either an array or a keyed object (locale-dependent), so both

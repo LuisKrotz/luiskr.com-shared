@@ -39,10 +39,6 @@ Modal close — liquid fill + rotating X strokes.
 
 Fullscreen menu backdrop — fbm contour field.
 
-### `SKELETON`
-
-Loading skeleton — morphing 0/1 glyph cells.
-
 ### `BURN`
 
 Mosaic letter-burn — ember/char particle sim.
@@ -92,8 +88,6 @@ Artifact registry — kind → wasm-pack glue URL + exported class name.
 `url` is `/wasm/<slug>/<pkg>.js` under public/; `cls` is the crate's
 `#[wasm_bindgen]` struct name (each crate exports a differently-
 named widget, so the bridge indexes the module dynamically).
-`eager` marks the skeleton — the only artifact allowed on the
-critical path since it IS the loading placeholder.
 Frozen; consumers import members, never redeclare literals.
 
 ### (module scope)
@@ -119,10 +113,6 @@ close-button — modal close control.
 ### (module scope)
 
 menu-background — fullscreen menu contour field.
-
-### (module scope)
-
-skeleton — the FIRST-loading artifact (the loading placeholder).
 
 ### (module scope)
 
@@ -196,10 +186,6 @@ menu-bg: time, res(2), reveal, color(3), alpha, color2(3), pad, rect(4).
 
 ### (module scope)
 
-skeleton: res(2), time, resolve, ink_alpha, count, pad(2), rect(4).
-
-### (module scope)
-
 glitch: res(2), time, hover, seed, cover(4), pad(7).
 
 ### (module scope)
@@ -239,8 +225,8 @@ stateless widgets (burger, flag, sliders, close, menu, media).
 ### `MANUAL`
 
 Caller owns the loop — for widgets whose host already runs a
-frame-scheduled loop with its own semantics (skeleton's
-frame-skip + resolve-out, burn's stage pump). The bridge skips
+frame-scheduled loop with its own semantics (flag's hover easing,
+burn's stage pump). The bridge skips
 rAF AND the resize listener entirely; the caller drives
 `widget.frame(dt)`, `widget.set_size(css)`, and
 `widget.resize(device)` through its existing paths so there is

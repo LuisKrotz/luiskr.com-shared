@@ -47,8 +47,8 @@ relies on being uniform:
 1.  Shadow root + one stylesheet injection strategy (adoptedStyleSheets
     with a shared-sheet cache, `<style>` fallback on old engines);
 2.  `setState → render → _updateDom` reactive cycle;
-3.  automatic teardown — scoped listeners, store subs, and the WebGL
-    skeleton layer are released in disconnectedCallback;
+3.  automatic teardown — scoped listeners, store subs, and the
+    skeleton shimmer sync are released in disconnectedCallback;
 4.  lifecycle hooks subclasses implement: render(), onInit, onMounted,
     onUpdated, onStoreUpdate(store), onDestroy.
 
@@ -125,10 +125,6 @@ Persistent content wrapper inside the shadow root. _updateDom swaps only
 this node's children — the style mechanism stays untouched (see file
 header for why that split exists).
 
-### `_skeletonLayer`
-
-Live WebGL skeleton layer, owned by syncSkeletonLayer()/destroySkeletonLayer().
-
 ### (module scope)
 
 Reactive state bag — written only through setState() so updates always re-render.
@@ -171,14 +167,14 @@ lets components update one field without re-sending the whole bag.
 DOM insertion — runs onInit (data setup), the one-time style/content
 build (_renderInitial), then onMounted + onUpdated so a first render is
 indistinguishable from an update, and finally registers this element
-with the WebGL skeleton scanner (no-op when no skeletons are present).
+with the skeleton shimmer sync (no-op when no skeletons are present).
 Per the Custom Elements spec this callback can fire multiple times —
 every branch below is written to be idempotent on re-mount.
 
 ### `disconnectedCallback`
 
 DOM removal — tears down in reverse order: scoped listeners, store
-subscriptions, the WebGL skeleton layer for this element, then the
+subscriptions, the skeleton shimmer sync for this element, then the
 subclass's onDestroy (engine/audio/observer cleanup). `_isMounted` flips
 first so an in-flight store push during teardown hits the guard in
 subscribe() rather than rendering into a disconnecting root.

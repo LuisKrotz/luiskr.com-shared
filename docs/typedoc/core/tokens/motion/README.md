@@ -162,18 +162,6 @@ Re-exports [NPU_PREDICT](prefetch/variables/NPU_PREDICT.md)
 
 ---
 
-### SKELETON\_RENDER
-
-Re-exports [SKELETON_RENDER](skeleton/variables/SKELETON_RENDER.md)
-
----
-
-### SKELETON\_GLYPH
-
-Re-exports [SKELETON_GLYPH](skeleton/variables/SKELETON_GLYPH.md)
-
----
-
 ### SKELETON\_RESOLVE
 
 Re-exports [SKELETON_RESOLVE](skeleton/variables/SKELETON_RESOLVE.md)
@@ -183,9 +171,3 @@ Re-exports [SKELETON_RESOLVE](skeleton/variables/SKELETON_RESOLVE.md)
 ### SKELETON\_MOSAIC
 
 Re-exports [SKELETON_MOSAIC](skeleton/variables/SKELETON_MOSAIC.md)
-
----
-
-### SKELETON\_WARN
-
-Re-exports [SKELETON_WARN](skeleton/variables/SKELETON_WARN.md)

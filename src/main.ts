@@ -263,6 +263,12 @@ const start = async () => {
     // Awaited: a floating dynamic import can outlive the test's registry.
     await import('@core/utils/print/print.js').then(({ initPrintSupport }) => initPrintSupport())
 
+    // Idle asset prefetch — warms the route's CDN media into the cache
+    // while the tab is hidden; pure listener, off the critical path.
+    await import('@core/utils/media/idle-prefetch.js').then(({ initIdlePrefetch }) =>
+      initIdlePrefetch()
+    )
+
     // Mount custom element root
     if (typeof document !== TYPE_STRINGS.UNDEFINED) {
       // First attempt — #app exists already on any sane document.

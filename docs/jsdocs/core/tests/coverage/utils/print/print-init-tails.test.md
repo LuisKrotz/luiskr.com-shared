@@ -1,6 +1,6 @@
 # `core\tests\coverage\utils\print\print-init-tails.test.js`
 
-Coverage for core/utils/print/print.ts — the install-time
+Coverage for core/utils/print/print.ts — initPrintSupport
 
 |                |                                                                |
 | -------------- | -------------------------------------------------------------- |

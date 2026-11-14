@@ -18,6 +18,12 @@ Re-exports [CACHE_CONFIG](cache/variables/CACHE_CONFIG.md)
 
 ---
 
+### IDLE\_PREFETCH
+
+Re-exports [IDLE_PREFETCH](cache/variables/IDLE_PREFETCH.md)
+
+---
+
 ### COVER\_DIMENSIONS
 
 Re-exports [COVER_DIMENSIONS](dimensions/variables/COVER_DIMENSIONS.md)

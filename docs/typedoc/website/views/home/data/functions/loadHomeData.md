@@ -8,7 +8,7 @@
 function loadHomeData(view): void
 ```
 
-Defined in: website/views/home/data.ts:138
+Defined in: website/views/home/data.ts:139
 
 Loads the three home data sources in parallel via SWR.
 

@@ -87,7 +87,7 @@ Defined in: website/components/media/DrawText.tsx:43
 ### \_styleEl
 
 ```ts
-_styleEl: HTMLStyleElement | CSSStyleSheet | null = null;
+_styleEl: CSSStyleSheet | HTMLStyleElement | null = null;
 ```
 
 Defined in: website/components/media/DrawText.tsx:44
