@@ -8,7 +8,7 @@
 function notifyLoadFailed(opts?): Promise<false | 'native' | 'toast'>
 ```
 
-Defined in: core/utils/notify.ts:199
+Defined in: core/utils/notify.ts:200
 
 Resource/section load failure shortcut.
 

@@ -28,6 +28,7 @@ const DOM_STRINGS: Readonly<{
   DATA_ROUTE: 'data-route'
   A_TAG: 'a'
   BR_TAG: '<br>'
+  RESIZE_OBSERVER_LOOP: 'ResizeObserver loop'
 }>
 ```
 

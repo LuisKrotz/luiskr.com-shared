@@ -704,4 +704,46 @@ describe('Style Governance & Zero-Hardcoding Enforcement', () => {
 
     expect(fs.readdirSync(rulesDir).some((f) => /delivery|checklist/i.test(f))).toBe(true)
   })
+
+  // ── 19. Rule 37: forced reflows ride flushLayout — bare layout-getter
+  // statements die under production minification ──────────────────────────
+  // `void el.offsetWidth` is a discarded pure getter — terser's
+  // `pure_getters` strips it in prod, silently deleting the reflow that
+  // commits a transition-suppressed state (the observed prod-only dialog
+  // animation regression). Discarded layout-getter statements are banned;
+  // the transition-restart pattern must route through flushLayout().
+  test('Rule 37: ZERO bare discarded layout-getter statements in src/', () => {
+    // `void <expr>.<layoutGetter>` where the getter is NOT invoked — the
+    // exact dead-code shape terser removes. Called methods (`void
+    // el.getBoundingClientRect()`) survive minification and stay legal.
+    const bareReadRe =
+      /\bvoid\s+[\w$.]+\.(?:offsetWidth|offsetHeight|offsetTop|offsetLeft|offsetParent|clientWidth|clientHeight|clientTop|clientLeft|scrollWidth|scrollHeight|scrollTop|scrollLeft|getBoundingClientRect|getClientRects)\b(?!\s*\()/
+    const offenders = []
+
+    for (const file of allSourceFiles(['.ts', '.tsx', '.js'])) {
+      const raw = fs.readFileSync(file, 'utf-8')
+
+      // Blank comments so prose mentioning the pattern isn't flagged.
+      const codeOnly = raw.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/\/\/[^\n]*/g, ' ')
+
+      if (bareReadRe.test(codeOnly)) offenders.push(path.relative(rootDir, file))
+    }
+
+    expect(offenders).toEqual([])
+  })
+
+  // The flush itself must ride a CALL — if flushLayout ever regresses to a
+  // bare getter read, Rule 37's callers re-break under minification while
+  // staying legal here. Pin the call shape + the rule's documentation.
+  test('Rule 37b: flushLayout forces layout via a call + the rule stays documented', () => {
+    const domSrc = fs.readFileSync(path.join(coreDir, 'utils', 'dom.ts'), 'utf-8')
+    const impl = domSrc.slice(domSrc.indexOf('export const flushLayout'))
+
+    expect(impl).toMatch(/measureLayout\s*\(/)
+    expect(impl).toMatch(/getBoundingClientRect\s*\(/)
+
+    const agents = fs.readFileSync(path.join(rootDir, 'AGENTS.md'), 'utf-8')
+
+    expect(agents).toContain('Minify-Safe Forced Reflows')
+  })
 })

@@ -23,3 +23,11 @@ contract immutable at runtime.
 
 Caption-track label for muted ambient videos — the track exists to
 declare there is nothing to transcribe.
+
+### `RESIZE_OBSERVER_LOOP`
+
+Signature inside the window 'error' message the browser emits when
+ResizeObserver callbacks overflow one frame's delivery ("ResizeObserver
+loop completed with undelivered notifications") — informational only:
+the pending notification re-fires next frame. The global error handler
+logs it but must never surface it as a user-facing failure toast.

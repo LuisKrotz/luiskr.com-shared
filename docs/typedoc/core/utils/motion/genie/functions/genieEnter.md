@@ -8,7 +8,7 @@
 function genieEnter(component, classes?): void
 ```
 
-Defined in: core/utils/motion/genie.ts:54
+Defined in: core/utils/motion/genie.ts:55
 
 Genie open/close shared by the preferences, language and search dialogs.
 The dialog scales from the control that opened it (store.modalOrigin) and

@@ -8,7 +8,7 @@
 function genieLeave(component, done, classes?): void
 ```
 
-Defined in: core/utils/motion/genie.ts:114
+Defined in: core/utils/motion/genie.ts:115
 
 Plays the collapse-back-to-origin animation, then runs done() so the
 caller can finish unmounting. Instant (done() immediately) under reduced

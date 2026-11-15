@@ -1,10 +1,10 @@
 [**luiskr.com**](../../../../README.md)
 
-***
+---
 
 [luiskr.com](../../../../README.md) / [core/utils/notify](../README.md) / NotifyOpts
 
-Defined in: core/utils/notify.ts:30
+Defined in: core/utils/notify.ts:31
 
 Options accepted by `notify`/`notifyError`/`notifyLoadFailed`.
 
@@ -16,9 +16,9 @@ Options accepted by `notify`/`notifyError`/`notifyLoadFailed`.
 optional type?: string;
 ```
 
-Defined in: core/utils/notify.ts:31
+Defined in: core/utils/notify.ts:32
 
-***
+---
 
 ### title?
 
@@ -26,9 +26,9 @@ Defined in: core/utils/notify.ts:31
 optional title?: string;
 ```
 
-Defined in: core/utils/notify.ts:32
+Defined in: core/utils/notify.ts:33
 
-***
+---
 
 ### duration?
 
@@ -36,9 +36,9 @@ Defined in: core/utils/notify.ts:32
 optional duration?: number;
 ```
 
-Defined in: core/utils/notify.ts:33
+Defined in: core/utils/notify.ts:34
 
-***
+---
 
 ### tag?
 
@@ -46,9 +46,9 @@ Defined in: core/utils/notify.ts:33
 optional tag?: string;
 ```
 
-Defined in: core/utils/notify.ts:34
+Defined in: core/utils/notify.ts:35
 
-***
+---
 
 ### icon?
 
@@ -56,9 +56,9 @@ Defined in: core/utils/notify.ts:34
 optional icon?: string;
 ```
 
-Defined in: core/utils/notify.ts:35
+Defined in: core/utils/notify.ts:36
 
-***
+---
 
 ### toastOnly?
 
@@ -66,4 +66,4 @@ Defined in: core/utils/notify.ts:35
 optional toastOnly?: boolean;
 ```
 
-Defined in: core/utils/notify.ts:36
+Defined in: core/utils/notify.ts:37

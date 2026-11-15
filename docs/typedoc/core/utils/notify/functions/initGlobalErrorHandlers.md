@@ -8,7 +8,7 @@
 function initGlobalErrorHandlers(): boolean
 ```
 
-Defined in: core/utils/notify.ts:207
+Defined in: core/utils/notify.ts:208
 
 Wires window 'error' + 'unhandledrejection' to the generic error toast so
 uncaught failures surface gracefully instead of only logging. Idempotent.
