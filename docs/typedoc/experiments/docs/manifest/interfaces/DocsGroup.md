@@ -4,11 +4,11 @@
 
 [luiskr.com](../../../../README.md) / [experiments/docs/manifest](../README.md) / DocsGroup
 
-Defined in: experiments/docs/manifest.ts:41
+Defined in: experiments/docs/manifest.ts:38
 
 A view-synthesized section node — `buildGroups` always supplies the
 children array and flags the node `group: true`, so the section type
-narrows both fields required for scene/tree consumers.
+narrows both fields required for tree consumers.
 
 ## Extends
 
@@ -86,30 +86,13 @@ Defined in: experiments/docs/manifest.ts:27
 
 ---
 
-### aggregate?
-
-```ts
-optional aggregate?: boolean;
-```
-
-Defined in: experiments/docs/manifest.ts:30
-
-Scene-only flag — `+N` aggregate leaves the leaf cap synthesizes
-for surplus file children; the map colors them with the dir ink.
-
-#### Inherited from
-
-[`DocsNode`](DocsNode.md).[`aggregate`](DocsNode.md#aggregate)
-
----
-
 ### children
 
 ```ts
 children: DocsNode[];
 ```
 
-Defined in: experiments/docs/manifest.ts:42
+Defined in: experiments/docs/manifest.ts:39
 
 #### Overrides
 
@@ -123,7 +106,7 @@ Defined in: experiments/docs/manifest.ts:42
 group: true
 ```
 
-Defined in: experiments/docs/manifest.ts:43
+Defined in: experiments/docs/manifest.ts:40
 
 View-synthesized section node — a disclosure wrapper the portal
 tree/grid renders above the real roots (Source Code, Documentation,

@@ -1664,24 +1664,22 @@ _Electron main/launcher/preload — wraps dist/ as an installable app._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                    | What it does                                                    |
-| ------------------------------------------------------- | --------------------------------------------------------------- |
-| [`Docs.tsx`](experiments\docs/Docs.md)                  | &lt;view-docs&gt; — the English-only docs portal route.         |
-| [`arch-scene-3d.ts`](experiments\docs/arch-scene-3d.md) | —                                                               |
-| [`arch-scene.ts`](experiments\docs/arch-scene.md)       | Interactive three.js visualization of the docs manifest —       |
-| [`copy-guard.ts`](experiments\docs/copy-guard.md)       | Copy-protection layer for the docs source viewer.               |
-| [`coverage-nav.ts`](experiments\docs/coverage-nav.md)   | Istanbul coverage-report interactivity for the docs viewer.     |
-| [`dev.ts`](experiments\docs/dev.md)                     | Standalone dev entry for the docs-portal experiment —           |
-| [`gl-strip.ts`](experiments\docs/gl-strip.md)           | WebGL thread-field backdrop for the docs navigation region.     |
-| [`index.ts`](experiments\docs/index.md)                 | —                                                               |
-| [`jest.config.mjs`](experiments\docs/jest.config.md)    | —                                                               |
-| [`loader.ts`](experiments\docs/loader.md)               | Boot-loader lifecycle for &lt;view-docs&gt; — mirrors the space |
-| [`manifest.ts`](experiments\docs/manifest.md)           | Build-time docs manifest access + path resolution.              |
-| [`mermaid.ts`](experiments\docs/mermaid.md)             | Diagram rendering for docs payloads — markdown                  |
-| [`render.tsx`](experiments\docs/render.md)              | JSX template for &lt;view-docs&gt; — extracted from Docs.tsx.   |
-| [`telemetry.ts`](experiments\docs/telemetry.md)         | Copy-attempt telemetry for the docs source viewer.              |
-| [`tree-icon.tsx`](experiments\docs/tree-icon.md)        | Animated SVG row icons for the docs treeview — a real           |
-| [`vite.config.js`](experiments\docs/vite.config.md)     | Library build for the `docs` experiment — the in-app            |
+| File                                                  | What it does                                                    |
+| ----------------------------------------------------- | --------------------------------------------------------------- |
+| [`Docs.tsx`](experiments\docs/Docs.md)                | &lt;view-docs&gt; — the English-only docs portal route.         |
+| [`copy-guard.ts`](experiments\docs/copy-guard.md)     | Copy-protection layer for the docs source viewer.               |
+| [`coverage-nav.ts`](experiments\docs/coverage-nav.md) | Istanbul coverage-report interactivity for the docs viewer.     |
+| [`dev.ts`](experiments\docs/dev.md)                   | Standalone dev entry for the docs-portal experiment —           |
+| [`gl-strip.ts`](experiments\docs/gl-strip.md)         | WebGL thread-field backdrop for the docs navigation region.     |
+| [`index.ts`](experiments\docs/index.md)               | —                                                               |
+| [`jest.config.mjs`](experiments\docs/jest.config.md)  | —                                                               |
+| [`loader.ts`](experiments\docs/loader.md)             | Boot-loader lifecycle for &lt;view-docs&gt; — mirrors the space |
+| [`manifest.ts`](experiments\docs/manifest.md)         | Build-time docs manifest access + path resolution.              |
+| [`mermaid.ts`](experiments\docs/mermaid.md)           | Diagram rendering for docs payloads — markdown                  |
+| [`render.tsx`](experiments\docs/render.md)            | JSX template for &lt;view-docs&gt; — extracted from Docs.tsx.   |
+| [`telemetry.ts`](experiments\docs/telemetry.md)       | Copy-attempt telemetry for the docs source viewer.              |
+| [`tree-icon.tsx`](experiments\docs/tree-icon.md)      | Animated SVG row icons for the docs treeview — a real           |
+| [`vite.config.js`](experiments\docs/vite.config.md)   | Library build for the `docs` experiment — the in-app            |
 
 ## Entry points
 
@@ -1725,28 +1723,18 @@ _Boot surfaces: what the user sees first on each bundle._
 
 | File                                                                                                                           | What it does                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
-| [`arch-scene-3d-tails.test.js`](experiments\docs\tests\coverage/arch-scene-3d-tails.test.md)                                   | Coverage tail for docs/arch-scene-3d.ts and the                                 |
-| [`arch-scene-label-guard-tails.test.js`](experiments\docs\tests\coverage/arch-scene-label-guard-tails.test.md)                 | Coverage tail for arch-scene.ts `makeLabel`'s texture guard —                   |
-| [`arch-scene-tails.test.js`](experiments\docs\tests\coverage/arch-scene-tails.test.md)                                         | Coverage tails for the docs architecture scene — mounts                         |
 | [`coverage-nav.test.js`](experiments\docs\tests\coverage/coverage-nav.test.md)                                                 | Coverage tails for docs/coverage-nav.ts — the istanbul                          |
 | [`docs-reregister.test.js`](experiments\docs\tests\coverage/docs-reregister.test.md)                                           | Covers the custom-elements registration guard's else arm —                      |
 | [`docs-tails-copy-attempt-telemetry.test.js`](experiments\docs\tests\coverage/docs-tails-copy-attempt-telemetry.test.md)       | Split from docs-tails.test.js — covers the "copy-attempt telemetry" describe.   |
 | [`docs-tails-copy-guard-surface.test.js`](experiments\docs\tests\coverage/docs-tails-copy-guard-surface.test.md)               | Split from docs-tails.test.js — covers the "copy guard surface" describe.       |
-| [`docs-tails-diropen-onupdated.test.js`](experiments\docs\tests\coverage/docs-tails-diropen-onupdated.test.md)                 | Coverage tails — isDirOpen's open/closed arms, the repeated                     |
 | [`docs-tails-docs-gl-strip.test.js`](experiments\docs\tests\coverage/docs-tails-docs-gl-strip.test.md)                         | Split from docs-tails.test.js — covers the "docs GL strip" describe.            |
 | [`docs-tails-docs-manifest-resolution.test.js`](experiments\docs\tests\coverage/docs-tails-docs-manifest-resolution.test.md)   | Split from docs-tails.test.js — covers the "docs manifest resolution" describe. |
-| [`docs-tails-edges-layout-fallback.test.js`](experiments\docs\tests\coverage/docs-tails-edges-layout-fallback.test.md)         | Coverage tails — segmentsToRibbons' degenerate-segment and                      |
 | [`docs-tails-generated-folder-artwork.test.js`](experiments\docs\tests\coverage/docs-tails-generated-folder-artwork.test.md)   | Covers the tree icon pack as used by BOTH nav surfaces:                         |
-| [`docs-tails-ink-crumbs-gridkey.test.js`](experiments\docs\tests\coverage/docs-tails-ink-crumbs-gridkey.test.md)               | Coverage tails — parseInk's short-hex arm, the tree                             |
 | [`docs-tails-input-guards.test.js`](experiments\docs\tests\coverage/docs-tails-input-guards.test.md)                           | Coverage tails for the docs portal's non-plain input guards —                   |
 | [`docs-tails-loader.test.js`](experiments\docs\tests\coverage/docs-tails-loader.test.md)                                       | Coverage tails for docs/loader.ts + the Docs.tsx loader                         |
-| [`docs-tails-map-zoom.test.js`](experiments\docs\tests\coverage/docs-tails-map-zoom.test.md)                                   | Coverage tail for the architecture-map zoom surface —                           |
 | [`docs-tails-onmounted-empty-docs-path.test.js`](experiments\docs\tests\coverage/docs-tails-onmounted-empty-docs-path.test.md) | Coverage tail for experiments/docs/Docs.tsx — onMounted's                       |
-| [`docs-tails-picknode-scenepath-3d.test.js`](experiments\docs\tests\coverage/docs-tails-picknode-scenepath-3d.test.md)         | Coverage tails — pickNode's group-row arm, _scenePath's                         |
 | [`docs-tails-print-prepare.test.js`](experiments\docs\tests\coverage/docs-tails-print-prepare.test.md)                         | Coverage tails for ViewDocs._onPrintPrepare — the printprepare                  |
-| [`docs-tails-scene-loading.test.js`](experiments\docs\tests\coverage/docs-tails-scene-loading.test.md)                         | Coverage tails for the map-stage loading veil — the                             |
-| [`docs-tails-scene-pick-scenepath.test.js`](experiments\docs\tests\coverage/docs-tails-scene-pick-scenepath.test.md)           | Coverage tails — the scene pick callback's group-prefix                         |
-| [`docs-tails-scenepath-handlers.test.js`](experiments\docs\tests\coverage/docs-tails-scenepath-handlers.test.md)               | Coverage tails — resolveScenePath's empty/miss arms,                            |
+| [`docs-tails-tree-tab-crumb.test.js`](experiments\docs\tests\coverage/docs-tails-tree-tab-crumb.test.md)                       | Coverage tails for the Docs.tsx treeview roving-tabstop                         |
 | [`manifest-nodocsroot-tails.test.js`](experiments\docs\tests\coverage/manifest-nodocsroot-tails.test.md)                       | Coverage tail for manifest.ts — buildGroups' `docsRoot`                         |
 | [`mermaid-wrapup-tails.test.js`](experiments\docs\tests\coverage/mermaid-wrapup-tails.test.md)                                 | Wrap-up coverage tails for docs/mermaid.ts — the                                |
 | [`mermaid.test.js`](experiments\docs\tests\coverage/mermaid.test.md)                                                           | Coverage tails for docs/mermaid.ts — lazy wasm diagram                          |

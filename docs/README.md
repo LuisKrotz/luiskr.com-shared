@@ -163,7 +163,6 @@ experiments/             isolated experimental surfaces — never imported
 └── docs/                @luiskr/docs — /docs portal (English-only)
     ├── Docs.tsx + render.tsx    view facade + JSX template
     ├── manifest.ts              virtual:docs-manifest access + path resolve
-    ├── arch-scene.ts            three.js architecture graph backdrop
     ├── gl-strip.ts              WebGL strip canvas (CSS fallback class)
     ├── coverage-nav.ts          istanbul report keyboard nav (n/j/b/p/k)
     ├── mermaid.ts               themed mermaid diagram renderer

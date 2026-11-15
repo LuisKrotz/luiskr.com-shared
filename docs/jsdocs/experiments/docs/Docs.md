@@ -37,24 +37,6 @@ Dirs the treeview shows expanded.
 
 Mobile nav-panel open state (the tree collapses under a toggle <1024).
 
-### `_mapZoomed`
-
-Architecture-map zoom modal — the persistent scene canvas re-seats
-into the centered glass dialog while open.
-
-### (module scope)
-
-The dialog's animated close button — a CloseButtonWebGL mounted on
-the pref-close canvas each render that produces a fresh dialog. The
-widget binds click on the parent button; the DOM onClick does the
-same, so closeMapZoom must stay idempotent (double-fire safe).
-
-### (module scope)
-
-Focus hand-off consumed by onUpdated: opening the zoom dialog puts
-focus on its close button (the expand-modal pattern), closing it
-returns focus to the map column's zoom trigger.
-
 ### (module scope)
 
 Path whose tree/grid button regains focus after the next re-render —
@@ -70,20 +52,6 @@ keyboard users aren't forced through thousands of links.
 
 ### (module scope)
 
-Map-column visibility watcher — ≤1024 the aside is display:none and
-the scene's rAF loop is paused so hidden canvases cost zero GPU.
-The zoom dialog overrides the pause (the modal can open at any
-width once the column control exists… but the column only renders
-
-> 1024, so the dialog is reachable only there — the listener still
-> keeps the paused flag honest across resizes).
-
-### (module scope)
-
-Bound change handler for _mapMq — removed in onDestroy.
-
-### (module scope)
-
 Document-level istanbul key-nav disposer while a report is open.
 
 ### (module scope)
@@ -95,21 +63,12 @@ removes it so no stray parked article outlives the print pass.
 ### `_docsReady`
 
 Boot-loader lifecycle — the overlay stays up until the portal's first
-usable state: manifest resolved, the architecture scene mount
-attempted (success or WebGL fallback), and any in-flight file payload
+usable state: manifest resolved and any in-flight file payload
 settled. Mirrors the space playground's `_earthReady` contract.
 
 ### `_loaderMsg`
 
 Current boot stage copy + percent rendered inside the loader.
-
-### `_sceneLoading`
-
-Scene-graph build state — true while the worker-computed layout →
-mesh/label upload is in flight (initial mount AND context-restore
-remounts). The map stage's loading veil renders on this flag and is
-dismissed imperatively on the scene's ready/lost signal so a slow
-build never reads as a blank black box.
 
 ### (module scope)
 
@@ -186,23 +145,6 @@ same file. Under source roots index.html is a plain file: one level.
 
 Mobile "browse" toggle — shows/hides the tree panel on small screens.
 
-### `openMapZoom`
-
-Map zoom open — the dialog's first-focusable is its close button
-(expand-modal pattern: AT/keyboard reach the dismiss affordance
-first). The scene canvas re-seats into the dialog stage on the next
-render pass — no context loss, no remount.
-
-### `closeMapZoom`
-
-Map zoom close — idempotent: the close button fires this from both
-its DOM click and the widget's own listener on the same gesture.
-Returns focus to the zoom trigger.
-
-### `toggleMapZoom`
-
-Zoom trigger — toggles the dialog (delegates to the explicit arms).
-
 ### `toggleDir`
 
 Expands or collapses a dir in place (keyboard left/right) without navigating.
@@ -277,15 +219,7 @@ view) never reads a stale docs document.
 
 ### (module scope)
 
-Lifecycle: (re)mounts the GL strip, scene and viewer content.
-
-### (module scope)
-
-Mounts/refreshes the zoom dialog's animated close button on its live
-canvas — same mount contract as the preferences/expand-modal close
-(the canvas is re-created with each render that produces the dialog,
-so a stale handle is destroyed and remounted). No dialog → the
-widget is destroyed outright so it holds no GL context slot.
+Lifecycle: (re)mounts the GL strip and viewer content.
 
 ### `_updateLoader`
 
@@ -302,45 +236,6 @@ state: a file fetch in flight reports the file stage and waits;
 anything else means the portal is usable — mark ready, report the
 final stage, and fade the overlay out. A failed payload fetch (null)
 still counts as settled so the loader can never strand the page.
-
-### (module scope)
-
-The persistent scene canvas — created once with its id/class/label
-and the `webglcontextrestored` recovery listener, then re-seated by
-onUpdated into whichever stage this render produced. Re-parenting a
-canvas preserves its WebGL context, so the scene survives renders,
-column↔dialog moves and tree toggles without a remount.
-
-- `@returns` The shared scene canvas element.
-
-### (module scope)
-
-Maps a manifest path to the path the scene knows — section groups
-are scene nodes ('group/…'), manifest members are scene nodes, but
-a bucket root whose children were promoted into a section (the
-docs bucket → Documentation) exists only in the URL space, so its
-highlight maps to the owning group node.
-
-- `@param` path Manifest-relative docs path.
-- `@returns` The scene node's path for the highlight/focus lookup.
-
-### (module scope)
-
-Mounts/remounts the 3D scene on the given canvas. `onLost` marks the
-canvas with the scene-off class and clears the handle so a later
-`webglcontextrestored` can rebuild it — the portal stays usable the
-whole time.
-
-### (module scope)
-
-Pause-state sync — the scene loop halts while the map column is
-display:none (≤1024) AND the zoom dialog is closed; at wider widths,
-or while the glass dialog is open, the loop runs. Called from
-onUpdated, the mq change listener, and toggleMapZoom.
-
-### (module scope)
-
-`webglcontextrestored` handler — rebuilds the scene on the fresh context.
 
 ### (module scope)
 

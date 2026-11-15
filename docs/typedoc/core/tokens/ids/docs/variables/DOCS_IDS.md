@@ -12,9 +12,6 @@ const DOCS_IDS: Readonly<{
   CRUMBS: 'docs-crumbs'
   GRID: 'docs-grid'
   VIEWER: 'docs-viewer'
-  SCENE: 'docs-scene'
-  MAP_MODAL: 'docs-map-modal'
-  MAP_LABEL: 'docs-map-label'
 }>
 ```
 

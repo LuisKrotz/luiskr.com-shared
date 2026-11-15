@@ -137,8 +137,8 @@ frame via `printcapture` before the preserved-buffer read.
 ### `PRINT_SKIP`
 
 `data-print-skip` — opt-out marker on a canvas that must never print
-(docs landing background scene): the adapter retires the element and
-injects no still.
+(anim-demo GPU surfaces, earth-playground panels): the adapter
+retires the element and injects no still.
 
 ### `PRINT_LINK`
 

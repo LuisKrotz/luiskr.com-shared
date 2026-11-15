@@ -21,7 +21,7 @@ flowchart TB
     end
 
     subgraph exp["experiments/ — isolated modules"]
-        EXP["earth-playground: SpacePlayground + earth/<br/>(Three.js WebGPU)<br/>docs: /docs portal (Docs.tsx + manifest<br/>+ arch-scene)"]
+        EXP["earth-playground: SpacePlayground + earth/<br/>(Three.js WebGPU)<br/>docs: /docs portal (Docs.tsx + manifest<br/>+ gl-strip)"]
     end
 
     subgraph shared["core/ — shared engine module"]

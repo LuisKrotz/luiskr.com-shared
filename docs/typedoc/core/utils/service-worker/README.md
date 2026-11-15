@@ -10,5 +10,6 @@
 
 ## Functions
 
+- [isLocalhost](functions/isLocalhost.md)
 - [registerSiteServiceWorker](functions/registerSiteServiceWorker.md)
 - [dropStaleServiceWorkers](functions/dropStaleServiceWorkers.md)

@@ -16,14 +16,6 @@ consumers read members and never re-declare the strings
 (zero-hardcoding rules 4–5). Object.freeze makes the token contract
 immutable at runtime.
 
-### `SCENE_STAGE`
-
-Scene-canvas seat — the column stage or the zoom-dialog stage.
-
-### `MAP_LOADING`
-
-Map-stage loading veil — dismissed once the scene's graph lands.
-
 ### `UNCOVERED`
 
 Istanbul uncovered-block markers — the coverage-report key nav.

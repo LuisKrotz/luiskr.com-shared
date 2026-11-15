@@ -550,7 +550,7 @@ read throws.
 ### `captureCanvas`
 
 Asks the owning engine for a fresh frame, then falls back to reading the
-preserved buffer. Engines that render-on-demand (docs arch-scene) listen
+preserved buffer. Engines that render-on-demand listen
 for `printcapture` and write detail.dataUrl after re-painting; engines
 that keep the last frame (star-field, earth — preserveDrawingBuffer)
 satisfy the direct toDataURL read.

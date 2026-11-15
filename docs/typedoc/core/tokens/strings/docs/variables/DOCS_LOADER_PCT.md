@@ -7,15 +7,14 @@
 ```ts
 const DOCS_LOADER_PCT: Readonly<{
   MANIFEST: 25
-  SCENE: 60
   FILE: 80
   READY: 100
 }>
 ```
 
-Defined in: core/tokens/strings/docs.ts:130
+Defined in: core/tokens/strings/docs.ts:97
 
 Staged boot-loader progress marks — the manifest is inlined at build
 time so real fetch percentages don't exist; discrete stage numbers
-keep the bar honest (manifest scanned → scene mounted → file fetched
+keep the bar honest (manifest scanned → file fetched
 → portal usable).

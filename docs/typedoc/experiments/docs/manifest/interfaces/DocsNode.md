@@ -74,26 +74,13 @@ Defined in: experiments/docs/manifest.ts:27
 
 ---
 
-### aggregate?
-
-```ts
-optional aggregate?: boolean;
-```
-
-Defined in: experiments/docs/manifest.ts:30
-
-Scene-only flag — `+N` aggregate leaves the leaf cap synthesizes
-for surplus file children; the map colors them with the dir ink.
-
----
-
 ### group?
 
 ```ts
 optional group?: boolean;
 ```
 
-Defined in: experiments/docs/manifest.ts:35
+Defined in: experiments/docs/manifest.ts:32
 
 View-synthesized section node — a disclosure wrapper the portal
 tree/grid renders above the real roots (Source Code, Documentation,

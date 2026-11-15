@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../README.md) / [experiments/docs/manifest](../README.md) / DocsFilePayload
 
-Defined in: experiments/docs/manifest.ts:66
+Defined in: experiments/docs/manifest.ts:63
 
 Rendered payload returned by /docs-content/<id>.json.
 
@@ -16,7 +16,7 @@ Rendered payload returned by /docs-content/<id>.json.
 name: string
 ```
 
-Defined in: experiments/docs/manifest.ts:67
+Defined in: experiments/docs/manifest.ts:64
 
 ---
 
@@ -26,7 +26,7 @@ Defined in: experiments/docs/manifest.ts:67
 path: string
 ```
 
-Defined in: experiments/docs/manifest.ts:68
+Defined in: experiments/docs/manifest.ts:65
 
 ---
 
@@ -36,7 +36,7 @@ Defined in: experiments/docs/manifest.ts:68
 format: string
 ```
 
-Defined in: experiments/docs/manifest.ts:69
+Defined in: experiments/docs/manifest.ts:66
 
 ---
 
@@ -46,7 +46,7 @@ Defined in: experiments/docs/manifest.ts:69
 html: string | null
 ```
 
-Defined in: experiments/docs/manifest.ts:70
+Defined in: experiments/docs/manifest.ts:67
 
 ---
 
@@ -56,7 +56,7 @@ Defined in: experiments/docs/manifest.ts:70
 media: string | null
 ```
 
-Defined in: experiments/docs/manifest.ts:71
+Defined in: experiments/docs/manifest.ts:68
 
 ---
 
@@ -66,4 +66,4 @@ Defined in: experiments/docs/manifest.ts:71
 mtime: string
 ```
 
-Defined in: experiments/docs/manifest.ts:72
+Defined in: experiments/docs/manifest.ts:69

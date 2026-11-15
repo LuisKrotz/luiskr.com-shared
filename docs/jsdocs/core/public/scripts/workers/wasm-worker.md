@@ -53,10 +53,6 @@ djb2 hash seed — the media-key hash algorithm's fixed start.
 
 Byte-range prefetch probes — 256 KB warm / 128 KB probe.
 
-### `DOCS_SCENE`
-
-Docs-scene constants — mirrors DOCS_UNITS (tokens/strings/docs.ts).
-
 ### `BUBBLE_RETRIES`
 
 Star-field bubble-carve respawn cap — max attempts to replace a point

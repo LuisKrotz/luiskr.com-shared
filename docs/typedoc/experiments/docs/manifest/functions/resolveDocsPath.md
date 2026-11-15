@@ -8,7 +8,7 @@
 function resolveDocsPath(docsPath): DocsNode | null
 ```
 
-Defined in: experiments/docs/manifest.ts:272
+Defined in: experiments/docs/manifest.ts:269
 
 Resolves a docs sub-path ('docs/a/b.md' or bare 'a/b' against roots) to
 the manifest node. Case-sensitive — the tree mirrors the real fs layout.

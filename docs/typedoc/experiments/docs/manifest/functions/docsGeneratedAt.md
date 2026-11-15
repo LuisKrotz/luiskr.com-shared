@@ -8,7 +8,7 @@
 function docsGeneratedAt(): string
 ```
 
-Defined in: experiments/docs/manifest.ts:247
+Defined in: experiments/docs/manifest.ts:244
 
 ISO timestamp of the newest doc file — shown as "last docs update".
 

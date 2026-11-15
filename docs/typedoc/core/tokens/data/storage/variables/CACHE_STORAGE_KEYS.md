@@ -8,7 +8,6 @@
 const CACHE_STORAGE_KEYS: Readonly<{
   FB_CACHE_PREFIX: 'fb_'
   SESSION_FB_CACHE_PREFIX: 'fb_cache_'
-  DOCS_SCENE_STATE: 'docs_scene_state'
   INTRO_SHOWN: 'lk_intro_shown'
   INTRO_T0: 'lk_intro_t0'
   CMS_AUTH_REDIRECT: 'cms_auth_redirect'

@@ -45,7 +45,7 @@ Counts regex matches without allocating a match array.
 Scores a diagram's predicted render+layout cost through the ONNX
 `diagram-cost` model (wasm EP — the slug is in ML_WASM_EP_MODELS so
 the session never issues GPU pipeline-compile IPCs while the docs
-scene compiles its own shaders). When the predicted
+GL strip compiles its own shaders). When the predicted
 cost clears DIAGRAM_DEFER_MS the caller yields one task turn before
 rendering so a large graph can't long-task the docs view between
 blocks. A null score (no runtime/model) means render immediately —

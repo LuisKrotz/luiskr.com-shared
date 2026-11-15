@@ -442,8 +442,6 @@
 - [core/utils/wasm/wasm-scroll](core/utils/wasm/wasm-scroll/README.md)
 - [core/utils/wasm/wasm-search](core/utils/wasm/wasm-search/README.md)
 - [experiments/docs/Docs](experiments/docs/Docs/README.md)
-- [experiments/docs/arch-scene-3d](experiments/docs/arch-scene-3d/README.md)
-- [experiments/docs/arch-scene](experiments/docs/arch-scene/README.md)
 - [experiments/docs/copy-guard](experiments/docs/copy-guard/README.md)
 - [experiments/docs/coverage-nav](experiments/docs/coverage-nav/README.md)
 - [experiments/docs/dev](experiments/docs/dev/README.md)

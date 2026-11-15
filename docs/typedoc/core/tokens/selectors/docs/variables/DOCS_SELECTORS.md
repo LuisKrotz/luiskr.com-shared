@@ -12,8 +12,6 @@ const DOCS_SELECTORS: Readonly<{
   CARD: '.docs-card'
   VIEWER: '.docs-viewer'
   CONTENT: '.docs-content'
-  SCENE_STAGE: '.docs-map-stage'
-  MAP_LOADING: '.docs-map-loading'
   PROTECTED: '.docs-protected'
   MERMAID: '.docs-mermaid'
   UNCOVERED: 'td.pct.low, :not(.cbranch-no):not(.cstat-no):not(.fstat-no) > .cbranch-no, :not(.cbranch-no):not(.cstat-no):not(.fstat-no) > .cstat-no, :not(.cbranch-no):not(.cstat-no):not(.fstat-no) > .fstat-no, :not(.cbranch-no):not(.cstat-no):not(.fstat-no) > .cline-no, :not(.cbranch-no):not(.cstat-no):not(.fstat-no) > .missing-if-branch'
