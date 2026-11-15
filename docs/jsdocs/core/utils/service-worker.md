@@ -1,8 +1,8 @@
 # `core\utils\service-worker.ts`
 
-| | |
-|---|---|
-| **Source** | `src/core\utils\service-worker.ts` |
+|                |                                                           |
+| -------------- | --------------------------------------------------------- |
+| **Source**     | `src/core\utils\service-worker.ts`                        |
 | **UX surface** | Shared primitives every surface builds on — no direct UI. |
 
 ## Members
@@ -65,7 +65,10 @@ Verify the script exists and answers a JS mime before registering.
 
 True on local origins — localhost names, loopback IPs, and [::1].
 The original package treated these as "probably dev" and probed
-before registering; preserved identically.
+before registering; preserved identically. Exported so entry gates
+(`registerServiceWorker`) can treat local origins as non-production —
+a leftover preview worker would otherwise keep serving an older
+precached shell against a rebuilt dist.
 
 ### (module scope)
 
