@@ -8,7 +8,11 @@
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { devError, devInfo } from '@core/devlog.js'
-import { dropStaleServiceWorkers, registerSiteServiceWorker } from '@core/utils/service-worker.js'
+import {
+  dropStaleServiceWorkers,
+  isLocalhost,
+  registerSiteServiceWorker,
+} from '@core/utils/service-worker.js'
 
 /**
  * Registers `<base>service-worker.js` on window load when `env.PROD` is set.
@@ -17,9 +21,12 @@ import { dropStaleServiceWorkers, registerSiteServiceWorker } from '@core/utils/
  * @param {object} env - Vite env object ({PROD, BASE_URL})
  */
 export const registerServiceWorker = (env: { PROD?: boolean; BASE_URL?: string }): void => {
-  if (!env?.PROD) {
-    // Non-prod builds actively UNregister — a stale dev SW would
-    // otherwise keep serving old chunks long after the source moved.
+  if (!env?.PROD || isLocalhost()) {
+    // Non-prod builds and LOCAL origins actively UNregister — a stale
+    // worker keeps replaying its old precache: on dev that is old chunks
+    // against moved source, and on `vite preview` it is a whole previous
+    // build's shell served against a rebuilt dist (hashed chunks gone).
+    // Skipping registration keeps preview behavior identical to dev.
     dropStaleServiceWorkers()
 
     return

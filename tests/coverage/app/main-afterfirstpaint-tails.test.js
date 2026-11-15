@@ -13,6 +13,7 @@ import { APP_IDS } from '@core/tokens/ids/app.js'
 jest.unstable_mockModule('@core/utils/service-worker.js', () => ({
   registerSiteServiceWorker: jest.fn(),
   dropStaleServiceWorkers: jest.fn(),
+  isLocalhost: jest.fn(() => false),
 }))
 
 jest.unstable_mockModule('@core/firebase.js', () => ({

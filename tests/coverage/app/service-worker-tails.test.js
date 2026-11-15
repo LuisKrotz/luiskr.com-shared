@@ -38,14 +38,20 @@ const makeRegistration = () => {
 describe('registerServiceWorker prod arm', () => {
   const savedSW = Object.getOwnPropertyDescriptor(globalThis.navigator, 'serviceWorker')
   const savedFetch = globalThis.fetch
+  const savedHost = window.location.hostname
 
   afterEach(() => {
     if (savedSW) Object.defineProperty(globalThis.navigator, 'serviceWorker', savedSW)
     else delete globalThis.navigator.serviceWorker
     globalThis.fetch = savedFetch
+    Object.defineProperty(window.location, 'hostname', { value: savedHost, configurable: true })
   })
 
   test('the load registration wires every lifecycle hook', async () => {
+    // Registration only runs off local origins — stub a deploy hostname
+    // so the localhost drop-gate does not intercept this arm.
+    Object.defineProperty(window.location, 'hostname', { value: 'luiskr.com', configurable: true })
+
     const registration = makeRegistration()
 
     // A live controller makes the install an update (→ `updated`), not the
@@ -91,21 +97,26 @@ describe('registerServiceWorker prod arm', () => {
     await flush()
   })
 
-  test('an invalid localhost probe unregisters and reports the error hook', async () => {
+  test('a local origin never registers — stale workers get dropped instead', async () => {
     const registration = makeRegistration()
+    const register = jest.fn(async () => registration)
 
+    // happy-dom runs on localhost — the PROD arm must treat it like dev:
+    // unregister every leftover preview worker and skip registration.
+    // `getRegistration` + the fetch probe stay stubbed because the FIRST
+    // test's `load` listener survives on the shared window and re-fires
+    // on this dispatch — it must settle the core-side probe path too.
     Object.defineProperty(globalThis.navigator, 'serviceWorker', {
       value: {
         ready: Promise.resolve(registration),
         controller: null,
         getRegistration: jest.fn(async () => registration),
-        register: jest.fn(async () => registration),
+        getRegistrations: jest.fn(async () => [registration]),
+        register,
       },
       configurable: true,
     })
 
-    // The probe answers non-JS — the dev-shell guard unregisters instead of
-    // installing a service worker that would hijack dev.
     globalThis.fetch = jest.fn(async () => ({
       status: 200,
       headers: { get: () => 'text/html' },
@@ -115,6 +126,7 @@ describe('registerServiceWorker prod arm', () => {
     window.dispatchEvent(new window.Event(WINDOW_EVENTS.LOAD))
     await flush()
 
+    expect(register).not.toHaveBeenCalled()
     expect(registration.unregister).toHaveBeenCalled()
   })
 

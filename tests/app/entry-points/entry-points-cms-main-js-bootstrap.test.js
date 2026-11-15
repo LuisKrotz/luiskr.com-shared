@@ -14,6 +14,7 @@ const registerMock = jest.fn()
 jest.unstable_mockModule('@core/utils/service-worker.js', () => ({
   registerSiteServiceWorker: registerMock,
   dropStaleServiceWorkers: jest.fn(),
+  isLocalhost: jest.fn(() => false),
 }))
 
 /** Collects firebase auth-state listeners so tests can fire them. */
