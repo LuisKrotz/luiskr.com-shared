@@ -153,6 +153,7 @@ const classify = (loc, urlPath) => {
     [slugs.terms, 'terms-of-use', K.LEGAL],
     [slugs.license, 'license', K.LEGAL],
     [slugs.earthPlayground, 'earth-playground', K.EXPERIMENT],
+    [slugs.axiomsEnd, 'axioms-end', K.EXPERIMENT],
     [slugs.animations, 'animations', K.EXPERIMENT],
   ]
 

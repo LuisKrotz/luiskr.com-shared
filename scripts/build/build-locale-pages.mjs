@@ -2634,6 +2634,7 @@ export async function buildLocalePages(distDir = path.join(ROOT, 'dist'), templa
       [slugs.license, t(loc, (x) => x.pages?.license?.title) || 'License'],
       [slugs.earthPlayground, t(loc, (x) => x.APP?.earthPlayground)],
       [slugs.starField, t(loc, (x) => x.APP?.starField)],
+      [slugs.axiomsEnd, t(loc, (x) => x.APP?.axiomsEnd)],
       [slugs.animations, t(loc, (x) => x.pages?.animations?.title)],
     ]
       .filter(([s, label]) => s && label)
@@ -2790,6 +2791,7 @@ export async function buildLocalePages(distDir = path.join(ROOT, 'dist'), templa
     const playground = [
       [slugs.earthPlayground, t(loc, (x) => x.APP?.earthPlayground) || 'Earth Playground'],
       [slugs.starField, t(loc, (x) => x.APP?.starField) || 'Star Field'],
+      [slugs.axiomsEnd, t(loc, (x) => x.APP?.axiomsEnd) || "Axiom's End"],
     ]
       .filter(([s]) => s)
       .map(([s, label]) => {
@@ -3424,6 +3426,13 @@ export async function buildLocalePages(distDir = path.join(ROOT, 'dist'), templa
           }
         })(),
         {
+          path: `${prefix}${slugs.axiomsEnd}`,
+          title: titleOf(t(loc, (x) => x.APP?.axiomsEnd) || "Axiom's End"),
+          description: toDescription(t(loc, (x) => x.pages?.['axioms-end']?.description)),
+          alt: slugPath('axiomsEnd'),
+          keywords: pageKeywords(loc, 'axioms-end'),
+        },
+        {
           path: `${prefix}${slugs.animations}`,
           title: titleOf(t(loc, (x) => x.pages?.animations?.title)),
           description: animDescOf(loc),
@@ -3481,6 +3490,18 @@ export async function buildLocalePages(distDir = path.join(ROOT, 'dist'), templa
           canonical: slugPath('starField')(loc),
           content: starIndexContent(loc, starBodyIds),
           ...sfShareFields(),
+        })
+      }
+
+      // English-segment alias under a locale prefix — canonicalizes onto
+      // the locale's axiomsEnd slug so the alias never competes with it.
+      if (loc !== 'en' || slugs.axiomsEnd !== 'axioms-end') {
+        routes.push({
+          path: `${prefix}axioms-end`,
+          title: titleOf(t(loc, (x) => x.APP?.axiomsEnd) || "Axiom's End"),
+          description: toDescription(t(loc, (x) => x.pages?.['axioms-end']?.description)),
+          alt: slugPath('axiomsEnd'),
+          canonical: slugPath('axiomsEnd')(loc),
         })
       }
     }
