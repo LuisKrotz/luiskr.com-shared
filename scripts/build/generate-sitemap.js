@@ -262,13 +262,10 @@ async function run() {
     if (enSlugs[key]) urlSet.add(`/${enSlugs[key]}`)
   }
 
-  // Earth / Space Playground + Star Field + Axiom's End — canonical
-  // English segments only; `/space-playground` is a 301 alias and
-  // stays unlisted.
+  // Earth / Space Playground + Star Field — canonical English segments only;
+  // `/space-playground` is a 301 alias and stays unlisted.
   urlSet.add('/earth-playground')
   urlSet.add('/star-field-experiment')
-
-  if (enSlugs.axiomsEnd) urlSet.add(`/${enSlugs.axiomsEnd}`)
 
   // Localized routes from LANG_SLUGS — each locale's real slug values.
   // English-segment aliases under a locale (`/br/privacy-policy`,
