@@ -2932,10 +2932,11 @@ _Boot surfaces: what the user sees first on each bundle._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                                      | What it does                                            |
-| ------------------------------------------------------------------------- | ------------------------------------------------------- |
-| [`accessibility.test.js`](website\tests\components/accessibility.test.md) | WCAG 2.1 AA accessibility compliance tests.             |
-| [`components.test.js`](website\tests\components/components.test.md)       | Cross-component integration suite — mounts the real App |
+| File                                                                                              | What it does                                                 |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`accessibility.test.js`](website\tests\components/accessibility.test.md)                         | WCAG 2.1 AA accessibility compliance tests.                  |
+| [`components.test.js`](website\tests\components/components.test.md)                               | Cross-component integration suite — mounts the real App      |
+| [`custom-elements-lifecycle.test.js`](website\tests\components/custom-elements-lifecycle.test.md) | Layer 3 — Shadow DOM & custom-element lifecycle under WebKit |
 
 ## Entry points
 

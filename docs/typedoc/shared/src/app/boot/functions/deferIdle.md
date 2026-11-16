@@ -8,7 +8,7 @@
 function deferIdle(cb): void
 ```
 
-Defined in: shared/src/app/boot.ts:37
+Defined in: shared/src/app/boot.ts:38
 
 Schedules non-urgent work during idle time; falls back to a short
 setTimeout on engines without requestIdleCallback. Evaluated per call

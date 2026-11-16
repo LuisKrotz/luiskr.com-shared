@@ -28,6 +28,7 @@ import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { IntroLoader } from '@core/utils/canvas/loaders/intro-loader.js'
 import { PageBackdropWebGL } from '@core/utils/canvas/loaders/page-backdrop-webgl.js'
+import { viewportWidth } from '@core/utils/dom.js'
 
 /**
  * Schedules non-urgent work during idle time; falls back to a short
@@ -255,8 +256,14 @@ export function mountAppShell(c: AppRoot): void {
   // Deferred via rIC so first paint isn't blocked by scroll bookkeeping;
   // setTimeout fallback for engines without the API.
   deferIdle(() => {
-    c.updateSectionTops()
-    c.checkScroll()
+    // Advisory post-mount measure — a collaborator that throws or rejects
+    // here must not escape into the timer queue: the shell is already live,
+    // so the failure boundary is this callback, not the boot itself.
+    try {
+      c.updateSectionTops()
+
+      Promise.resolve(c.checkScroll()).catch(() => {})
+    } catch {}
   })
 
   // Scroll events can fire many times per frame on high-refresh displays —
@@ -301,11 +308,21 @@ export function mountAppShell(c: AppRoot): void {
   // 150 ms waits for the gesture to settle before paying for the
   // section re-measure + scroll check.
   let resizeTimer: ReturnType<typeof setTimeout> | undefined
+  let lastResizeW = viewportWidth()
 
   c.addScopedListener(
     window,
     WINDOW_EVENTS.RESIZE,
     () => {
+      // Mobile chrome bars collapse/expand on scroll and emit resize with an
+      // unchanged width — section tops are document-relative, so a
+      // height-only change can't move them. Skip the re-measure entirely.
+      const vw = viewportWidth()
+
+      if (vw === lastResizeW) return
+
+      lastResizeW = vw
+
       clearTimeout(resizeTimer)
 
       resizeTimer = setTimeout(() => {

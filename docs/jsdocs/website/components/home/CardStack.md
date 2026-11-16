@@ -66,6 +66,11 @@ deck, so the observer never feeds itself.
 
 - `@param` deck The fresh deck element (null on skeleton-less renders).
 
+### `_deckResize`
+
+Deferred deck-resize work — runs one rAF after the RO fires so size
+writes never land inside the observer delivery turn.
+
 ### `measure`
 
 Deck measurement — see cardstack/deck.ts.

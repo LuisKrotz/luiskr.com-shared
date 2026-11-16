@@ -8,7 +8,7 @@
 function disarmMesh(host): void
 ```
 
-Defined in: website/components/home/about/mesh.ts:296
+Defined in: website/components/home/about/mesh.ts:305
 
 Stops the loop and detaches the canvas when the element unmounts.
 

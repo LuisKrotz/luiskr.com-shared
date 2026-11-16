@@ -8,7 +8,7 @@
 function stop(host): void
 ```
 
-Defined in: core/utils/canvas/loaders/menu-background/loop.ts:115
+Defined in: core/utils/canvas/loaders/menu-background/loop.ts:128
 
 Stops the rAF loop + the resize observer.
 

@@ -8,7 +8,7 @@
 function tick(host): void
 ```
 
-Defined in: website/components/home/about/glitch/session.ts:269
+Defined in: website/components/home/about/glitch/session.ts:275
 
 Self-maintaining tick — always running while mounted (queued through
 framePool, so the whole chain starves during scroll flings and resumes

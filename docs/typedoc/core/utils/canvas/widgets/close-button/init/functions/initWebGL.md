@@ -8,7 +8,7 @@
 function initWebGL(host): void
 ```
 
-Defined in: core/utils/canvas/widgets/close-button/init.ts:245
+Defined in: core/utils/canvas/widgets/close-button/init.ts:255
 
 Creates the WebGL context, compiles the shader program and sets up uniforms/buffers; falls back on any failure.
 

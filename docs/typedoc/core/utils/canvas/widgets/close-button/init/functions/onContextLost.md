@@ -8,7 +8,7 @@
 function onContextLost(host): void
 ```
 
-Defined in: core/utils/canvas/widgets/close-button/init.ts:89
+Defined in: core/utils/canvas/widgets/close-button/init.ts:99
 
 Context-loss → CSS ::before/::after X strokes on the parent button.
 

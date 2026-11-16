@@ -4853,7 +4853,7 @@ Lifecycle: releases the height observer when the element detaches.
 _bindEvents(): void;
 ```
 
-Defined in: website/components/feedback/CookieBanner.tsx:173
+Defined in: website/components/feedback/CookieBanner.tsx:182
 
 Wires accept/decline button clicks.
 
@@ -4869,7 +4869,7 @@ Wires accept/decline button clicks.
 handleAction(accepted): void;
 ```
 
-Defined in: website/components/feedback/CookieBanner.tsx:189
+Defined in: website/components/feedback/CookieBanner.tsx:198
 
 Persists the consent answer and hides the banner.
 
@@ -4893,7 +4893,7 @@ render():
   | null;
 ```
 
-Defined in: website/components/feedback/CookieBanner.tsx:205
+Defined in: website/components/feedback/CookieBanner.tsx:214
 
 JSX template for the component's shadow DOM.
 
