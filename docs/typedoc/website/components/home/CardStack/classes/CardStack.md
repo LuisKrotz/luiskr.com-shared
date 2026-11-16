@@ -20,7 +20,7 @@ The CardStack — stacked featured-project deck.
 new CardStack(): CardStack;
 ```
 
-Defined in: website/components/home/CardStack.tsx:114
+Defined in: website/components/home/CardStack.tsx:115
 
 #### Returns
 
@@ -445,13 +445,23 @@ Defined in: website/components/home/CardStack.tsx:94
 
 ---
 
+### \_resizeW
+
+```ts
+_resizeW: number = -1
+```
+
+Defined in: website/components/home/CardStack.tsx:95
+
+---
+
 ### \_autoStage
 
 ```ts
 _autoStage: boolean = false
 ```
 
-Defined in: website/components/home/CardStack.tsx:95
+Defined in: website/components/home/CardStack.tsx:96
 
 ---
 
@@ -461,7 +471,7 @@ Defined in: website/components/home/CardStack.tsx:95
 _deckRO: ResizeObserver | null = null;
 ```
 
-Defined in: website/components/home/CardStack.tsx:96
+Defined in: website/components/home/CardStack.tsx:97
 
 ---
 
@@ -471,7 +481,7 @@ Defined in: website/components/home/CardStack.tsx:96
 _fitRO: ResizeObserver | null = null;
 ```
 
-Defined in: website/components/home/CardStack.tsx:97
+Defined in: website/components/home/CardStack.tsx:98
 
 ---
 
@@ -481,7 +491,7 @@ Defined in: website/components/home/CardStack.tsx:97
 _fitFront: Element | null = null;
 ```
 
-Defined in: website/components/home/CardStack.tsx:98
+Defined in: website/components/home/CardStack.tsx:99
 
 ---
 
@@ -491,7 +501,7 @@ Defined in: website/components/home/CardStack.tsx:98
 _frontExtra: number = 0
 ```
 
-Defined in: website/components/home/CardStack.tsx:99
+Defined in: website/components/home/CardStack.tsx:100
 
 ---
 
@@ -501,7 +511,7 @@ Defined in: website/components/home/CardStack.tsx:99
 _loadedCovers: Map<string, string>
 ```
 
-Defined in: website/components/home/CardStack.tsx:100
+Defined in: website/components/home/CardStack.tsx:101
 
 ---
 
@@ -511,7 +521,7 @@ Defined in: website/components/home/CardStack.tsx:100
 _unsubManifest: (() => void) | null = null;
 ```
 
-Defined in: website/components/home/CardStack.tsx:101
+Defined in: website/components/home/CardStack.tsx:102
 
 ---
 
@@ -521,7 +531,7 @@ Defined in: website/components/home/CardStack.tsx:101
 _autoOn: boolean = false
 ```
 
-Defined in: website/components/home/CardStack.tsx:102
+Defined in: website/components/home/CardStack.tsx:103
 
 ---
 
@@ -531,7 +541,7 @@ Defined in: website/components/home/CardStack.tsx:102
 _autoPaused: boolean = false
 ```
 
-Defined in: website/components/home/CardStack.tsx:103
+Defined in: website/components/home/CardStack.tsx:104
 
 ---
 
@@ -541,7 +551,7 @@ Defined in: website/components/home/CardStack.tsx:103
 _autoHeld: boolean = false
 ```
 
-Defined in: website/components/home/CardStack.tsx:104
+Defined in: website/components/home/CardStack.tsx:105
 
 ---
 
@@ -551,7 +561,7 @@ Defined in: website/components/home/CardStack.tsx:104
 _autoBank: number = 0
 ```
 
-Defined in: website/components/home/CardStack.tsx:105
+Defined in: website/components/home/CardStack.tsx:106
 
 ---
 
@@ -561,7 +571,7 @@ Defined in: website/components/home/CardStack.tsx:105
 _autoT0: number = 0
 ```
 
-Defined in: website/components/home/CardStack.tsx:106
+Defined in: website/components/home/CardStack.tsx:107
 
 ---
 
@@ -571,7 +581,7 @@ Defined in: website/components/home/CardStack.tsx:106
 _autoTimer: number | null = null;
 ```
 
-Defined in: website/components/home/CardStack.tsx:107
+Defined in: website/components/home/CardStack.tsx:108
 
 ---
 
@@ -581,7 +591,7 @@ Defined in: website/components/home/CardStack.tsx:107
 _autoRaf: number = 0
 ```
 
-Defined in: website/components/home/CardStack.tsx:108
+Defined in: website/components/home/CardStack.tsx:109
 
 ---
 
@@ -591,7 +601,7 @@ Defined in: website/components/home/CardStack.tsx:108
 _autoIO: IntersectionObserver | null = null;
 ```
 
-Defined in: website/components/home/CardStack.tsx:109
+Defined in: website/components/home/CardStack.tsx:110
 
 ---
 
@@ -601,7 +611,7 @@ Defined in: website/components/home/CardStack.tsx:109
 _burnHeld: boolean = false
 ```
 
-Defined in: website/components/home/CardStack.tsx:110
+Defined in: website/components/home/CardStack.tsx:111
 
 ---
 
@@ -611,7 +621,7 @@ Defined in: website/components/home/CardStack.tsx:110
 _autoArmed: boolean = false
 ```
 
-Defined in: website/components/home/CardStack.tsx:111
+Defined in: website/components/home/CardStack.tsx:112
 
 ---
 
@@ -621,7 +631,7 @@ Defined in: website/components/home/CardStack.tsx:111
 _printing: boolean = false
 ```
 
-Defined in: website/components/home/CardStack.tsx:112
+Defined in: website/components/home/CardStack.tsx:113
 
 ---
 
@@ -4682,7 +4692,7 @@ Defined in: node\_modules/typescript/lib/lib.dom.d.ts:35365
 get processedItems(): CardStackItem[];
 ```
 
-Defined in: website/components/home/CardStack.tsx:153
+Defined in: website/components/home/CardStack.tsx:154
 
 ##### Returns
 
@@ -4694,7 +4704,7 @@ Defined in: website/components/home/CardStack.tsx:153
 set processedItems(val): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:139
+Defined in: website/components/home/CardStack.tsx:140
 
 Setter/getter — portfolio items pushed by the view.
 
@@ -4720,7 +4730,7 @@ get translations():
   | null;
 ```
 
-Defined in: website/components/home/CardStack.tsx:171
+Defined in: website/components/home/CardStack.tsx:172
 
 ##### Returns
 
@@ -4733,7 +4743,7 @@ Defined in: website/components/home/CardStack.tsx:171
 set translations(val): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:159
+Defined in: website/components/home/CardStack.tsx:160
 
 Setter/getter — locale strings for the section labels.
 
@@ -4758,7 +4768,7 @@ Setter/getter — locale strings for the section labels.
 get deckItems(): CardStackItem[];
 ```
 
-Defined in: website/components/home/CardStack.tsx:177
+Defined in: website/components/home/CardStack.tsx:178
 
 The featured subset the deck fans (whole list when none flagged).
 
@@ -4776,7 +4786,7 @@ The featured subset the deck fans (whole list when none flagged).
 get storage(): string;
 ```
 
-Defined in: website/components/home/CardStack.tsx:183
+Defined in: website/components/home/CardStack.tsx:184
 
 CDN base URL for card media.
 
@@ -4794,7 +4804,7 @@ CDN base URL for card media.
 get _t(): Required<CardStackTranslations>;
 ```
 
-Defined in: website/components/home/CardStack.tsx:190
+Defined in: website/components/home/CardStack.tsx:191
 
 Resolved copy — live translations over the build-time English
 snapshot, so every label renders text before Firebase resolves.
@@ -5330,7 +5340,7 @@ Render result from render().
 onInit(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:125
+Defined in: website/components/home/CardStack.tsx:126
 
 Pre-render sizing pass — measure() runs once before the very first
 render so the skeleton pile (and the real cards' first paint) draw
@@ -5356,7 +5366,7 @@ first fit's correction is a few px, not a visible reflow.
 _dragTick(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:131
+Defined in: website/components/home/CardStack.tsx:132
 
 The one-rAF-per-frame pose write armed by the drag path — a bound
 field so the gesture loop allocates zero closures per frame.
@@ -5373,7 +5383,7 @@ field so the gesture loop allocates zero closures per frame.
 onMounted(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:196
+Defined in: website/components/home/CardStack.tsx:197
 
 #### Returns
 
@@ -5391,7 +5401,7 @@ Defined in: website/components/home/CardStack.tsx:196
 onDestroy(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:231
+Defined in: website/components/home/CardStack.tsx:232
 
 Teardown hook — invoked once per disconnect by the base
 `disconnectedCallback`. Declared as a concrete no-op (unlike the
@@ -5416,7 +5426,7 @@ method.
 onUpdated(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:309
+Defined in: website/components/home/CardStack.tsx:310
 
 Re-caches card nodes + re-measures after every render, then republishes
 poses/chrome/index state against the fresh DOM.
@@ -5437,7 +5447,7 @@ poses/chrome/index state against the fresh DOM.
 _observeDeck(deck): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:363
+Defined in: website/components/home/CardStack.tsx:364
 
 Re-points the deck ResizeObserver at a (re-rendered) deck node. The
 stylesheet owns the deck box — a grid row that grows/shrinks with
@@ -5467,7 +5477,7 @@ The fresh deck element (null on skeleton-less renders).
 measure(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:412
+Defined in: website/components/home/CardStack.tsx:413
 
 Deck measurement — see cardstack/deck.ts.
 
@@ -5483,7 +5493,7 @@ Deck measurement — see cardstack/deck.ts.
 applyPoses(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:418
+Defined in: website/components/home/CardStack.tsx:419
 
 Fan pose write — see cardstack/deck.ts.
 
@@ -5499,7 +5509,7 @@ Fan pose write — see cardstack/deck.ts.
 updateChrome(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:424
+Defined in: website/components/home/CardStack.tsx:425
 
 Counter/dots/a11y refresh — see cardstack/deck.ts.
 
@@ -5515,7 +5525,7 @@ Counter/dots/a11y refresh — see cardstack/deck.ts.
 goTo(idx): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:430
+Defined in: website/components/home/CardStack.tsx:431
 
 Navigate the fan to a deck index — see cardstack/interactions.ts.
 
@@ -5537,7 +5547,7 @@ Navigate the fan to a deck index — see cardstack/interactions.ts.
 onPrevClick(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:436
+Defined in: website/components/home/CardStack.tsx:437
 
 Prev control.
 
@@ -5553,7 +5563,7 @@ Prev control.
 onNextClick(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:442
+Defined in: website/components/home/CardStack.tsx:443
 
 Next control.
 
@@ -5569,7 +5579,7 @@ Next control.
 onDotClick(idx): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:448
+Defined in: website/components/home/CardStack.tsx:449
 
 Dot-nav click.
 
@@ -5591,7 +5601,7 @@ Dot-nav click.
 onCardClick(item, idx): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:454
+Defined in: website/components/home/CardStack.tsx:455
 
 Card activation — side cards reposition, front card navigates.
 
@@ -5617,7 +5627,7 @@ Card activation — side cards reposition, front card navigates.
 toggleIndex(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:460
+Defined in: website/components/home/CardStack.tsx:461
 
 Toggles the all-projects index overlay.
 
@@ -5633,7 +5643,7 @@ Toggles the all-projects index overlay.
 closeIndex(): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:466
+Defined in: website/components/home/CardStack.tsx:467
 
 Closes the index overlay.
 
@@ -5649,7 +5659,7 @@ Closes the index overlay.
 onKeyDown(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:472
+Defined in: website/components/home/CardStack.tsx:473
 
 Delegated keydown — arrows step the fan, Escape closes the index.
 
@@ -5671,7 +5681,7 @@ Delegated keydown — arrows step the fan, Escape closes the index.
 onPointerDown(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:478
+Defined in: website/components/home/CardStack.tsx:479
 
 Pointer-down drag arm — see cardstack/gestures.ts.
 
@@ -5693,7 +5703,7 @@ Pointer-down drag arm — see cardstack/gestures.ts.
 onPointerMove(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:484
+Defined in: website/components/home/CardStack.tsx:485
 
 Pointer-move drag tracking — see cardstack/gestures.ts.
 
@@ -5715,7 +5725,7 @@ Pointer-move drag tracking — see cardstack/gestures.ts.
 onPointerEnd(e): void;
 ```
 
-Defined in: website/components/home/CardStack.tsx:490
+Defined in: website/components/home/CardStack.tsx:491
 
 Pointer-up/cancel settle — see cardstack/gestures.ts.
 
@@ -5737,7 +5747,7 @@ Pointer-up/cancel settle — see cardstack/gestures.ts.
 render(): Element;
 ```
 
-Defined in: website/components/home/CardStack.tsx:496
+Defined in: website/components/home/CardStack.tsx:497
 
 JSX template for the component's shadow DOM.
 

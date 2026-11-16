@@ -3,6 +3,7 @@
  * @description App shell bootstrap — preference init, data load, lazy dialog/HUD chunk imports, router subscription with progress bar, scroll/resize/theme listeners, and the intro loader.
  */
 
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { APP_CLASSES } from '@core/tokens/classes/app.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
@@ -80,7 +81,13 @@ export function mountAppShell(c: AppRoot): void {
   // Dithered WebGL render of the same lobe field — mounts its canvas
   // under #app and pins the CSS glow layers off while it paints; without
   // WebGL (or under reduced motion) the CSS layers stay authoritative.
-  c._pageBackdrop = new PageBackdropWebGL(document.body)
+  // Touch devices skip the mount entirely: a second fullscreen GL
+  // backing store (plus the card/canvas layers on media routes) is what
+  // trips Safari's WebContent jetsam ceiling and the swap-in flicker —
+  // the CSS lobes stay authoritative on those devices.
+  if (store.getters.getInputMethod() !== COMMON_ATTRS.TOUCH) {
+    c._pageBackdrop = new PageBackdropWebGL(document.body)
+  }
 
   // Dev grid overlay — restored from the stored flag before the
   // stylesheet's gate class is applied.

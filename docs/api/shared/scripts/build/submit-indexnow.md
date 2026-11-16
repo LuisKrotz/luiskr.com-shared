@@ -29,6 +29,14 @@ Protocol cap on urlList entries per JSON POST.
 
 In-flight GET pings — keeps the 11k+ param pass bounded but quick.
 
+### `PARAM_BATCH_DELAY_MS`
+
+Pacing between param batches — the endpoint throttles sustained floods.
+
+### `JSON_BATCH_DELAY_MS`
+
+Pacing between JSON chunk POSTs — bursts get throttled (403/429).
+
 ### `REQUEST_TIMEOUT_MS`
 
 Hard socket timeout so a hung connection can't stall postdeploy.

@@ -7,8 +7,11 @@
 
 import { afterEach, jest } from '@jest/globals'
 import { mountAppShell } from '@/app/boot.js'
+import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { APP_CLASSES } from '@core/tokens/classes/app.js'
+import { UI_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
@@ -176,6 +179,37 @@ describe('app boot tails', () => {
     } finally {
       router.currentRoute = prevRoute
       window.history.replaceState({}, '', prevUrl)
+    }
+  })
+
+  test('mountAppShell — touch input skips the WebGL page backdrop', () => {
+    const c = {
+      initInputListeners: jest.fn(),
+      loadData: jest.fn(),
+      subscribe: jest.fn(),
+      $: jest.fn(() => null),
+      addScopedListener: jest.fn(),
+      _updateViewContent: jest.fn(),
+      updateSectionTops: jest.fn(),
+      checkScroll: jest.fn(),
+      routeLoading: false,
+      currentViewTag: null,
+      _pageBackdrop: null,
+    }
+
+    const prevRoute = router.currentRoute
+
+    router.currentRoute = null
+
+    store.commit(UI_MUTATIONS.SET_INPUT_METHOD, INPUT_STRINGS.TOUCH)
+
+    try {
+      mountAppShell(c)
+
+      expect(c._pageBackdrop).toBeNull()
+    } finally {
+      store.commit(UI_MUTATIONS.SET_INPUT_METHOD, INPUT_STRINGS.POINTER)
+      router.currentRoute = prevRoute
     }
   })
 
