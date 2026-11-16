@@ -27,7 +27,6 @@ export const MODULE_PUBLIC_MOUNTS = Object.freeze([
   { dir: 'website/public', at: '/' },
   { dir: 'core/public', at: '/' },
   { dir: 'experiments/star-field/public', at: '/experiments/star-field' },
-  { dir: 'experiments/axioms-end/public', at: '/experiments/axioms-end' },
 ])
 
 /**

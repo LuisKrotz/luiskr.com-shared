@@ -116,8 +116,6 @@ export async function flipAppView(
       await import('@earth/SpacePlayground.js')
     } else if (toTag === VIEW_TAGS.VIEW_STAR_FIELD) {
       await import('@star/StarField.js')
-    } else if (toTag === VIEW_TAGS.VIEW_AXIOMS_END) {
-      await import('@axioms/AxiomsEnd.js')
     } else if (toTag === VIEW_TAGS.VIEW_DOCS) {
       await import('@docs/Docs.js')
     } else if (toTag === VIEW_TAGS.VIEW_ANIMATIONS) {

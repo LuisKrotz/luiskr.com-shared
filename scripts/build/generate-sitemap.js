@@ -86,7 +86,6 @@ const EXPERIENCE_SEGMENTS = new Set()
 for (const slugs of Object.values(LANG_SLUGS)) {
   EXPERIENCE_SEGMENTS.add(slugs.earthPlayground)
   EXPERIENCE_SEGMENTS.add(slugs.starField)
-  EXPERIENCE_SEGMENTS.add(slugs.axiomsEnd)
 }
 
 /** Escapes text for XML element bodies (media titles/descriptions). */
@@ -287,7 +286,6 @@ async function run() {
         'contact',
         'earthPlayground',
         'starField',
-        'axiomsEnd',
         'animations',
         'search',
         'sitemap',
@@ -886,7 +884,6 @@ async function run() {
       'contact',
       'earthPlayground',
       'starField',
-      'axiomsEnd',
       'animations',
       'search',
       'sitemap',
@@ -1164,7 +1161,6 @@ async function run() {
         'earth-playground',
       ],
       [slugs.starField, tr.APP?.starField, tr.pages?.['star-field']?.overview, 'star-field'],
-      [slugs.axiomsEnd, tr.APP?.axiomsEnd, tr.pages?.['axioms-end']?.description, 'axioms-end'],
       [slugs.search, tr.pages?.search?.title, tr.pages?.search?.description, 'search'],
     ]
 
