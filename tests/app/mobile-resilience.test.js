@@ -7,7 +7,7 @@
  * timers cannot drain the orchestrator's self-rescheduling work safely.
  */
 import { jest } from '@jest/globals'
-import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import { POINTER_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -61,6 +61,14 @@ const setViewport = (w, h) => {
 }
 
 describe('Layer 2 — mobile resilience', () => {
+  afterEach(async () => {
+    // mountAppShell arms intent-gated lazy component imports — release the
+    // gate so they land inside this suite instead of racing a later file's
+    // module registry or the 20s quiet-window timer (boot-tails convention).
+    window.dispatchEvent(new window.Event(POINTER_EVENTS.POINTERDOWN))
+    await sleep(10)
+  })
+
   describe('boot orchestrator fault tolerance', () => {
     test('mountAppShell completes + survives the deferred window when the measure throws', async () => {
       const { mountAppShell } = await import('@/app/boot.js')
