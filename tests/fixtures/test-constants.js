@@ -376,8 +376,6 @@ export const ISTANBUL_BASELINE = Object.freeze({
   'experiments/docs/vite.config.js': 1,
   'experiments/docs/index.ts': 1,
   'experiments/docs/dev.ts': 1,
-  'experiments/axioms-end/index.ts': 1,
-  'experiments/axioms-end/dev.ts': 1,
   'core/index.ts': 2,
   'core/constants.ts': 1,
   'core/vite.config.js': 1,
