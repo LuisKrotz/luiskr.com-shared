@@ -8,7 +8,7 @@
 function splitDrawSentences(text): string[]
 ```
 
-Defined in: core/utils/string.ts:206
+Defined in: core/utils/string.ts:232
 
 Splits a paragraph into sentence runs for staged draw-text reveals.
 A boundary is terminal punctuation (. ! ? …) followed by whitespace —

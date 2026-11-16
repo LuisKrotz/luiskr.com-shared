@@ -1,14 +1,14 @@
-[**luiskr.com**](../../../../../README.md)
+[**luiskr.com**](../../../../README.md)
 
 ---
 
-[luiskr.com](../../../../../README.md) / [experiments/star-field/star/dossier](../README.md) / fetchBodyNames
+[luiskr.com](../../../../README.md) / [core/locale/starfield-names](../README.md) / fetchBodyNames
 
 ```ts
 function fetchBodyNames(locale?): Promise<SFBodyNames | null>
 ```
 
-Defined in: experiments/star-field/star/dossier.ts:152
+Defined in: core/locale/starfield-names.ts:113
 
 Fetches the locale's body-name table — `data/<locale>/names.json`,
 with the canonical English file as fallback. One ~6 KB document per

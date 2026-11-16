@@ -8,7 +8,7 @@
 function teardownGpuDraw(host): void
 ```
 
-Defined in: website/components/media/draw-text/gpu.ts:556
+Defined in: website/components/media/draw-text/gpu.ts:557
 
 `teardownGpuDraw` — disarms the overlay without touching DOM paint:
 used by reset()/disconnectedCallback (where the DOM re-renders to

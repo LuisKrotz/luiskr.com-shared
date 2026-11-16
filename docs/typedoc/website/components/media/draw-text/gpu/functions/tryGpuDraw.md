@@ -8,7 +8,7 @@
 function tryGpuDraw(host, totalMs): void
 ```
 
-Defined in: website/components/media/draw-text/gpu.ts:70
+Defined in: website/components/media/draw-text/gpu.ts:71
 
 `tryGpuDraw` — attempts the WebGPU reveal for a just-triggered
 element. Called from `startAnimation` after the char spans mount;

@@ -8,7 +8,7 @@
 function registerOrdered(host): void
 ```
 
-Defined in: website/components/media/draw-text/trigger.ts:59
+Defined in: website/components/media/draw-text/trigger.ts:63
 
 Registers an ordered element in the reveal session. Idempotent —
 setupTrigger re-runs on text/attr changes, the Set dedups.

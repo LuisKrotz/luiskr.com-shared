@@ -8,7 +8,7 @@
 function setupTrigger(host): void
 ```
 
-Defined in: website/components/media/draw-text/trigger.ts:92
+Defined in: website/components/media/draw-text/trigger.ts:96
 
 Wires the active trigger mode (observer, hover, manual).
 

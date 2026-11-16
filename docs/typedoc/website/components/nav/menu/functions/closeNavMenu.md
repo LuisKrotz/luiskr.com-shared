@@ -8,7 +8,7 @@
 function closeNavMenu(host): void
 ```
 
-Defined in: website/components/nav/menu.tsx:264
+Defined in: website/components/nav/menu.tsx:268
 
 Closes the menu through the full dissolve cycle: adds the -closing
 class (CSS plays the item fade-out), releases the contour field so it

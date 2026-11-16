@@ -92,12 +92,16 @@ thread), honors `prefers-reduced-motion`:
 - **Genie dialog** (`core/utils/motion/genie.ts`) — modal scales out of
   the control that opened it via `--genie-x/--genie-y` transform-origin;
   zooms back in on close.
-- **DrawText** (`components/media/draw-text/`) — SVG stroke-dash
-  handwriting reveal; segment timing is computed off-thread through the
-  wasm-pool text-timing batch, then played as CSS transitions.
-- **Scroll state** (`core/utils/motion/scroll-state.ts`) — parallax /
-  reveal progress is sampled once per frame and written to CSS custom
-  properties; heavy easing math goes through `wasm-scroll.ts`.
+- **DrawText** (`components/media/draw-text/`) — per-character
+  pen-stroke write-on reveal, desktop-only: fine-pointer sessions mount
+  char spans staggered by CSS custom properties (`--i · --char-delay +
+--offset`), optionally repainted by the instanced WebGPU overlay
+  (`rust/text-draw`). Touch-primary sessions (`has_touch` /
+  `pointer: coarse`) never mount char spans or the GPU path — the whole
+  block plays one light opacity fade (`draw-text-fade`, 0.45s) instead.
+- **Scroll state** (`core/utils/motion/scroll-state.ts`) — scroll-settle
+  and reveal progress are sampled once per frame and written to CSS
+  custom properties; heavy easing math goes through `wasm-scroll.ts`.
 - **Skeletons** — shimmering `--skel-bg-*` gradient sweeps while real
   content streams in; pure CSS.
 - **Carousel / mosaics** — layout springs computed by `wasm-layout.ts`

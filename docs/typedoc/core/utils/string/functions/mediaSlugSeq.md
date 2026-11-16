@@ -8,7 +8,7 @@
 function mediaSlugSeq(seen, label): string
 ```
 
-Defined in: core/utils/string.ts:240
+Defined in: core/utils/string.ts:266
 
 Assigns the canonical deep-link slug for one media item within a
 project's traversal. Distinct captions can collapse to the same slug

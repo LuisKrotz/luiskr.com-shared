@@ -10,6 +10,7 @@
 - [excerptHeading](functions/excerptHeading.md)
 - [toMetaDescription](functions/toMetaDescription.md)
 - [escapeHtml](functions/escapeHtml.md)
+- [sanitizeAttrString](functions/sanitizeAttrString.md)
 - [slugify](functions/slugify.md)
 - [splitDrawSentences](functions/splitDrawSentences.md)
 - [mediaSlugSeq](functions/mediaSlugSeq.md)

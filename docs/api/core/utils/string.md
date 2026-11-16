@@ -69,6 +69,19 @@ Pure ESM utility function, tree-shakeable.
 - `@param` {string} str — raw text that may contain &, <, >, ", '
 - `@returns` {string} entity-escaped text safe for markup contexts
 
+### `sanitizeAttrString`
+
+Strips the executable surface from a raw HTML attribute string. Tokenizers
+that re-emit authored markup (draw-text char spans) pass attribute text
+through verbatim, so `on*=` event handlers and `javascript:`/`vbscript:`/
+non-image `data:` URL schemes are removed before the string reaches
+innerHTML. Presentation attributes (class, style, data-_, aria-_) pass
+through untouched — this scrubs vectors, it does not allowlist attrs.
+Pure ESM utility function, tree-shakeable.
+
+- `@param` {string} attrStr — raw attribute text captured between a tag name and `>`.
+- `@returns` {string} attribute text safe to embed inside a tag.
+
 ### `CYRILLIC_SLUG`
 
 Russian Cyrillic → Latin transliteration map for `slugify`. Media

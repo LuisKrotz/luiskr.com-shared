@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../README.md) / [website/views/home/Home](../README.md) / ViewHome
 
-Defined in: website/views/home/Home.tsx:32
+Defined in: website/views/home/Home.tsx:30
 
 The ViewHome — home class.
 
@@ -20,7 +20,7 @@ The ViewHome — home class.
 new ViewHome(): ViewHome;
 ```
 
-Defined in: website/views/home/Home.tsx:41
+Defined in: website/views/home/Home.tsx:37
 
 #### Returns
 
@@ -169,7 +169,7 @@ Reactive state bag — written only through setState() so updates always re-rend
 translations: HomeTranslations | null = null;
 ```
 
-Defined in: website/views/home/Home.tsx:33
+Defined in: website/views/home/Home.tsx:31
 
 ---
 
@@ -179,7 +179,7 @@ Defined in: website/views/home/Home.tsx:33
 aboutTranslations: AboutNode | null = null;
 ```
 
-Defined in: website/views/home/Home.tsx:34
+Defined in: website/views/home/Home.tsx:32
 
 ---
 
@@ -189,7 +189,7 @@ Defined in: website/views/home/Home.tsx:34
 profilePicture: string | null = null;
 ```
 
-Defined in: website/views/home/Home.tsx:35
+Defined in: website/views/home/Home.tsx:33
 
 ---
 
@@ -199,7 +199,7 @@ Defined in: website/views/home/Home.tsx:35
 featuredLinks: Set<string>
 ```
 
-Defined in: website/views/home/Home.tsx:36
+Defined in: website/views/home/Home.tsx:34
 
 ---
 
@@ -209,21 +209,7 @@ Defined in: website/views/home/Home.tsx:36
 _lastLocale: string | null = null;
 ```
 
-Defined in: website/views/home/Home.tsx:37
-
----
-
-### \_parallax
-
-```ts
-_parallax:
-  | ParallaxSession
-  | null = null;
-```
-
-Defined in: website/views/home/Home.tsx:39
-
-Live scroll-parallax session — see home/parallax.ts.
+Defined in: website/views/home/Home.tsx:35
 
 ---
 
@@ -4284,7 +4270,7 @@ Defined in: node\_modules/typescript/lib/lib.dom.d.ts:35365
 get storage(): string;
 ```
 
-Defined in: website/views/home/Home.tsx:47
+Defined in: website/views/home/Home.tsx:43
 
 CDN base URL for project media.
 
@@ -4302,7 +4288,7 @@ CDN base URL for project media.
 get hasTouch(): boolean;
 ```
 
-Defined in: website/views/home/Home.tsx:53
+Defined in: website/views/home/Home.tsx:49
 
 Whether the session is touch-input.
 
@@ -4320,7 +4306,7 @@ Whether the session is touch-input.
 get processedItems(): PortfolioItem[];
 ```
 
-Defined in: website/views/home/Home.tsx:59
+Defined in: website/views/home/Home.tsx:55
 
 Projects list reshaped for the mosaic (see home/data.ts).
 
@@ -4517,6 +4503,31 @@ onInit → _renderInitial → onMounted → onUpdated.
 #### Inherited from
 
 [`BaseComponent`](../../../../../core/Component/classes/BaseComponent.md).[`onInit`](../../../../../core/Component/classes/BaseComponent.md#oninit)
+
+---
+
+### onDestroy()
+
+```ts
+onDestroy(): void;
+```
+
+Defined in: core/Component.ts:193
+
+Teardown hook — invoked once per disconnect by the base
+`disconnectedCallback`. Declared as a concrete no-op (unlike the
+mount hooks above) so the callback can call it unconditionally:
+subclasses override for engine/audio/observer cleanup, and
+`el.onDestroy = fn` own-property patches still shadow the prototype
+method.
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`BaseComponent`](../../../../../core/Component/classes/BaseComponent.md).[`onDestroy`](../../../../../core/Component/classes/BaseComponent.md#ondestroy)
 
 ---
 
@@ -4853,7 +4864,7 @@ Render result from render().
 isFeatured(item): boolean;
 ```
 
-Defined in: website/views/home/Home.tsx:65
+Defined in: website/views/home/Home.tsx:61
 
 Featured detection (item flag or featuredLinks membership).
 
@@ -4875,7 +4886,7 @@ Featured detection (item flag or featuredLinks membership).
 onRouteParamChange(to): void;
 ```
 
-Defined in: website/views/home/Home.tsx:71
+Defined in: website/views/home/Home.tsx:67
 
 Same-view navigations re-scroll instead of remounting (see home/scroll.ts).
 
@@ -4898,10 +4909,9 @@ Same-view navigations re-scroll instead of remounting (see home/scroll.ts).
 onMounted(): void;
 ```
 
-Defined in: website/views/home/Home.tsx:78
+Defined in: website/views/home/Home.tsx:73
 
-Lifecycle: kicks off data loading, subscribes to the store, and
-arms the desktop scroll-parallax session.
+Lifecycle: kicks off data loading and subscribes to the store.
 
 #### Returns
 
@@ -4913,33 +4923,13 @@ arms the desktop scroll-parallax session.
 
 ---
 
-### onDestroy()
-
-```ts
-onDestroy(): void;
-```
-
-Defined in: website/views/home/Home.tsx:90
-
-Lifecycle: tears down the parallax session when the view leaves.
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[`BaseComponent`](../../../../../core/Component/classes/BaseComponent.md).[`onDestroy`](../../../../../core/Component/classes/BaseComponent.md#ondestroy)
-
----
-
 ### onStoreUpdate()
 
 ```ts
 onStoreUpdate(): void;
 ```
 
-Defined in: website/views/home/Home.tsx:96
+Defined in: website/views/home/Home.tsx:83
 
 Re-pushes data when locale/state changes.
 
@@ -4959,7 +4949,7 @@ Re-pushes data when locale/state changes.
 loadData(): void;
 ```
 
-Defined in: website/views/home/Home.tsx:104
+Defined in: website/views/home/Home.tsx:89
 
 Loads the three home data sources in parallel via SWR (see home/data.ts).
 
@@ -4975,7 +4965,7 @@ Loads the three home data sources in parallel via SWR (see home/data.ts).
 _passDataToChildren(): void;
 ```
 
-Defined in: website/views/home/Home.tsx:110
+Defined in: website/views/home/Home.tsx:95
 
 Distributes loaded translations/items to the mosaic, about and contact children.
 
@@ -4991,7 +4981,7 @@ Distributes loaded translations/items to the mosaic, about and contact children.
 render(): Element;
 ```
 
-Defined in: website/views/home/Home.tsx:116
+Defined in: website/views/home/Home.tsx:101
 
 JSX template for the view's shadow DOM.
 
@@ -5011,10 +5001,9 @@ JSX template for the view's shadow DOM.
 onUpdated(): void;
 ```
 
-Defined in: website/views/home/Home.tsx:123
+Defined in: website/views/home/Home.tsx:107
 
-Lifecycle: re-syncs children after each re-render, then re-gates
-the parallax session so freshly rendered layer nodes re-bind.
+Lifecycle: re-syncs children after each re-render.
 
 #### Returns
 

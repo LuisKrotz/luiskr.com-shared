@@ -8,7 +8,7 @@
 function localeUrl(newLang): string
 ```
 
-Defined in: website/components/dialogs/lang-dialog/locale.ts:29
+Defined in: website/components/dialogs/lang-dialog/locale.ts:31
 
 `localeUrl` — the pure half of a locale switch: resolves the current
 route's URL in `newLang` without committing anything. Rendered as the

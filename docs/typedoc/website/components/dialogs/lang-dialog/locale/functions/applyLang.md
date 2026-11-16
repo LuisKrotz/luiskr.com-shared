@@ -8,7 +8,7 @@
 function applyLang(newLang): void
 ```
 
-Defined in: website/components/dialogs/lang-dialog/locale.ts:56
+Defined in: website/components/dialogs/lang-dialog/locale.ts:90
 
 Applies the chosen locale: commits the language + rewrites the URL.
 

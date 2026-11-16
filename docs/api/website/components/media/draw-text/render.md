@@ -27,6 +27,12 @@ swaps never reflow the line.
 
 Frozen render-mode token map — sole declaration site for the mode literals.
 
+### `DRAW_ALLOWED_TAGS`
+
+Tag allowlist for tokenized markup — the lowercase value set of
+HTML_PHRASING_TAGS (text-level + structural content tags only; no
+scriptable or embedded-content elements). Built once at module load.
+
 ### `parseTokens`
 
 Tokenizes the text into word/space/br/inline-tag chunks. Words split
@@ -35,7 +41,11 @@ at spaces and each character gets a global index `ci`. Spaces and
 unsplit text. The regex walks <br>, <tag>…</tag> (attrs preserved,
 group 3 back-referenced for the closing tag), and bare text — so
 inline markup inside CMS copy (e.g. an <em> or <a>) animates as one
-continuous sequence.
+continuous sequence. Only phrasing/content tags from
+HTML_PHRASING_TAGS survive: any other paired tag is unwrapped to its
+inner tokens (text still animates, the element never reaches
+innerHTML), and surviving attrs pass through sanitizeAttrString so
+`on*=` handlers and scriptable URL schemes cannot ride along.
 
 ### `tokenize`
 

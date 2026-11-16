@@ -144,12 +144,6 @@ Re-exports [PAGE_BACKDROP](page-backdrop/variables/PAGE_BACKDROP.md)
 
 ---
 
-### PARALLAX
-
-Re-exports [PARALLAX](parallax/variables/PARALLAX.md)
-
----
-
 ### PREFETCH\_CONFIG
 
 Re-exports [PREFETCH_CONFIG](prefetch/variables/PREFETCH_CONFIG.md)

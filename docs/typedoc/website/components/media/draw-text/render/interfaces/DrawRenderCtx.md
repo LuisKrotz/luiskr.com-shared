@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/media/draw-text/render](../README.md) / DrawRenderCtx
 
-Defined in: website/components/media/draw-text/render.ts:140
+Defined in: website/components/media/draw-text/render.ts:166
 
 Per-mount render context — the delay/offset pair bound into every
 char's stagger vars, threaded through the token→HTML walkers so tag
@@ -19,7 +19,7 @@ quote marks animate on the adjacent chars' delays — see tagToHtml).
 delay: number
 ```
 
-Defined in: website/components/media/draw-text/render.ts:142
+Defined in: website/components/media/draw-text/render.ts:168
 
 Per-char stagger ms — the value each char writes to `--char-delay`.
 
@@ -31,6 +31,6 @@ Per-char stagger ms — the value each char writes to `--char-delay`.
 offset: number
 ```
 
-Defined in: website/components/media/draw-text/render.ts:144
+Defined in: website/components/media/draw-text/render.ts:170
 
 Base ms before any char starts — the value each char writes to `--offset`.

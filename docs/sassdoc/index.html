@@ -10,7 +10,7 @@
     />
   </head>
   <body>
-    <h1>Sass API — luiskr.com 5.3.7</h1>
+    <h1>Sass API — luiskr.com 5.3.9</h1>
     <p>
       Generated from
       <code>///</code>
@@ -21,7 +21,7 @@
       <ul>
         <li>
           <a href="#file-core-sass-base-_mixins-scss">core\sass\base\_mixins.scss</a>
-          (31)
+          (32)
         </li>
         <li>
           <a href="#file-core-sass-base-_placeholders-scss">core\sass\base\_placeholders.scss</a>
@@ -598,6 +598,31 @@
         <p class="sd-tag">
           <code>@content</code>
           Receives `($step, $gap, $cols)` per breakpoint.
+        </p>
+      </article>
+      <article class="sd-item sd-item--mixin" id="mixin-gpu-budget">
+        <h3>
+          <code>gpu-budget</code>
+          <span class="sd-kind">mixin</span>
+        </h3>
+        <pre class="sd-sig"><code>@mixin gpu-budget {</code></pre>
+        <p>
+          `@media (max-width: 1023px), (pointer: coarse)` — the mobile GPU-budget gate. Phone/tablet
+          viewports AND coarse-pointer devices (iPads and foldables in landscape, which the width
+          gate alone misses) share one compositing budget: persistent animated layers, backdrop
+          filters, and oversized shadows each pin a full-viewport raster that mobile GPUs cannot
+          afford — measured at ~380MB–1.2GB of layer memory on a project page, enough to crash iOS
+          Safari on load. Wrap any declaration that would otherwise hold a composited layer or a
+          per-frame repaint cost (animation, will-change, backdrop-filter, oversized box-shadow,
+          sheen pseudos) so the override lands inside the rule, AFTER the declaration it replaces —
+          source order is what makes it win. The compound query is deliberately non-splittable: the
+          ?tiers css splitter keeps it in the base sheet, preserving cascade order. Desktop (fine
+          pointer, ≥1024px) rendering is untouched.
+        </p>
+
+        <p class="sd-tag">
+          <code>@content</code>
+          Declarations to emit inside the gate.
         </p>
       </article>
       <article class="sd-item sd-item--mixin" id="mixin-focus-ring">

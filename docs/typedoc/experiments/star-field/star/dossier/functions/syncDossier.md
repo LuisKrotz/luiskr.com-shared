@@ -8,7 +8,7 @@
 function syncDossier(c, id): SFDossier | null
 ```
 
-Defined in: experiments/star-field/star/dossier.ts:371
+Defined in: experiments/star-field/star/dossier.ts:265
 
 Synchronous read of the dossier cache — the promise bag `_cache` maps
 to resolved values only through `.then`, which is too late for the

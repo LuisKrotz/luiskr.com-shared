@@ -67,7 +67,8 @@ Footer divider — hairline with traveling light band (canvas).
 
 ### `TEXT_DRAW`
 
-Section titles/links — per-character pen-stroke write-on (instanced canvas + CSS).
+Section titles/links — per-character pen-stroke write-on, desktop-only
+(instanced canvas + CSS); touch-primary sessions get a light fade.
 
 ### `RING_SHEEN`
 

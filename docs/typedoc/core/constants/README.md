@@ -396,12 +396,6 @@ Re-exports [NAV_SEARCH_CSS_PROPS](../tokens/css/nav/variables/NAV_SEARCH_CSS_PRO
 
 ---
 
-### PARALLAX\_CSS\_PROPS
-
-Re-exports [PARALLAX_CSS_PROPS](../tokens/css/parallax/variables/PARALLAX_CSS_PROPS.md)
-
----
-
 ### SKELETON\_CSS\_PROPS
 
 Re-exports [SKELETON_CSS_PROPS](../tokens/css/skeleton/variables/SKELETON_CSS_PROPS.md)
@@ -1125,12 +1119,6 @@ Re-exports [NOTIFY](../tokens/motion/notify/variables/NOTIFY.md)
 ### PAGE\_BACKDROP
 
 Re-exports [PAGE_BACKDROP](../tokens/motion/page-backdrop/variables/PAGE_BACKDROP.md)
-
----
-
-### PARALLAX
-
-Re-exports [PARALLAX](../tokens/motion/parallax/variables/PARALLAX.md)
 
 ---
 

@@ -45,7 +45,10 @@ Per-character spans only exist while the animation runs. Before the
 element enters the viewport and after the animation has finished the
 words are rendered as single nodes: same line breaking, a fraction of
 the DOM — long project pages would otherwise mount thousands of char
-spans permanently.
+spans permanently. Touch-primary sessions (store has_touch — phones,
+tablets, hybrids after first touch) never mount them at all: the draw
+is a desktop affordance and the reveal degrades to a light fade
+(draw-text/_mobile.scss), so the O(chars) DOM cost is skipped too.
 
 ### `_updateDom`
 

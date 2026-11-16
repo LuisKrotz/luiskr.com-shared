@@ -258,6 +258,12 @@ Re-exports [escapeHtml](string/functions/escapeHtml.md)
 
 ---
 
+### sanitizeAttrString
+
+Re-exports [sanitizeAttrString](string/functions/sanitizeAttrString.md)
+
+---
+
 ### slugify
 
 Re-exports [slugify](string/functions/slugify.md)

@@ -15,6 +15,7 @@ Single quality gate shared by `prebuild` and the git
 test: 'node shared/scripts/verify/scope-gates.mjs links',
 'coverage-gate': 'node shared/scripts/verify/coverage-gate.mjs',
 'security-scan': 'node shared/scripts/verify/security-scan.mjs',
+'mythos-scan': 'node shared/scripts/verify/mythos-scan.mjs',
 }
 
 const only = (process.env.VERIFY_ONLY || '')

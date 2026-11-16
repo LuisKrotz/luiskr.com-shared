@@ -412,7 +412,9 @@ Defined in: experiments/star-field/StarField.tsx:148
 ### \_names
 
 ```ts
-_names: SFBodyNames | null = null;
+_names:
+  | SFBodyNames
+  | null = null;
 ```
 
 Defined in: experiments/star-field/StarField.tsx:149

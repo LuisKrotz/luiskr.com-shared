@@ -363,14 +363,15 @@ _Shared primitives every surface builds on — no direct UI._
 
 _Shared primitives every surface builds on — no direct UI._
 
-| File                                                 | What it does                                                |
-| ---------------------------------------------------- | ----------------------------------------------------------- |
-| [`cyrillic-font.ts`](core\locale/cyrillic-font.md)   | Cyrillic font plumbing — Russian (`ru`) renders in Fira     |
-| [`fallback.ts`](core\locale/fallback.md)             | Build-time English translation snapshot                     |
-| [`lang-slugs.ts`](core\locale/lang-slugs.md)         | Canonical localized route-slug table — the per-locale path  |
-| [`portfolio-word.ts`](core\locale/portfolio-word.md) | The print title-cover's second line — the single display    |
-| [`reader-content.ts`](core\locale/reader-content.md) | Keeps the reader-content &lt;article&gt; in sync with SPA   |
-| [`ui-text.ts`](core\locale/ui-text.md)               | Runtime translation accessors: resolve a dotted key against |
+| File                                                   | What it does                                                |
+| ------------------------------------------------------ | ----------------------------------------------------------- |
+| [`cyrillic-font.ts`](core\locale/cyrillic-font.md)     | Cyrillic font plumbing — Russian (`ru`) renders in Fira     |
+| [`fallback.ts`](core\locale/fallback.md)               | Build-time English translation snapshot                     |
+| [`lang-slugs.ts`](core\locale/lang-slugs.md)           | Canonical localized route-slug table — the per-locale path  |
+| [`portfolio-word.ts`](core\locale/portfolio-word.md)   | The print title-cover's second line — the single display    |
+| [`reader-content.ts`](core\locale/reader-content.md)   | Keeps the reader-content &lt;article&gt; in sync with SPA   |
+| [`starfield-names.ts`](core\locale/starfield-names.md) | Star-field body-name tables — fetches                       |
+| [`ui-text.ts`](core\locale/ui-text.md)                 | Runtime translation accessors: resolve a dotted key against |
 
 ## Core engine
 
@@ -671,6 +672,7 @@ _Shared primitives every surface builds on — no direct UI._
 | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | [`cyrillic-font-tails.test.js`](core\tests\coverage\ui/cyrillic-font-tails.test.md)     | Covers core/locale/cyrillic-font.ts — the ru→Fira Sans                     |
 | [`reader-content-tails.test.js`](core\tests\coverage\ui/reader-content-tails.test.md)   | Covers core/locale/reader-content.ts — holder creation and                 |
+| [`starfield-names.test.js`](core\tests\coverage\ui/starfield-names.test.md)             | Coverage for core/locale/starfield-names — the shared                      |
 | [`ui-text-tails-test-js.test.js`](core\tests\coverage\ui/ui-text-tails-test-js.test.md) | Split from coverage-tails.test.js — covers the "ui-text tails" describe.   |
 | [`ui-text-tails.test.js`](core\tests\coverage\ui/ui-text-tails.test.md)                 | Split from coverage-tails-4.test.js — covers the "ui-text tails" describe. |
 
@@ -1131,7 +1133,6 @@ _Shared primitives every surface builds on — no direct UI._
 | [`menu.ts`](core\tokens\css/menu.md)                 | Menu ink CSS custom-property names — grouped subset of      |
 | [`mosaic.ts`](core\tokens\css/mosaic.md)             | Mosaic-related CSS custom-property names — grouped subset   |
 | [`nav.ts`](core\tokens\css/nav.md)                   | Nav strip glyph paint CSS custom-property names — the       |
-| [`parallax.ts`](core\tokens\css/parallax.md)         | Scroll-parallax CSS custom-property names — grouped         |
 | [`route-search.ts`](core\tokens\css/route-search.md) | Route-search CSS custom-property names — the host-tunable   |
 | [`skeleton.ts`](core\tokens\css/skeleton.md)         | Skeleton-field palette CSS custom-property names — grouped  |
 | [`starfield.ts`](core\tokens\css/starfield.md)       | Star-field CSS custom-property names set from JS — grouped  |
@@ -1243,7 +1244,6 @@ _Shared primitives every surface builds on — no direct UI._
 | [`mentions-deck.ts`](core\tokens\motion/mentions-deck.md) | Mentions-deck strip geometry + timing tokens — grouped subset |
 | [`notify.ts`](core\tokens\motion/notify.md)               | Notification/toast runtime tuning tokens.                     |
 | [`page-backdrop.ts`](core\tokens\motion/page-backdrop.md) | Tuning tokens for the WebGL page backdrop — the grained       |
-| [`parallax.ts`](core\tokens\motion/parallax.md)           | Scroll-parallax parameters for the home view — per-layer      |
 | [`prefetch.ts`](core\tokens\motion/prefetch.md)           | Predictive-prefetch tuning tokens.                            |
 | [`print.ts`](core\tokens\motion/print.md)                 | Print-lifecycle timing tokens.                                |
 | [`related.ts`](core\tokens\motion/related.md)             | Related-projects accordion-list timing/geometry tokens —      |
@@ -2354,6 +2354,7 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`console-scan.mjs`](shared\scripts\verify/console-scan.md)           | Scans every .ts/.tsx/.js file under src/ for console usage |
 | [`coverage-gaps.mjs`](shared\scripts\verify/coverage-gaps.md)         | —                                                          |
 | [`coverage-gate.mjs`](shared\scripts\verify/coverage-gate.md)         | Per-file coverage enforcement, per module                  |
+| [`mythos-scan.mjs`](shared\scripts\verify/mythos-scan.md)             | mythos-agent security gate — the Mythos equivalent of      |
 | [`print-check.mjs`](shared\scripts\verify/print-check.md)             | —                                                          |
 | [`scope-gates.mjs`](shared\scripts\verify/scope-gates.md)             | Scoped quality-gate runner for the module workspace        |
 | [`scroll-fps.mjs`](shared\scripts\verify/scroll-fps.md)               | —                                                          |
@@ -3272,7 +3273,6 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`animations-tails-2.test.js`](website\tests\coverage\pages/animations-tails-2.test.md)                         | Coverage tails for website/views/animations — the data-miss                    |
 | [`animations-tails-3.test.js`](website\tests\coverage\pages/animations-tails-3.test.md)                         | Coverage tail for the &lt;view-animations&gt; define guard — the               |
 | [`animations-tails.test.js`](website\tests\coverage\pages/animations-tails.test.md)                             | Coverage tails for website/views/animations — the async                        |
-| [`home-parallax-tails.test.js`](website\tests\coverage\pages/home-parallax-tails.test.md)                       | Coverage tails for views/home/parallax.ts — the desktop                        |
 | [`home-route-tails.test.js`](website\tests\coverage\pages/home-route-tails.test.md)                             | Split from coverage-tails-3.test.js — covers the "Home route tails" describe.  |
 | [`legal-route-tails.test.js`](website\tests\coverage\pages/legal-route-tails.test.md)                           | Split from coverage-tails-3.test.js — covers the "Legal route tails" describe. |
 | [`legal-tails-2.test.js`](website\tests\coverage\pages/legal-tails-2.test.md)                                   | Split from coverage-tails-5.test.js — covers the "Legal tails 2" describe.     |
@@ -3344,7 +3344,6 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`Home.tsx`](website\views\home/Home.md)        | &lt;view-home&gt; — the home page route: the selected-work       |
 | [`children.ts`](website\views\home/children.md) | Pushes loaded translations/items from &lt;view-home&gt; into its |
 | [`data.ts`](website\views\home/data.md)         | Data loading for &lt;view-home&gt;: three SWR sources fetched    |
-| [`parallax.ts`](website\views\home/parallax.md) | Scroll-driven parallax for &lt;view-home&gt; — desktop-only      |
 | [`render.tsx`](website\views\home/render.md)    | JSX template for &lt;view-home&gt; — the selected-work           |
 | [`scroll.ts`](website\views\home/scroll.md)     | Post-navigation scroll handling for &lt;view-home&gt;: same-view |
 | [`types.ts`](website\views\home/types.md)       | Shapes for the &lt;view-home&gt; route: the portfolio list item, |
