@@ -14,17 +14,17 @@ import {
   registerSiteServiceWorker,
 } from '@core/utils/service-worker.js'
 
+/** One-shot reload gate — armed by an update install, disarmed on the
+ * claim that fires it. Module-scoped: a reloaded page re-runs this
+ * module fresh, so the flag resets for the next deploy cycle. */
+let reloadArmed = false
+
 /**
  * Registers `<base>service-worker.js` on window load when `env.PROD` is set.
  * Exported (and env-injected) so the prod-only branch is exercisable in
  * tests — `import.meta.env` does not exist outside Vite.
  * @param {object} env - Vite env object ({PROD, BASE_URL})
  */
-/** One-shot reload gate — armed by an update install, disarmed on the
- * claim that fires it. Module-scoped: a reloaded page re-runs this
- * module fresh, so the flag resets for the next deploy cycle. */
-let reloadArmed = false
-
 export const registerServiceWorker = (env: { PROD?: boolean; BASE_URL?: string }): void => {
   if (!env?.PROD || isLocalhost()) {
     // Non-prod builds and LOCAL origins actively UNregister — a stale
