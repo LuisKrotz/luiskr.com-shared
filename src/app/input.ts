@@ -7,6 +7,7 @@ import { DRAG_EVENTS, MOUSE_EVENTS, POINTER_EVENTS, TOUCH_EVENTS } from '@core/t
 import { UI_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { COMMON_SELECTORS } from '@core/tokens/selectors/common.js'
 import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
+import { joustRecordPointer } from '@core/utils/dom/joust.js'
 import store from '@core/store.js'
 import type { AppRoot } from '../App.js'
 
@@ -36,6 +37,10 @@ export function initAppInputListeners(c: AppRoot): void {
       POINTER_EVENTS.POINTERDOWN,
       (e) => {
         const pointerType = (e as PointerEvent).pointerType
+
+        // Feed the joust tap-vs-pointer record BEFORE the click this
+        // press produces — chips read it at activation time.
+        joustRecordPointer(e)
 
         if (pointerType === INPUT_STRINGS.TOUCH) setTouch()
         else if (pointerType === INPUT_STRINGS.MOUSE || pointerType === INPUT_STRINGS.PEN)
