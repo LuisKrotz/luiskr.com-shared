@@ -746,4 +746,28 @@ describe('Style Governance & Zero-Hardcoding Enforcement', () => {
 
     expect(agents).toContain('Minify-Safe Forced Reflows')
   })
+
+  // The layer census itself is an e2e (it needs a real compositor), so the
+  // gate pins its three anchors instead — the gate mixin, the Playwright
+  // budget test that enforces it, and the rule's documentation — so none of
+  // them can silently rot.
+  test('Rule 38: gpu-budget mixin + e2e layer census + docs stay wired', () => {
+    const mixins = fs.readFileSync(path.join(coreDir, 'sass', 'base', '_mixins.scss'), 'utf-8')
+
+    expect(mixins).toMatch(
+      /@mixin gpu-budget\s*\{\s*@media \(max-width: 1023px\), \(pointer: coarse\)/
+    )
+
+    const e2e = fs.readFileSync(
+      path.join(rootDir, 'tests', 'e2e', 'android-chromium.spec.ts'),
+      'utf-8'
+    )
+
+    expect(e2e).toContain('composited-layer budget')
+    expect(e2e).toContain('LayerTree.enable')
+
+    const agents = fs.readFileSync(path.join(rootDir, 'AGENTS.md'), 'utf-8')
+
+    expect(agents).toContain('Mobile GPU Budget')
+  })
 })
