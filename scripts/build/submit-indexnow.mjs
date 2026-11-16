@@ -5,13 +5,16 @@
  * surface to the IndexNow endpoint in BOTH protocol forms:
  *
  *   json  — `POST {host, key, keyLocation, urlList}` bodies chunked to the
- *           protocol's 10,000-URL-per-request cap;
- *   param — a per-URL `GET ?url=<u>&key=<k>&keyLocation=<loc>` ping for
- *           every route in the inventory.
+ *           protocol's 10,000-URL-per-request cap (the default — the
+ *           bulk form is the protocol's crawl-scale submission path);
+ *   param — a per-URL `GET ?url=<u>&key=<k>&keyLocation=<loc>` ping.
+ *           Opt-in only: at 20k+ routes the per-URL pass floods the
+ *           endpoint and is throttled to 429s — it exists for targeted
+ *           re-pings of a few URLs, never the full inventory.
  *
- * Flags: `--json` / `--param` select a single form (no flag runs both —
- * every route goes out in json AND param), `--dry-run` builds the full
- * report without sending a single request.
+ * Flags: `--json` selects the JSON form, `--param` the param form, both
+ * flags run both, and NO flag runs json only; `--dry-run` builds the
+ * full report without sending a single request.
  *
  * The URL inventory is the shipped `dist/meta/urllist.txt` (fallback:
  * `website/public/meta/urllist.txt`) — the same final-canonical list
@@ -48,6 +51,12 @@ const JSON_BATCH_MAX = 10000
 
 /** In-flight GET pings — keeps the 11k+ param pass bounded but quick. */
 const PARAM_CONCURRENCY = 8
+
+/** Pacing between param batches — the endpoint throttles sustained floods. */
+const PARAM_BATCH_DELAY_MS = 1000
+
+/** Pacing between JSON chunk POSTs — bursts get throttled (403/429). */
+const JSON_BATCH_DELAY_MS = 2000
 
 /** Hard socket timeout so a hung connection can't stall postdeploy. */
 const REQUEST_TIMEOUT_MS = 15000
@@ -136,21 +145,40 @@ const submitJson = async (urls, dryRun) => {
       urlList,
     })
 
-    try {
-      const res = await request(INDEXNOW.API, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json; charset=utf-8' },
-        body,
-      })
+    let last = null
 
-      results.push({ urls: urlList.length, status: res.status })
-    } catch (error) {
-      results.push({
-        urls: urlList.length,
-        status: 'error',
-        error: String(error?.message || error),
-      })
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const res = await request(INDEXNOW.API, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json; charset=utf-8' },
+          body,
+        })
+
+        // Throttle statuses (429, and 403 used by the endpoint as a
+        // rate-limit answer) and server errors earn one retry after the
+        // backoff; every other status is final.
+        if (res.status !== 429 && res.status !== 403 && res.status < 500) {
+          last = { urls: urlList.length, status: res.status }
+          break
+        }
+
+        last = { urls: urlList.length, status: res.status }
+      } catch (error) {
+        last = {
+          urls: urlList.length,
+          status: 'error',
+          error: String(error?.message || error),
+        }
+      }
+
+      await sleep(RETRY_DELAY_MS)
     }
+
+    results.push(last)
+
+    // Pace the chunk POSTs — back-to-back batches are throttled too.
+    if (i + JSON_BATCH_MAX < urls.length) await sleep(JSON_BATCH_DELAY_MS)
   }
 
   return results
@@ -201,6 +229,9 @@ const submitParam = async (urls, dryRun) => {
   for (let i = 0; i < urls.length; i += PARAM_CONCURRENCY) {
     results.push(...(await Promise.all(urls.slice(i, i + PARAM_CONCURRENCY).map(submitParamOne))))
 
+    // Pace batches — an unpaced flood is what the endpoint throttles.
+    if (i + PARAM_CONCURRENCY < urls.length) await sleep(PARAM_BATCH_DELAY_MS)
+
     // Progress heartbeat every 50 batches — the param pass is the
     // long pole (11k+ pings).
     if ((i / PARAM_CONCURRENCY) % 50 === 0) {
@@ -221,11 +252,13 @@ async function run() {
 
   const dryRun = argv.includes(FLAG_DRY_RUN)
 
-  // Form selection — a lone flag runs only that form; no flag or
-  // both flags runs both.
+  // Form selection — `--json` picks json, `--param` picks param, both
+  // flags run both. No flag defaults to JSON only: the bulk POST is the
+  // protocol's crawl-scale form; the per-URL param pass floods the
+  // endpoint at 20k+ routes and is throttled to mass 429s.
   const runJson = argv.includes(FLAG_JSON) || !argv.includes(FLAG_PARAM)
 
-  const runParam = argv.includes(FLAG_PARAM) || !argv.includes(FLAG_JSON)
+  const runParam = argv.includes(FLAG_PARAM)
 
   const { file, urls } = loadUrlList()
 
