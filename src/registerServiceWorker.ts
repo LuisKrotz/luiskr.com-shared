@@ -20,6 +20,11 @@ import {
  * tests — `import.meta.env` does not exist outside Vite.
  * @param {object} env - Vite env object ({PROD, BASE_URL})
  */
+/** One-shot reload gate — armed by an update install, disarmed on the
+ * claim that fires it. Module-scoped: a reloaded page re-runs this
+ * module fresh, so the flag resets for the next deploy cycle. */
+let reloadArmed = false
+
 export const registerServiceWorker = (env: { PROD?: boolean; BASE_URL?: string }): void => {
   if (!env?.PROD || isLocalhost()) {
     // Non-prod builds and LOCAL origins actively UNregister — a stale
@@ -59,10 +64,24 @@ export const registerServiceWorker = (env: { PROD?: boolean; BASE_URL?: string }
         devInfo('New content is downloading.')
       },
 
-      // The new SW activated — hard-reload so the app shell can never
-      // mix an old shell with new hashed assets.
+      // The new SW installed while a controller was live — an UPDATE,
+      // not the first precache fill. Arm the reload; it fires on
+      // controllerchange (the swap claim) so the page reloads exactly
+      // when old shell + new assets are consistent, never mid-install.
       updated() {
-        devInfo('New content is available; refreshing page.')
+        devInfo('New content is available; refreshing when claimed.')
+
+        reloadArmed = true
+      },
+
+      // The new worker claimed this client — its precache now backs
+      // every fetch, so reloading lands on the consistent new build.
+      // Guarded by `updated`: the FIRST install's claim is disarmed —
+      // a first-visit precache must never bounce the page.
+      controllerchange() {
+        if (!reloadArmed) return
+
+        reloadArmed = false
 
         window.location.reload()
       },
