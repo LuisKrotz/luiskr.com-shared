@@ -152,7 +152,12 @@ the in-app toggle, so mid-session OS flips come from the mql.
 
 ### `gatesOpen`
 
-Both runtime gates: the ≥1280 media query matches AND motion is allowed.
+All runtime gates: the ≥1280 media query matches, motion is allowed,
+AND the primary input isn't touch. Parallax is a desktop-exclusive
+affordance — the width class alone can't separate a 1366px tablet
+landscape from a laptop, so has_touch (ontouchstart + !pointer:fine)
+decides; it also flips live via setInputMethod when a hybrid device
+first touches the screen, and the resulting store push re-gates here.
 
 ### `syncLayer`
 
