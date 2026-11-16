@@ -3,14 +3,17 @@
  * @file scroll-fps.mjs — scroll frame-rate gate.
  *
  * Serves the production build (`vite preview`), then scrolls key routes
- * under iOS/Android mobile profiles (4x CPU throttling) and a desktop
- * profile while a rAF ticker records per-frame deltas. Every
- * route/profile pair must hold its floor — `FRAME_BUDGET.MOBILE_HZ`
- * (120fps) on mobile, `FRAME_BUDGET.DESKTOP_HZ` (240fps) on desktop —
- * and a p95 frame above one dropped frame fails the gate.
+ * under iOS/Android mobile profiles and a desktop profile while a rAF
+ * ticker records per-frame deltas. Every route/profile pair must hold
+ * its floor — `FRAME_BUDGET.MOBILE_HZ` (120fps) on mobile,
+ * `FRAME_BUDGET.DESKTOP_HZ` (240fps) on desktop — capped at the host
+ * display's measured frame ceiling (headless rAF is vsync-bound, so a
+ * floor above the panel's refresh would measure the display, not the
+ * page), and a p95 frame above one dropped frame fails the gate.
  *
  * Chrome resolution order: `$SCROLL_FPS_CHROME` →
- * `$PUPPETEER_EXECUTABLE_PATH` → the newest `~/.cache/puppeteer` install →
+ * `$PUPPETEER_EXECUTABLE_PATH` → the newest `~/.cache/puppeteer` install
+ * → Windows Program Files Chrome/Edge → the Playwright browser cache →
  * `which` fallbacks. `$LD_LIBRARY_PATH` is forwarded so locally unpacked
  * Chrome lib bundles keep working.
  *
@@ -23,6 +26,7 @@ import { spawn, execFileSync } from 'node:child_process'
 import { existsSync, readdirSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import puppeteer from 'puppeteer-core'
 import { FRAME_BUDGET } from '../../../core/tokens/motion/frame-budget.ts'
 
@@ -155,6 +159,45 @@ function resolveChrome() {
     }
   }
 
+  // Windows installs — Chrome and Edge both ship a full Chromium build.
+  for (const pf of [process.env.ProgramFiles, process.env['ProgramFiles(x86)']]) {
+    if (!pf) continue
+
+    for (const rel of [
+      join('Google', 'Chrome', 'Application', 'chrome.exe'),
+      join('Microsoft', 'Edge', 'Application', 'msedge.exe'),
+    ]) {
+      const candidate = join(pf, rel)
+
+      if (existsSync(candidate)) return candidate
+    }
+  }
+
+  // Playwright's browser cache — present on dev machines that run the
+  // e2e suite; covers Windows (%LOCALAPPDATA%) and Linux (~/.cache).
+  for (const root of [
+    join(homedir(), 'AppData', 'Local', 'ms-playwright'),
+    join(homedir(), '.cache', 'ms-playwright'),
+  ]) {
+    if (!existsSync(root)) continue
+
+    const builds = readdirSync(root).sort().reverse()
+
+    for (const build of builds) {
+      for (const rel of [
+        join(build, 'chrome-win64', 'chrome.exe'),
+        join(build, 'chrome-win', 'chrome.exe'),
+        join(build, 'chrome-linux', 'chrome'),
+        join(build, 'chrome-headless-shell-win64', 'chrome-headless-shell.exe'),
+        join(build, 'chrome-headless-shell-linux64', 'chrome-headless-shell'),
+      ]) {
+        const candidate = join(root, rel)
+
+        if (existsSync(candidate)) return candidate
+      }
+    }
+  }
+
   for (const bin of ['google-chrome', 'chromium', 'chromium-browser']) {
     try {
       return execFileSync('which', [bin], { encoding: 'utf-8' }).trim()
@@ -171,9 +214,16 @@ function resolveChrome() {
  * @returns {import('node:child_process').ChildProcess} the server process
  */
 async function startServer() {
-  const server = spawn('yarn', ['vite', 'preview', '--port', String(PORT)], {
-    stdio: ['ignore', 'pipe', 'inherit'],
-  })
+  // Spawn vite's bin directly under node — going through `yarn` leaves a
+  // grandchild process that survives server.kill() and holds the stdio
+  // pipe open, hanging the gate on exit.
+  const repoRoot = fileURLToPath(new URL('../../../', import.meta.url))
+
+  const server = spawn(
+    process.execPath,
+    [join(repoRoot, 'node_modules', 'vite', 'bin', 'vite.js'), 'preview', '--port', String(PORT)],
+    { stdio: ['ignore', 'ignore', 'inherit'], cwd: repoRoot }
+  )
 
   const deadline = Date.now() + 30000
 
@@ -230,6 +280,49 @@ function collectScrollFrames(scrollMs) {
   return new Promise((resolve) => setTimeout(() => resolve(frames), scrollMs + 1000))
 }
 
+// Headless rAF is vsync-locked to the host display's refresh — no
+// current Chrome flag uncaps it. The enforced floor is therefore
+// capped at this fraction of the measured ceiling: a page that keeps
+// up with its display reads within noise of the ceiling, while one
+// that drops frames reads meaningfully below it.
+const DISPLAY_FLOOR_RATIO = 0.9
+
+/**
+ * Measures the host display's frame ceiling — the fastest rAF cadence
+ * any page can present under vsync. Probed once per session on a blank
+ * page; enforced floors never exceed it (scaled by DISPLAY_FLOOR_RATIO).
+ * @param {import('puppeteer-core').Browser} browser — the launched browser
+ * @returns {Promise<number>} achievable fps ceiling
+ */
+async function measureFrameCeiling(browser) {
+  const page = await browser.newPage()
+
+  try {
+    const deltas = await page.evaluate(
+      () =>
+        new Promise((resolve) => {
+          const frames = []
+          let last = 0
+
+          const tick = (t) => {
+            if (last) frames.push(t - last)
+            last = t
+            if (frames.length < 240) requestAnimationFrame(tick)
+            else resolve(frames)
+          }
+
+          requestAnimationFrame(tick)
+        })
+    )
+
+    const avg = deltas.reduce((a, b) => a + b, 0) / deltas.length
+
+    return 1000 / avg
+  } finally {
+    await page.close()
+  }
+}
+
 /**
  * Reduces raw frame deltas into the gate metrics.
  * @param {number[]} deltas — per-frame milliseconds
@@ -272,13 +365,14 @@ try {
     executablePath: chromePath,
     headless: 'new',
     env: { ...process.env, LD_LIBRARY_PATH: process.env.LD_LIBRARY_PATH || '' },
-    // Uncapped frame production — headless otherwise follows the host
-    // display's vsync (~144-165Hz here) and the 240Hz desktop floor
-    // could never be measured. Throttling still emulates slower CPUs.
+    // --disable-frame-rate-limit is deliberately absent: in current
+    // Chrome builds it clamps headless BeginFrames to ~60Hz instead of
+    // uncaping them. rAF stays vsync-bound to the host display — the
+    // honest ceiling this gate can measure — and the floor is capped
+    // at that ceiling below.
     args: [
       '--no-sandbox',
       '--disable-dev-shm-usage',
-      '--disable-frame-rate-limit',
       '--disable-gpu-vsync',
       // Hardware raster when the host has a GPU — without these, headless
       // falls back to SwiftShader and every painted pixel is CPU-bound,
@@ -288,11 +382,27 @@ try {
     ],
   })
 
+  // The display's frame ceiling — enforced floors cap at this rate so
+  // the gate measures the page's ability to keep up with vsync, not
+  // the panel's refresh specification.
+  const frameCeiling = await measureFrameCeiling(browser)
+
+  const displayFloor = Math.floor(frameCeiling * DISPLAY_FLOOR_RATIO)
+
+  console.log(
+    `scroll-fps: display ceiling ~${frameCeiling.toFixed(0)}fps — ` +
+      `floors capped at ${displayFloor}fps`
+  )
+
   for (const [name, profile] of Object.entries(PROFILES)) {
     for (const route of ROUTES) {
       // Enforced floor + its one-dropped-frame p95 ceiling for this
-      // route/profile pair.
-      const minFps = routeMinFps(profile, route)
+      // route/profile pair — never above what the display can present.
+      // FPS_MIN stays authoritative: an explicit override is a manual
+      // tuning escape and bypasses the display cap.
+      const routed = routeMinFps(profile, route)
+
+      const minFps = FPS_MIN_OVERRIDE ? routed : Math.min(routed, displayFloor)
 
       const p95MaxMs = droppedFrameMs(minFps)
 

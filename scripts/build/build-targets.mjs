@@ -298,7 +298,7 @@ const emitCssSplits = async (t) => {
 
   for (const cls of WIDTH_CLASS_NAMES) {
     const text = sheets[cls]
-    const hash = crypto.createHash('md5').update(text).digest('hex').slice(0, 8)
+    const hash = crypto.createHash('sha256').update(text).digest('hex').slice(0, 8)
     const name = `index-${cls}-${hash}.css`
 
     // queueCompressedWrite performs the sync plain-file write itself and
@@ -311,7 +311,7 @@ const emitCssSplits = async (t) => {
   // the loader serves it on a `media="print"` link so screen sessions never
   // parse paper-only css.
   if (sheets.print) {
-    const hash = crypto.createHash('md5').update(sheets.print).digest('hex').slice(0, 8)
+    const hash = crypto.createHash('sha256').update(sheets.print).digest('hex').slice(0, 8)
     const name = `index-print-${hash}.css`
 
     queueCompressedWrite(path.join(outDir, name), Buffer.from(sheets.print))
@@ -348,7 +348,7 @@ const emitCss = async (t, prefix = 'index-') => {
   const outDir = path.join(DIST, 'v', t.name, 'assets', 'css')
   withFsRetry(() => fs.mkdirSync(outDir, { recursive: true }))
 
-  const hash = crypto.createHash('md5').update(code).digest('hex').slice(0, 8)
+  const hash = crypto.createHash('sha256').update(code).digest('hex').slice(0, 8)
   const name = `${prefix}${hash}.css`
   const finalCode = Buffer.concat([code, Buffer.from(`\n/*# sourceMappingURL=${name}.map */\n`)])
 
@@ -409,7 +409,7 @@ for (const t of ES_TARGETS) {
     cssMap = {}
 
     for (const cls of WIDTH_CLASS_NAMES) {
-      const hash = crypto.createHash('md5').update(sheets[cls]).digest('hex').slice(0, 8)
+      const hash = crypto.createHash('sha256').update(sheets[cls]).digest('hex').slice(0, 8)
       const name = `index-${cls}-${hash}.css`
 
       queueCompressedWrite(path.join(cssDir, name), Buffer.from(sheets[cls]))
@@ -419,7 +419,7 @@ for (const t of ES_TARGETS) {
     // Same print-sheet extraction as the direct-splits path — one
     // `media="print"` link per manifest entry, never part of screen css.
     if (sheets.print) {
-      const hash = crypto.createHash('md5').update(sheets.print).digest('hex').slice(0, 8)
+      const hash = crypto.createHash('sha256').update(sheets.print).digest('hex').slice(0, 8)
       const name = `index-print-${hash}.css`
 
       queueCompressedWrite(path.join(cssDir, name), Buffer.from(sheets.print))
@@ -535,7 +535,7 @@ queueCompressedWrite(indexPath, html)
 const swPath = path.join(DIST, 'service-worker.js')
 
 if (fs.existsSync(swPath)) {
-  const htmlHash = crypto.createHash('md5').update(html).digest('hex')
+  const htmlHash = crypto.createHash('sha256').update(html).digest('hex')
   let sw = fs.readFileSync(swPath, 'utf8')
   sw = sw.replace(
     /\{url:"index\.html",revision:"[^"]+"\}/,

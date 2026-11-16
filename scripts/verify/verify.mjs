@@ -15,6 +15,10 @@
  *                     in every module
  *   6. security-scan  Snyk (SNYK_TOKEN) / yarn audit fallback
  *                     writes experiments/docs/reports/snyk-report.json
+ *   7. mythos-scan    mythos-agent pattern + deterministic scanners,
+ *                     path/rule-scoped + mythos-exceptions.json —
+ *                     every unexcepted finding fails (all severities)
+ *                     writes experiments/docs/reports/mythos-report.json
  *
  * Every step writes machine-readable reports consumed by
  * shared/scripts/build/deploy-info.mjs → dist/deploy-info/ → CMS
@@ -41,6 +45,7 @@ const STEPS = {
   test: 'node shared/scripts/verify/scope-gates.mjs links',
   'coverage-gate': 'node shared/scripts/verify/coverage-gate.mjs',
   'security-scan': 'node shared/scripts/verify/security-scan.mjs',
+  'mythos-scan': 'node shared/scripts/verify/mythos-scan.mjs',
 }
 
 const only = (process.env.VERIFY_ONLY || '')

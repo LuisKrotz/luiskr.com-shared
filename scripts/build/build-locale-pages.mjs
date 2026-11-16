@@ -4324,7 +4324,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 
   if (fs.existsSync(swPath)) {
     const crypto = await import('node:crypto')
-    const htmlHash = crypto.createHash('md5').update(html).digest('hex')
+    const htmlHash = crypto.createHash('sha256').update(html).digest('hex')
     let sw = fs.readFileSync(swPath, 'utf8')
 
     sw = sw.replace(
