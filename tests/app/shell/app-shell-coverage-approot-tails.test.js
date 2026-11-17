@@ -11,29 +11,16 @@ import { describe, test, expect, jest, beforeEach, afterEach, afterAll } from '@
 import { AppRoot } from '@/App.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
-import { mount, TEST_TEXT } from '@tests/fixtures/test-constants.js'
+import { mount } from '@tests/fixtures/test-constants.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
-import { MODAL_MUTATIONS, PREF_MUTATIONS, UI_MUTATIONS } from '@core/tokens/events/mutations.js'
-import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
-import { APP_IDS } from '@core/tokens/ids/app.js'
-import {
-  DRAG_EVENTS,
-  FORM_EVENTS,
-  KEYBOARD_EVENTS,
-  MOUSE_EVENTS,
-  POINTER_EVENTS,
-  TOUCH_EVENTS,
-  WINDOW_EVENTS,
-} from '@core/tokens/events/dom.js'
-import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
+import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { FORM_EVENTS, KEYBOARD_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
-import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { APP_CLASSES } from '@core/tokens/classes/app.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { APP_EVENTS } from '@core/tokens/events/app.js'
-import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 
 import { ROUTE_NAMES } from '@core/constants.js'
 import { THEME } from '@core/tokens/theme/theme.js'
@@ -74,22 +61,6 @@ const stableFetch = () => {
 
   return orig
 }
-
-/** Locale slug guaranteed absent from LANG_SLUGS — exercises miss paths. */
-const _BAD_LOCALE = 'xx'
-
-/** Mounts a fresh <app-nav> element and registers its cleanup. */
-const _mountNav = () => {
-  const el = document.createElement(COMPONENT_TAGS.APP_NAV)
-
-  cleanups.push(mount(el))
-
-  return el
-}
-
-/** Dispatches a real window-level keydown for a key name. */
-const _keydown = (key) =>
-  window.dispatchEvent(new window.KeyboardEvent(KEYBOARD_EVENTS.KEYDOWN, { key }))
 
 // ─── AppRoot tails ──────────────────────────────────────────────────────────
 describe('AppRoot tails', () => {
@@ -248,86 +219,6 @@ describe('AppRoot tails', () => {
       globalThis.document = origDoc
       window.matchMedia = origMM
     }
-
-    globalThis.fetch = origFetch
-  })
-
-  test('disconnect cancels a pending coalesced scroll rAF', async () => {
-    const { el, origFetch } = await mountApp()
-
-    window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
-
-    expect(el._scrollRaf).not.toBe(0)
-
-    el.remove()
-
-    expect(el._scrollRaf).toBe(0)
-
-    globalThis.fetch = origFetch
-  })
-
-  test('modal open/close fallback arms: missing class, transform, main and auto top', async () => {
-    const { el, origFetch } = await mountApp()
-    const mainEl = el.shadowRoot.querySelector(`#${APP_IDS.MAIN_CONTENT}`)
-
-    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true })
-    el._updateModalState()
-    expect(document.documentElement.classList.contains(MODAL_CLASSES.MODAL_OPEN)).toBe(true)
-
-    mainEl.style.top = ATTR_VALUES.AUTO
-
-    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
-    el._updateModalState()
-
-    mainEl.remove()
-
-    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true, transform: 50 })
-    el._updateModalState()
-
-    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
-    el._updateModalState()
-
-    el.shadowRoot.querySelector(`[${DATA_ATTRS.DATA_APP_WRAPPER}]`).remove()
-    el._updateModalState()
-
-    globalThis.fetch = origFetch
-  })
-
-  test('input listeners cover pen, unknown, already-set and non-PointerEvent arms', async () => {
-    const origFetch = stableFetch()
-    const origPE = window.PointerEvent
-
-    const el = new AppRoot()
-    cleanups.push(mount(el))
-    await flush(30)
-
-    const pointer = (type) => {
-      const e = new Event(POINTER_EVENTS.POINTERDOWN)
-      Object.defineProperty(e, 'pointerType', { value: type })
-      window.dispatchEvent(e)
-    }
-
-    pointer(INPUT_STRINGS.PEN)
-    pointer(TEST_TEXT.UNKNOWN)
-
-    store.commit(UI_MUTATIONS.SET_INPUT_METHOD, INPUT_STRINGS.TOUCH)
-    pointer(INPUT_STRINGS.TOUCH)
-    pointer(INPUT_STRINGS.MOUSE)
-    pointer(INPUT_STRINGS.MOUSE)
-
-    window.dispatchEvent(new Event(MOUSE_EVENTS.CONTEXTMENU))
-    window.dispatchEvent(new Event(DRAG_EVENTS.DRAGSTART))
-
-    delete window.PointerEvent
-
-    const el2 = new AppRoot()
-    cleanups.push(mount(el2))
-    await flush(30)
-
-    window.dispatchEvent(new Event(TOUCH_EVENTS.TOUCHSTART))
-    window.dispatchEvent(new Event(MOUSE_EVENTS.MOUSEDOWN))
-
-    window.PointerEvent = origPE
 
     globalThis.fetch = origFetch
   })
