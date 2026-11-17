@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../README.md) / [core/utils/burn/types](../README.md) / BurnItem
 
-Defined in: core/utils/burn/types.ts:52
+Defined in: core/utils/burn/types.ts:76
 
 Minimal item contract — label/title feed the rewrite slot, description paces the burn.
 
@@ -16,7 +16,7 @@ Minimal item contract — label/title feed the rewrite slot, description paces t
 optional label?: string;
 ```
 
-Defined in: core/utils/burn/types.ts:53
+Defined in: core/utils/burn/types.ts:77
 
 ---
 
@@ -26,7 +26,7 @@ Defined in: core/utils/burn/types.ts:53
 optional title?: string;
 ```
 
-Defined in: core/utils/burn/types.ts:54
+Defined in: core/utils/burn/types.ts:78
 
 ---
 
@@ -36,4 +36,4 @@ Defined in: core/utils/burn/types.ts:54
 optional description?: string;
 ```
 
-Defined in: core/utils/burn/types.ts:55
+Defined in: core/utils/burn/types.ts:79

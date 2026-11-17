@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/carousel/mentions-deck/types](../README.md) / MentionPose
 
-Defined in: website/components/carousel/mentions-deck/types.ts:30
+Defined in: website/components/carousel/mentions-deck/types.d.ts:30
 
 The computed strip pose for one card — written into inline styles by
 applyPoses(); `visible` also drives aria-hidden/tabindex on the card.
@@ -17,7 +17,7 @@ applyPoses(); `visible` also drives aria-hidden/tabindex on the card.
 x: number
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:31
+Defined in: website/components/carousel/mentions-deck/types.d.ts:31
 
 ---
 
@@ -27,7 +27,7 @@ Defined in: website/components/carousel/mentions-deck/types.ts:31
 y: number
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:32
+Defined in: website/components/carousel/mentions-deck/types.d.ts:32
 
 ---
 
@@ -37,7 +37,7 @@ Defined in: website/components/carousel/mentions-deck/types.ts:32
 rot: number
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:33
+Defined in: website/components/carousel/mentions-deck/types.d.ts:33
 
 ---
 
@@ -47,7 +47,7 @@ Defined in: website/components/carousel/mentions-deck/types.ts:33
 scale: number
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:34
+Defined in: website/components/carousel/mentions-deck/types.d.ts:34
 
 ---
 
@@ -57,7 +57,7 @@ Defined in: website/components/carousel/mentions-deck/types.ts:34
 opacity: number
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:35
+Defined in: website/components/carousel/mentions-deck/types.d.ts:35
 
 ---
 
@@ -67,7 +67,7 @@ Defined in: website/components/carousel/mentions-deck/types.ts:35
 z: number
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:36
+Defined in: website/components/carousel/mentions-deck/types.d.ts:36
 
 ---
 
@@ -77,4 +77,4 @@ Defined in: website/components/carousel/mentions-deck/types.ts:36
 visible: boolean
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:37
+Defined in: website/components/carousel/mentions-deck/types.d.ts:37

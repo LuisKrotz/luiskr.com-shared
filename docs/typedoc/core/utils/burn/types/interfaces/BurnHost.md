@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../README.md) / [core/utils/burn/types](../README.md) / BurnHost
 
-Defined in: core/utils/burn/types.ts:46
+Defined in: core/utils/burn/types.ts:70
 
 Minimal host contract — the shadow-root `$(selector)` query method.
 
@@ -16,7 +16,7 @@ Minimal host contract — the shadow-root `$(selector)` query method.
 $<E>(sel): E | null;
 ```
 
-Defined in: core/utils/burn/types.ts:48
+Defined in: core/utils/burn/types.ts:72
 
 Queries the host's shadow root for the first match, or null.
 

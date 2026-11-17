@@ -8,7 +8,7 @@
 function makeNebulaSprite(THREE, def, texMap, glowTex, lobes?): Sprite
 ```
 
-Defined in: experiments/star-field/engine/bodies/deep-sky.ts:45
+Defined in: experiments/star-field/engine/bodies/deep-sky.ts:46
 
 Billboard sprite for nebulae and star clusters — the real photo on a
 camera-facing sprite with feathered edges and source aspect ratio

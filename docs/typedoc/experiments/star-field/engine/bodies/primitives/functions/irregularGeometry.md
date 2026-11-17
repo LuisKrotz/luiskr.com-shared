@@ -8,7 +8,7 @@
 function irregularGeometry(THREE, def): BufferGeometry
 ```
 
-Defined in: experiments/star-field/engine/bodies/primitives.ts:134
+Defined in: experiments/star-field/engine/bodies/primitives.ts:136
 
 Triaxial rubble-pile geometry for `def.irregular` bodies — a detail-7
 icosahedron crumpled by two octaves of seeded value noise so the

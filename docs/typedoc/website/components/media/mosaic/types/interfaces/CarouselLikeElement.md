@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/media/mosaic/types](../README.md) / CarouselLikeElement
 
-Defined in: website/components/media/mosaic/types.ts:37
+Defined in: website/components/media/mosaic/types.d.ts:37
 
 Structural contract for the fallback <custom-carousel> — the mosaic
 calls `configure()` after rendering it on ≤640px viewports, mirroring
@@ -4720,7 +4720,7 @@ HTMLElement.style
 configure(_opts): void;
 ```
 
-Defined in: website/components/media/mosaic/types.ts:38
+Defined in: website/components/media/mosaic/types.d.ts:38
 
 #### Parameters
 

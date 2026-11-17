@@ -8,7 +8,7 @@
 function insertTitleSlot(cardEl, titleText, cls): void
 ```
 
-Defined in: core/utils/burn/mount.ts:31
+Defined in: core/utils/burn/mount.ts:32
 
 Inserts the rewrite slot above the description: an aria-hidden spacer
 holds the layout space (zero reflow when the clone animates) and a

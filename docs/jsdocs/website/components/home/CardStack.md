@@ -9,6 +9,16 @@
 
 ## Members
 
+### `SETTLED_DOCS`
+
+Documents whose first deck settle already completed — the --pending
+gate exists to hide the first mount's unproven measurements (a pose
+pass reading rects before the tier sheet resolves). Once any deck in
+the document has settled, stylesheets are proven live, so remounts
+(view re-renders swap the element) start settled and pose their fresh
+nodes synchronously — no second hidden window, no deck flash. Keyed
+per-document so each test file's fresh document stays unproven.
+
 ### `CardStack`
 
 The CardStack — stacked featured-project deck.
@@ -70,6 +80,27 @@ deck, so the observer never feeds itself.
 
 Deferred deck-resize work — runs one rAF after the RO fires so size
 writes never land inside the observer delivery turn.
+
+### `_settleDeck`
+
+A measured pose pass landed — marks the reveal's measurement half
+and defers to _maybeReveal. _deckResize (RO delivery) and the
+RO-less _settleTimer race here; whichever lands first wins.
+
+### `_maybeReveal`
+
+Lift the --pending gate — two stages behind the halves. ARM runs
+once both are in (a measured pose pass AND document.fonts.ready, or
+the Font Loading API absent): a final hidden measure/pose/fit folds
+font-final metrics into the first visible geometry. But the fit's
+min-height write can resize the deck box itself — the deck RO's
+rAF-hopped _deckResize lands a frame LATER, so lifting in the same
+task lets that self-triggered re-pose paint post-reveal (the
+residual sub-pixel drift). Instead the arm parks the reveal and the
+next delivery decides: the RO hop re-poses on the final box while
+still hidden, then lifts when the band stops moving; the quiesce
+timer force-lifts when no delivery ever comes. Idempotent: late
+RO/timer/promise edges all converge here.
 
 ### `measure`
 

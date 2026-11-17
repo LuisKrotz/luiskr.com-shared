@@ -8,7 +8,7 @@
 function makeShell(THREE, def, shellTexture, parent, texMap): Object3D
 ```
 
-Defined in: experiments/star-field/engine/bodies/primitives.ts:551
+Defined in: experiments/star-field/engine/bodies/primitives.ts:553
 
 Translucent shell layer — Venus's haze atmosphere and the giant
 planets' rings get a secondary texture-mapped surface parented to

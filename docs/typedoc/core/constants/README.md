@@ -1668,6 +1668,12 @@ Re-exports [SF_PLUME](../tokens/starfield/params/weather/variables/SF_PLUME.md)
 
 ---
 
+### SF\_PARAMS
+
+Re-exports [SF_PARAMS](../tokens/starfield/params/variables/SF_PARAMS.md)
+
+---
+
 ### SF\_TEXTURES
 
 Re-exports [SF_TEXTURES](../tokens/starfield/textures/variables/SF_TEXTURES.md)

@@ -8,7 +8,7 @@
 function spawn(s, progress, jagAmp, dt): void
 ```
 
-Defined in: core/utils/burn/particles.ts:47
+Defined in: core/utils/burn/particles.ts:48
 
 Spawns particles along live letter fronts. `rate` is fractional — the
 accumulator pattern (spawn whole particles, keep the remainder in

@@ -8,7 +8,7 @@
 function updateChrome(host): void
 ```
 
-Defined in: website/components/home/cardstack/deck.ts:628
+Defined in: website/components/home/cardstack/deck.ts:668
 
 Refreshes the non-pose chrome after a nav — the "PROJECT 01 OF 08"
 counter (projectLabel + ofLabel, both localized), the dot --active

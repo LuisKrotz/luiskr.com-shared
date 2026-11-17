@@ -8,7 +8,7 @@
 function armCardBurn(host, i, item, cls, cardSel, speed?, onBurned?): boolean
 ```
 
-Defined in: core/utils/burn/burn.ts:83
+Defined in: core/utils/burn/burn.ts:84
 
 Arms the burn on card `i`: inserts the rewrite slot, then mounts the
 combustion canvas IMMEDIATELY — the user expects the dissolve the

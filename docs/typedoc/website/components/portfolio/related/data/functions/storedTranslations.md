@@ -1,14 +1,14 @@
 [**luiskr.com**](../../../../../../README.md)
 
-***
+---
 
 [luiskr.com](../../../../../../README.md) / [website/components/portfolio/related/data](../README.md) / storedTranslations
 
 ```ts
-function storedTranslations(): RelatedTranslations;
+function storedTranslations(): RelatedTranslations
 ```
 
-Defined in: website/components/portfolio/related/data.ts:18
+Defined in: website/components/portfolio/related/data.ts:19
 
 components/related translations from the store dictionary, if loaded.
 

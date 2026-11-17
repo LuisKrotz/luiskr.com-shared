@@ -8,7 +8,7 @@
 function disarmCardBurn(host, i, cls, cardSel): void
 ```
 
-Defined in: core/utils/burn/burn.ts:158
+Defined in: core/utils/burn/burn.ts:159
 
 Un-arms the burn by reversing it: the consume front descends and
 un-chars the glyphs until the title raster is whole again — the same

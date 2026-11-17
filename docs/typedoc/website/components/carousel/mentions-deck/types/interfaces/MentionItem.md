@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/carousel/mentions-deck/types](../README.md) / MentionItem
 
-Defined in: website/components/carousel/mentions-deck/types.ts:13
+Defined in: website/components/carousel/mentions-deck/types.d.ts:13
 
 A mention_items row as pushed by the store — `link` is the outbound
 award URL, `media` the optional badge image (path + intrinsic size for
@@ -19,7 +19,7 @@ All optional: cards tolerate partial CMS rows without render guards.
 optional link?: string;
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:15
+Defined in: website/components/carousel/mentions-deck/types.d.ts:15
 
 Outbound award/mention URL.
 
@@ -31,7 +31,7 @@ Outbound award/mention URL.
 optional media?: object;
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:17
+Defined in: website/components/carousel/mentions-deck/types.d.ts:17
 
 Badge/trophy image descriptor — path joins the CDN storage base.
 
@@ -61,7 +61,7 @@ optional height?: string | number;
 optional icon?: string;
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:19
+Defined in: website/components/carousel/mentions-deck/types.d.ts:19
 
 Emoji/glyph fallback shown when no media ships.
 
@@ -73,7 +73,7 @@ Emoji/glyph fallback shown when no media ships.
 optional description?: string;
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:21
+Defined in: website/components/carousel/mentions-deck/types.d.ts:21
 
 Card copy — may carry `<br>`/inline markup from the CMS.
 
@@ -85,6 +85,6 @@ Card copy — may carry `<br>`/inline markup from the CMS.
 optional label?: string;
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:23
+Defined in: website/components/carousel/mentions-deck/types.d.ts:23
 
 Accessible label when description is absent.

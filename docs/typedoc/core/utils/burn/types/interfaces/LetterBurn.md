@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../README.md) / [core/utils/burn/types](../README.md) / LetterBurn
 
-Defined in: core/utils/burn/types.ts:205
+Defined in: core/utils/burn/types.ts:229
 
 One glyph's burn unit — the ink-run span in the paper raster plus its
 ignition profile. `v` is the burn-speed multiplier, `delay` the share
@@ -20,7 +20,7 @@ front only travels through its own glyph.
 x0: number
 ```
 
-Defined in: core/utils/burn/types.ts:207
+Defined in: core/utils/burn/types.ts:231
 
 Column span inside the paper raster (device px).
 
@@ -32,7 +32,7 @@ Column span inside the paper raster (device px).
 x1: number
 ```
 
-Defined in: core/utils/burn/types.ts:208
+Defined in: core/utils/burn/types.ts:232
 
 ---
 
@@ -42,7 +42,7 @@ Defined in: core/utils/burn/types.ts:208
 y0: number
 ```
 
-Defined in: core/utils/burn/types.ts:210
+Defined in: core/utils/burn/types.ts:234
 
 Ink vertical extent inside the paper raster (device px).
 
@@ -54,7 +54,7 @@ Ink vertical extent inside the paper raster (device px).
 y1: number
 ```
 
-Defined in: core/utils/burn/types.ts:211
+Defined in: core/utils/burn/types.ts:235
 
 ---
 
@@ -64,7 +64,7 @@ Defined in: core/utils/burn/types.ts:211
 v: number
 ```
 
-Defined in: core/utils/burn/types.ts:213
+Defined in: core/utils/burn/types.ts:237
 
 Burn-speed multiplier — 0.55..1.45 of the global front rate.
 
@@ -76,6 +76,6 @@ Burn-speed multiplier — 0.55..1.45 of the global front rate.
 delay: number
 ```
 
-Defined in: core/utils/burn/types.ts:215
+Defined in: core/utils/burn/types.ts:239
 
 Ignition delay as a fraction of total progress (0..0.22).

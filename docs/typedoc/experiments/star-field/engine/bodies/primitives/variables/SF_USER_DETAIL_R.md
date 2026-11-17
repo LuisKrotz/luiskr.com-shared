@@ -8,7 +8,7 @@
 const SF_USER_DETAIL_R: 'detailReveal' = 'detailReveal'
 ```
 
-Defined in: experiments/star-field/engine/bodies/primitives.ts:38
+Defined in: experiments/star-field/engine/bodies/primitives.ts:40
 
 `userData` key overriding a detail object's LOD reveal distance —
 updateLod reads it as an absolute camera-to-anchor reach. Local-scale

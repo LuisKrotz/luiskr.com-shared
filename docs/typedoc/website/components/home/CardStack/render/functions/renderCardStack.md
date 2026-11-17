@@ -8,7 +8,7 @@
 function renderCardStack(host): Element
 ```
 
-Defined in: website/components/home/cardstack/render.tsx:432
+Defined in: website/components/home/cardstack/render.tsx:433
 
 JSX template for the component's shadow DOM.
 

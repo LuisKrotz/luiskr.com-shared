@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/home/cardstack/types](../README.md) / CardStackTranslations
 
-Defined in: website/components/home/cardstack/types.ts:75
+Defined in: website/components/home/cardstack/types.d.ts:75
 
 The pages/HOME translation keys <card-stack> consumes.
 
@@ -16,7 +16,7 @@ The pages/HOME translation keys <card-stack> consumes.
 optional featured?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:76
+Defined in: website/components/home/cardstack/types.d.ts:76
 
 ---
 
@@ -26,7 +26,7 @@ Defined in: website/components/home/cardstack/types.ts:76
 optional featuredTitle?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:79
+Defined in: website/components/home/cardstack/types.d.ts:79
 
 Top-left section title ("FEATURED PROJECTS") — distinct from the
 mid-left two-line counter so the phrase isn't repeated.
@@ -39,7 +39,7 @@ mid-left two-line counter so the phrase isn't repeated.
 optional explore?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:80
+Defined in: website/components/home/cardstack/types.d.ts:80
 
 ---
 
@@ -49,7 +49,7 @@ Defined in: website/components/home/cardstack/types.ts:80
 optional deckHint?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:81
+Defined in: website/components/home/cardstack/types.d.ts:81
 
 ---
 
@@ -59,7 +59,7 @@ Defined in: website/components/home/cardstack/types.ts:81
 optional swipeHint?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:84
+Defined in: website/components/home/cardstack/types.d.ts:84
 
 The touch-only hint shown instead of deckHint when the input
 method is touch — "Swipe." (no drag affordance exists there).
@@ -72,7 +72,7 @@ method is touch — "Swipe." (no drag affordance exists there).
 optional viewAll?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:85
+Defined in: website/components/home/cardstack/types.d.ts:85
 
 ---
 
@@ -82,7 +82,7 @@ Defined in: website/components/home/cardstack/types.ts:85
 optional allProjects?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:86
+Defined in: website/components/home/cardstack/types.d.ts:86
 
 ---
 
@@ -92,7 +92,7 @@ Defined in: website/components/home/cardstack/types.ts:86
 optional projectLabel?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:87
+Defined in: website/components/home/cardstack/types.d.ts:87
 
 ---
 
@@ -102,7 +102,7 @@ Defined in: website/components/home/cardstack/types.ts:87
 optional autoplayPlay?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:90
+Defined in: website/components/home/cardstack/types.d.ts:90
 
 Autoplay transport aria-labels — state-describing actions read
 on the play/pause button ("Play autoplay"/"Pause autoplay").
@@ -115,4 +115,4 @@ on the play/pause button ("Play autoplay"/"Pause autoplay").
 optional autoplayPause?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:91
+Defined in: website/components/home/cardstack/types.d.ts:91

@@ -8,7 +8,7 @@
 function drawParticles(s, dt, stage, jagAmp): void
 ```
 
-Defined in: core/utils/burn/particles.ts:114
+Defined in: core/utils/burn/particles.ts:115
 
 Advances + draws particles. Burn embers flicker upward on buoyancy and
 flecks tumble down; rebuild deposits (dir −1) fall under gravity from

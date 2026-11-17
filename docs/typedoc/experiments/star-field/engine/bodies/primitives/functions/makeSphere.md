@@ -18,7 +18,7 @@ function makeSphere(
 >
 ```
 
-Defined in: experiments/star-field/engine/bodies/primitives.ts:214
+Defined in: experiments/star-field/engine/bodies/primitives.ts:216
 
 Sphere + material for a solid body — textured when the catalog maps one,
 tinted procedural otherwise. Stars/systems use the fresnel-limb node

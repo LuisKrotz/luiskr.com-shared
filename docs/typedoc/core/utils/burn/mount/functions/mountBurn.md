@@ -8,7 +8,7 @@
 function mountBurn(cardEl, overlay, titleEl, item, cls, speed, onBurned): boolean
 ```
 
-Defined in: core/utils/burn/mount.ts:74
+Defined in: core/utils/burn/mount.ts:75
 
 Mounts the combustion canvas over the title's current box: measures
 the h2 and overlay at hover-instant and plays the dissolve exactly

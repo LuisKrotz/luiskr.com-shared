@@ -14,3 +14,8 @@
 - [LetterBurn](interfaces/LetterBurn.md)
 - [BurnParticle](interfaces/BurnParticle.md)
 - [BurnCard](interfaces/BurnCard.md)
+
+## Variables
+
+- [BURN\_PARTICLE](variables/BURN_PARTICLE.md)
+- [BURN\_DIR](variables/BURN_DIR.md)

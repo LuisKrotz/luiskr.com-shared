@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/home/cardstack/types](../README.md) / CardPose
 
-Defined in: website/components/home/cardstack/types.ts:36
+Defined in: website/components/home/cardstack/types.d.ts:36
 
 The computed coverflow pose for one card — written into inline styles
 by applyPoses(); `visible` also drives the --hidden class and the
@@ -18,7 +18,7 @@ reveal/dissolve transitions.
 x: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:38
+Defined in: website/components/home/cardstack/types.d.ts:38
 
 Horizontal centre offset from the deck centre (px).
 
@@ -30,7 +30,7 @@ Horizontal centre offset from the deck centre (px).
 y: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:41
+Defined in: website/components/home/cardstack/types.d.ts:41
 
 Vertical centre offset from the deck centre (px) — 0 on fan tiers;
 the stacked tiers' down-right cascade carries it.
@@ -43,7 +43,7 @@ the stacked tiers' down-right cascade carries it.
 depth: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:43
+Defined in: website/components/home/cardstack/types.d.ts:43
 
 Z recess (px, ≤ 0) — the perspective divide shrinks the card.
 
@@ -55,7 +55,7 @@ Z recess (px, ≤ 0) — the perspective divide shrinks the card.
 rot: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:45
+Defined in: website/components/home/cardstack/types.d.ts:45
 
 Y-axis turn (deg) — side cards face the front card on fan tiers.
 
@@ -67,7 +67,7 @@ Y-axis turn (deg) — side cards face the front card on fan tiers.
 rotZ: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:48
+Defined in: website/components/home/cardstack/types.d.ts:48
 
 Z-axis tilt (deg) — 0 on fan tiers; the stacked cascade leans
 deeper cards like a dealt deck.
@@ -80,7 +80,7 @@ deeper cards like a dealt deck.
 opacity: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:50
+Defined in: website/components/home/cardstack/types.d.ts:50
 
 Opacity written for visible cards.
 
@@ -92,7 +92,7 @@ Opacity written for visible cards.
 scale: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:54
+Defined in: website/components/home/cardstack/types.d.ts:54
 
 Extra scale — the fan's active-card boost (CARD_STACK_LAYOUT.
 FRONT_SCALE) easing to 1 as the card slides away; 1 on stacked
@@ -106,7 +106,7 @@ tiers.
 z: number
 ```
 
-Defined in: website/components/home/cardstack/types.ts:56
+Defined in: website/components/home/cardstack/types.d.ts:56
 
 z-index ladder — the front card paints on top.
 
@@ -118,6 +118,6 @@ z-index ladder — the front card paints on top.
 visible: boolean
 ```
 
-Defined in: website/components/home/cardstack/types.ts:58
+Defined in: website/components/home/cardstack/types.d.ts:58
 
 Inside the per-side peek window.

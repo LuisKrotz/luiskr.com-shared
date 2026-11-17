@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../README.md) / [core/utils/burn/types](../README.md) / BurnSession
 
-Defined in: core/utils/burn/types.ts:59
+Defined in: core/utils/burn/types.ts:83
 
 A live combustion session, keyed by card element in `_sessions`.
 
@@ -16,7 +16,7 @@ A live combustion session, keyed by card element in `_sessions`.
 cls: BurnClasses
 ```
 
-Defined in: core/utils/burn/types.ts:61
+Defined in: core/utils/burn/types.ts:85
 
 The host component's class map — teardown + child mounts read it.
 
@@ -28,7 +28,7 @@ The host component's class map — teardown + child mounts read it.
 canvas: HTMLCanvasElement
 ```
 
-Defined in: core/utils/burn/types.ts:63
+Defined in: core/utils/burn/types.ts:87
 
 Overlay canvas absolutely positioned over the title box.
 
@@ -40,7 +40,7 @@ Overlay canvas absolutely positioned over the title box.
 ctx: CanvasRenderingContext2D
 ```
 
-Defined in: core/utils/burn/types.ts:64
+Defined in: core/utils/burn/types.ts:88
 
 ---
 
@@ -50,7 +50,7 @@ Defined in: core/utils/burn/types.ts:64
 optional gpuCanvas?: HTMLCanvasElement;
 ```
 
-Defined in: core/utils/burn/types.ts:71
+Defined in: core/utils/burn/types.ts:95
 
 Optional WebGPU particle canvas — mounted over `canvas` when the
 per-widget wasm burn artifact loads; the paper raster stays 2D
@@ -67,7 +67,7 @@ optional wasm?:
   | null;
 ```
 
-Defined in: core/utils/burn/types.ts:77
+Defined in: core/utils/burn/types.ts:101
 
 Live WebGPU wasm handle — the particle sim+renderer runs in the
 artifact (begin/set_letters/set_ink/set_colors/set_dir/set_stage/
@@ -81,7 +81,7 @@ frame); unset on failure or before the mount resolves.
 optional wasmPending?: boolean;
 ```
 
-Defined in: core/utils/burn/types.ts:79
+Defined in: core/utils/burn/types.ts:103
 
 In-flight mount — teardown must not double-resolve.
 
@@ -93,7 +93,7 @@ In-flight mount — teardown must not double-resolve.
 optional wasmFailed?: boolean;
 ```
 
-Defined in: core/utils/burn/types.ts:81
+Defined in: core/utils/burn/types.ts:105
 
 Latch — a failed wasm mount never retries this session.
 
@@ -105,7 +105,7 @@ Latch — a failed wasm mount never retries this session.
 paper: HTMLCanvasElement
 ```
 
-Defined in: core/utils/burn/types.ts:83
+Defined in: core/utils/burn/types.ts:107
 
 Pre-rasterized "paper" — the title text as a drawable image.
 
@@ -117,7 +117,7 @@ Pre-rasterized "paper" — the title text as a drawable image.
 w: number
 ```
 
-Defined in: core/utils/burn/types.ts:85
+Defined in: core/utils/burn/types.ts:109
 
 Canvas box in device px.
 
@@ -129,7 +129,7 @@ Canvas box in device px.
 h: number
 ```
 
-Defined in: core/utils/burn/types.ts:86
+Defined in: core/utils/burn/types.ts:110
 
 ---
 
@@ -139,7 +139,7 @@ Defined in: core/utils/burn/types.ts:86
 dpr: number
 ```
 
-Defined in: core/utils/burn/types.ts:94
+Defined in: core/utils/burn/types.ts:118
 
 Device-pixel ratio the raster was laid out at (capped by _DPR_CAP).
 Particle sizes are authored in device px but must read as a fixed
@@ -155,7 +155,7 @@ shrinking to an invisible sub-pixel speck on high-density screens.
 paperX: number
 ```
 
-Defined in: core/utils/burn/types.ts:96
+Defined in: core/utils/burn/types.ts:120
 
 Paper (title box) offset inside the canvas — the pad bleeds embers.
 
@@ -167,7 +167,7 @@ Paper (title box) offset inside the canvas — the pad bleeds embers.
 paperY: number
 ```
 
-Defined in: core/utils/burn/types.ts:97
+Defined in: core/utils/burn/types.ts:121
 
 ---
 
@@ -177,7 +177,7 @@ Defined in: core/utils/burn/types.ts:97
 paperW: number
 ```
 
-Defined in: core/utils/burn/types.ts:98
+Defined in: core/utils/burn/types.ts:122
 
 ---
 
@@ -187,7 +187,7 @@ Defined in: core/utils/burn/types.ts:98
 paperH: number
 ```
 
-Defined in: core/utils/burn/types.ts:99
+Defined in: core/utils/burn/types.ts:123
 
 ---
 
@@ -197,7 +197,7 @@ Defined in: core/utils/burn/types.ts:99
 t: number
 ```
 
-Defined in: core/utils/burn/types.ts:101
+Defined in: core/utils/burn/types.ts:125
 
 Seconds elapsed — noise/particle clock (forward progress derives from it).
 
@@ -209,7 +209,7 @@ Seconds elapsed — noise/particle clock (forward progress derives from it).
 dur: number
 ```
 
-Defined in: core/utils/burn/types.ts:102
+Defined in: core/utils/burn/types.ts:126
 
 ---
 
@@ -219,7 +219,7 @@ Defined in: core/utils/burn/types.ts:102
 prog: number
 ```
 
-Defined in: core/utils/burn/types.ts:109
+Defined in: core/utils/burn/types.ts:133
 
 Burn progress 0..1 while rebuilding — captured from the forward clock
 at disarm, then counted down; burnPaper re-derives the raster from
@@ -234,7 +234,7 @@ glyphs (a true time-reverse of the consume front).
 dir: number
 ```
 
-Defined in: core/utils/burn/types.ts:111
+Defined in: core/utils/burn/types.ts:135
 
 Direction: 1 combusts forward, −1 un-burns back to whole text.
 
@@ -246,7 +246,7 @@ Direction: 1 combusts forward, −1 un-burns back to whole text.
 onBurned: (() => void) | null;
 ```
 
-Defined in: core/utils/burn/types.ts:120
+Defined in: core/utils/burn/types.ts:144
 
 Fired once when the forward pass consumes the title (the ITEM_BURNED
 publish) — hosts stage their next beat off it (card-stack starts the
@@ -263,7 +263,7 @@ self-clears after firing so settle frames never re-fire it.
 lastT: number
 ```
 
-Defined in: core/utils/burn/types.ts:121
+Defined in: core/utils/burn/types.ts:145
 
 ---
 
@@ -273,7 +273,7 @@ Defined in: core/utils/burn/types.ts:121
 raf: number
 ```
 
-Defined in: core/utils/burn/types.ts:122
+Defined in: core/utils/burn/types.ts:146
 
 ---
 
@@ -283,7 +283,7 @@ Defined in: core/utils/burn/types.ts:122
 active: boolean
 ```
 
-Defined in: core/utils/burn/types.ts:123
+Defined in: core/utils/burn/types.ts:147
 
 ---
 
@@ -293,7 +293,7 @@ Defined in: core/utils/burn/types.ts:123
 cardEl: Element
 ```
 
-Defined in: core/utils/burn/types.ts:125
+Defined in: core/utils/burn/types.ts:149
 
 Owning card — teardown restores its classes and removes the slot.
 
@@ -305,7 +305,7 @@ Owning card — teardown restores its classes and removes the slot.
 particles: BurnParticle[];
 ```
 
-Defined in: core/utils/burn/types.ts:127
+Defined in: core/utils/burn/types.ts:151
 
 Live particles (embers + char flecks).
 
@@ -317,7 +317,7 @@ Live particles (embers + char flecks).
 letters: LetterBurn[];
 ```
 
-Defined in: core/utils/burn/types.ts:135
+Defined in: core/utils/burn/types.ts:159
 
 Per-glyph burn units — detected as ink column-runs in the rasterized
 paper (a space's gap splits runs, so each bucket IS a letter, not a
@@ -333,7 +333,7 @@ stand untouched — the effect consumes the text letter by letter.
 colLetter: Int16Array
 ```
 
-Defined in: core/utils/burn/types.ts:137
+Defined in: core/utils/burn/types.ts:161
 
 Paper-x → owning letter index (nearest letter for gap columns).
 
@@ -345,7 +345,7 @@ Paper-x → owning letter index (nearest letter for gap columns).
 colInk: Uint8Array
 ```
 
-Defined in: core/utils/burn/types.ts:139
+Defined in: core/utils/burn/types.ts:163
 
 Paper-x → ink coverage flag (0/1) — embers only spawn on glyph ink.
 
@@ -357,7 +357,7 @@ Paper-x → ink coverage flag (0/1) — embers only spawn on glyph ink.
 work: HTMLCanvasElement
 ```
 
-Defined in: core/utils/burn/types.ts:145
+Defined in: core/utils/burn/types.ts:169
 
 Working raster — every frame rebuilds the burned text here (paper →
 char-darken → erode), then blits into the display canvas so the
@@ -371,7 +371,7 @@ compositing never collides with particles.
 workCtx: CanvasRenderingContext2D
 ```
 
-Defined in: core/utils/burn/types.ts:146
+Defined in: core/utils/burn/types.ts:170
 
 ---
 
@@ -381,7 +381,7 @@ Defined in: core/utils/burn/types.ts:146
 titleEl: HTMLElement
 ```
 
-Defined in: core/utils/burn/types.ts:157
+Defined in: core/utils/burn/types.ts:181
 
 Live DOM nodes — measured in layout space at arm time, then only
 for the knit font signature (dir −1 re-rasters while the expand
@@ -400,7 +400,7 @@ the title box at the consume beat and the canvas follows.
 overlayEl: HTMLElement
 ```
 
-Defined in: core/utils/burn/types.ts:158
+Defined in: core/utils/burn/types.ts:182
 
 ---
 
@@ -410,7 +410,7 @@ Defined in: core/utils/burn/types.ts:158
 ink: BurnInk
 ```
 
-Defined in: core/utils/burn/types.ts:160
+Defined in: core/utils/burn/types.ts:184
 
 Theme-resolved inks — read once from the CSS burn palette.
 
@@ -422,7 +422,7 @@ Theme-resolved inks — read once from the CSS burn palette.
 inkColor: string
 ```
 
-Defined in: core/utils/burn/types.ts:167
+Defined in: core/utils/burn/types.ts:191
 
 The title's resolved ink color captured BEFORE the DOM glyphs hide —
 the `burning` class sets `color: transparent`, so any re-raster after
@@ -437,7 +437,7 @@ vanishes" bug).
 lastBox: string
 ```
 
-Defined in: core/utils/burn/types.ts:169
+Defined in: core/utils/burn/types.ts:193
 
 Arm-time title-box signature — set once; a truthy value freezes the raster.
 
@@ -449,7 +449,7 @@ Arm-time title-box signature — set once; a truthy value freezes the raster.
 lastPos: string
 ```
 
-Defined in: core/utils/burn/types.ts:171
+Defined in: core/utils/burn/types.ts:195
 
 Last tracked canvas-space position — position-only drift detector.
 
@@ -461,7 +461,7 @@ Last tracked canvas-space position — position-only drift detector.
 lastFont: string
 ```
 
-Defined in: core/utils/burn/types.ts:180
+Defined in: core/utils/burn/types.ts:204
 
 Computed-font signature of the current raster — knit sessions
 (dir −1) compare it every frame: the card's expand/`--fw-lift` font

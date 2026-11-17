@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/home/cardstack/types](../README.md) / CardStackItem
 
-Defined in: website/components/home/cardstack/types.ts:12
+Defined in: website/components/home/cardstack/types.d.ts:12
 
 A portfoliolist entry as pushed by the view — `link` joins to project
 routes, `featured` selects the deck subset, and the index signature
@@ -24,7 +24,7 @@ passes through extra CMS fields untouched.
 optional link?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:14
+Defined in: website/components/home/cardstack/types.d.ts:14
 
 Route the card links to.
 
@@ -36,7 +36,7 @@ Route the card links to.
 optional image?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:16
+Defined in: website/components/home/cardstack/types.d.ts:16
 
 Cover image stem.
 
@@ -48,7 +48,7 @@ Cover image stem.
 optional label?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:18
+Defined in: website/components/home/cardstack/types.d.ts:18
 
 Accessible label.
 
@@ -60,7 +60,7 @@ Accessible label.
 optional title?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:20
+Defined in: website/components/home/cardstack/types.d.ts:20
 
 Card heading.
 
@@ -72,7 +72,7 @@ Card heading.
 optional description?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:22
+Defined in: website/components/home/cardstack/types.d.ts:22
 
 Body copy (may carry `<br>` markup from the CMS).
 
@@ -84,7 +84,7 @@ Body copy (may carry `<br>` markup from the CMS).
 optional category?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:24
+Defined in: website/components/home/cardstack/types.d.ts:24
 
 Optional index subtitle (category/tagline when the CMS provides one).
 
@@ -96,7 +96,7 @@ Optional index subtitle (category/tagline when the CMS provides one).
 optional subtitle?: string;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:25
+Defined in: website/components/home/cardstack/types.d.ts:25
 
 ---
 
@@ -106,6 +106,6 @@ Defined in: website/components/home/cardstack/types.ts:25
 optional featured?: boolean;
 ```
 
-Defined in: website/components/home/cardstack/types.ts:27
+Defined in: website/components/home/cardstack/types.d.ts:27
 
 Deck membership — featured items fan in the stack.

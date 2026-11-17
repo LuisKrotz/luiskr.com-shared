@@ -8,7 +8,7 @@
 function makeSatellites(THREE, deps, def, mesh, texMap): object[]
 ```
 
-Defined in: experiments/star-field/engine/bodies/primitives.ts:691
+Defined in: experiments/star-field/engine/bodies/primitives.ts:693
 
 Decorative companion satellites — small unlit spheres on child pivots;
 `sat.station` swaps the glow ball for the crafted truss-and-panels

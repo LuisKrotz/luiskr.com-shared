@@ -8,6 +8,6 @@
 const SF_USER_BODY: 'bodyId' = 'bodyId'
 ```
 
-Defined in: experiments/star-field/engine/bodies/primitives.ts:21
+Defined in: experiments/star-field/engine/bodies/primitives.ts:23
 
 `userData` key carrying the body id from mesh → raycast hit.

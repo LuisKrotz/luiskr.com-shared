@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../README.md) / [core/utils/burn/types](../README.md) / BurnClasses
 
-Defined in: core/utils/burn/types.ts:14
+Defined in: core/utils/burn/types.ts:38
 
 The class-name contract a host component hands the burn pipeline —
 the mosaic's `HOME_MOSAIC_CLASSES` and the card-stack's
@@ -19,7 +19,7 @@ portable between card components.
 ITEM_BURNING: string
 ```
 
-Defined in: core/utils/burn/types.ts:16
+Defined in: core/utils/burn/types.ts:40
 
 Modifier toggled on the card while the canvas owns the hover.
 
@@ -31,7 +31,7 @@ Modifier toggled on the card while the canvas owns the hover.
 optional ITEM_BURNED?: string;
 ```
 
-Defined in: core/utils/burn/types.ts:26
+Defined in: core/utils/burn/types.ts:50
 
 Optional modifier published the moment the forward pass has fully
 consumed the title. Hosts that supply it relocate the title box in
@@ -49,7 +49,7 @@ on so the rebuilt title stays at its relocated spot while hovered.
 TITLE_OVERLAY: string
 ```
 
-Defined in: core/utils/burn/types.ts:28
+Defined in: core/utils/burn/types.ts:52
 
 Gradient panel the title h2 + burn canvas live inside.
 
@@ -61,7 +61,7 @@ Gradient panel the title h2 + burn canvas live inside.
 TITLE: string
 ```
 
-Defined in: core/utils/burn/types.ts:30
+Defined in: core/utils/burn/types.ts:54
 
 The title heading whose ink the canvas replaces.
 
@@ -73,7 +73,7 @@ The title heading whose ink the canvas replaces.
 TITLE_BURNING: string
 ```
 
-Defined in: core/utils/burn/types.ts:32
+Defined in: core/utils/burn/types.ts:56
 
 Ink-hidden state on the title (color: transparent).
 
@@ -85,7 +85,7 @@ Ink-hidden state on the title (color: transparent).
 TITLE_BURN: string
 ```
 
-Defined in: core/utils/burn/types.ts:34
+Defined in: core/utils/burn/types.ts:58
 
 The combustion canvas element class.
 
@@ -97,7 +97,7 @@ The combustion canvas element class.
 TITLE_SLOT: string
 ```
 
-Defined in: core/utils/burn/types.ts:36
+Defined in: core/utils/burn/types.ts:60
 
 Rewrite slot inserted above the details' first child.
 
@@ -109,7 +109,7 @@ Rewrite slot inserted above the details' first child.
 TITLE_DUP: string
 ```
 
-Defined in: core/utils/burn/types.ts:38
+Defined in: core/utils/burn/types.ts:62
 
 Invisible spacer keeping the rewrite slot's layout box.
 
@@ -121,7 +121,7 @@ Invisible spacer keeping the rewrite slot's layout box.
 TITLE_REWRITE: string
 ```
 
-Defined in: core/utils/burn/types.ts:40
+Defined in: core/utils/burn/types.ts:64
 
 The <draw-text> clone replaying the title in the slot.
 
@@ -133,6 +133,6 @@ The <draw-text> clone replaying the title in the slot.
 DETAILS: string
 ```
 
-Defined in: core/utils/burn/types.ts:42
+Defined in: core/utils/burn/types.ts:66
 
 Details container the rewrite slot prepends into.

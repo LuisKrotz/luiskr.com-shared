@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/media/mosaic/types](../README.md) / MediaMosaicItem
 
-Defined in: website/components/media/mosaic/types.ts:15
+Defined in: website/components/media/mosaic/types.d.ts:15
 
 A media row inside the mosaic — `src` is the extensionless CDN stem,
 `size` the intrinsic [w,h] for aspect layout, `label`/`class`/`isVideo`/
@@ -25,7 +25,7 @@ CMS fields.
 src: string
 ```
 
-Defined in: website/components/media/mosaic/types.ts:16
+Defined in: website/components/media/mosaic/types.d.ts:16
 
 ---
 
@@ -35,7 +35,7 @@ Defined in: website/components/media/mosaic/types.ts:16
 optional size?: number[];
 ```
 
-Defined in: website/components/media/mosaic/types.ts:17
+Defined in: website/components/media/mosaic/types.d.ts:17
 
 ---
 
@@ -45,7 +45,7 @@ Defined in: website/components/media/mosaic/types.ts:17
 optional label?: string;
 ```
 
-Defined in: website/components/media/mosaic/types.ts:18
+Defined in: website/components/media/mosaic/types.d.ts:18
 
 ---
 
@@ -55,7 +55,7 @@ Defined in: website/components/media/mosaic/types.ts:18
 optional class?: string;
 ```
 
-Defined in: website/components/media/mosaic/types.ts:19
+Defined in: website/components/media/mosaic/types.d.ts:19
 
 ---
 
@@ -65,7 +65,7 @@ Defined in: website/components/media/mosaic/types.ts:19
 optional isVideo?: boolean;
 ```
 
-Defined in: website/components/media/mosaic/types.ts:20
+Defined in: website/components/media/mosaic/types.d.ts:20
 
 ---
 
@@ -75,4 +75,4 @@ Defined in: website/components/media/mosaic/types.ts:20
 optional canExpand?: boolean;
 ```
 
-Defined in: website/components/media/mosaic/types.ts:21
+Defined in: website/components/media/mosaic/types.d.ts:21

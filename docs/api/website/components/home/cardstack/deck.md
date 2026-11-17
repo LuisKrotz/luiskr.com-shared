@@ -26,6 +26,14 @@ values every frame is a per-frame layout invalidation — the
 mid-swipe relayout storm. The cache guards the writes so a drag
 only touches transforms/opacity; geometry changes land once.
 
+### `writeStackSize`
+
+Applies a stacked card's box pair when it changed since the last pose
+pass — the value guard that keeps a per-frame applyPoses from
+invalidating layout with identical geometry. `sizesToCopy` (the
+committed front on a copy-carrying tier) frees the box to its copy;
+every other card locks to the shared live pile height.
+
 ### `deckItems`
 
 Every pushed item fans in the deck — the full portfolio list in order

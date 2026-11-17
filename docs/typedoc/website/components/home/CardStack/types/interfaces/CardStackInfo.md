@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/home/cardstack/types](../README.md) / CardStackInfo
 
-Defined in: website/components/home/cardstack/types.ts:62
+Defined in: website/components/home/cardstack/types.d.ts:62
 
 One project's copy for the text column — split from the CMS item.
 
@@ -16,7 +16,7 @@ One project's copy for the text column — split from the CMS item.
 title: string
 ```
 
-Defined in: website/components/home/cardstack/types.ts:64
+Defined in: website/components/home/cardstack/types.d.ts:64
 
 Project name — the paper-burn's raster source.
 
@@ -28,7 +28,7 @@ Project name — the paper-burn's raster source.
 body: string
 ```
 
-Defined in: website/components/home/cardstack/types.ts:66
+Defined in: website/components/home/cardstack/types.d.ts:66
 
 Full CMS description (`<br>` markup kept for <draw-text>).
 
@@ -40,7 +40,7 @@ Full CMS description (`<br>` markup kept for <draw-text>).
 summary: string
 ```
 
-Defined in: website/components/home/cardstack/types.ts:69
+Defined in: website/components/home/cardstack/types.d.ts:69
 
 First-sentence summary of `body` — the stacked cards' ≤4-line
 mobile description (the desktop column keeps the full text).
@@ -53,6 +53,6 @@ mobile description (the desktop column keeps the full text).
 href: string
 ```
 
-Defined in: website/components/home/cardstack/types.ts:71
+Defined in: website/components/home/cardstack/types.d.ts:71
 
 Localized project route ('' without a slug).

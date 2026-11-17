@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/carousel/mentions-deck/types](../README.md) / MentionsDeckTranslations
 
-Defined in: website/components/carousel/mentions-deck/types.ts:41
+Defined in: website/components/carousel/mentions-deck/types.d.ts:41
 
 The pages/HOME translation keys <mentions-deck> consumes.
 
@@ -16,6 +16,6 @@ The pages/HOME translation keys <mentions-deck> consumes.
 optional deckHint?: string;
 ```
 
-Defined in: website/components/carousel/mentions-deck/types.ts:43
+Defined in: website/components/carousel/mentions-deck/types.d.ts:43
 
 "Drag or swipe to explore" affordance copy under the strip.

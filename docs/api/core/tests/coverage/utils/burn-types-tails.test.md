@@ -1,8 +1,8 @@
-# `core\tokens\starfield.ts`
+# `core\tests\coverage\utils\burn-types-tails.test.js`
 
-Star-field experiment registries — texture public URLs and
+Coverage tail for utils/burn/types.ts — the shared
 
 |                |                                                           |
 | -------------- | --------------------------------------------------------- |
-| **Source**     | `src/core\tokens\starfield.ts`                            |
+| **Source**     | `src/core\tests\coverage\utils\burn-types-tails.test.js`  |
 | **UX surface** | Shared primitives every surface builds on — no direct UI. |

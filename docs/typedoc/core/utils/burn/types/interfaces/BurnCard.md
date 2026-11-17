@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../README.md) / [core/utils/burn/types](../README.md) / BurnCard
 
-Defined in: core/utils/burn/types.ts:242
+Defined in: core/utils/burn/types.ts:266
 
 Card element carrying a parked burn session.
 
@@ -20,7 +20,7 @@ Card element carrying a parked burn session.
 optional _burn?: BurnSession | null;
 ```
 
-Defined in: core/utils/burn/types.ts:243
+Defined in: core/utils/burn/types.ts:267
 
 ---
 

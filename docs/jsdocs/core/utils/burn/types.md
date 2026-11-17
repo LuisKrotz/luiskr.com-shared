@@ -7,6 +7,35 @@
 
 ## Members
 
+### `EMBER`
+
+Bright ember — rises and dies.
+
+### `FLECK`
+
+Dark char fleck — curls with rotation and tumble.
+
+### `BURN_DIR`
+
+Burn direction ids (`BurnSession.dir`) — signed so comparisons can
+stay sign checks; the tokens name the two states the session moves
+between.
+
+### `FORWARD`
+
+Combusts forward — the front consumes the title glyphs.
+
+### `REBUILD`
+
+Un-burns back to whole text — the knit deposits glyphs.
+
+### (module scope)
+
+The class-name contract a host component hands the burn pipeline —
+the mosaic's `HOME_MOSAIC_CLASSES` and the card-stack's
+`CARD_STACK_CLASSES` each satisfy this shape, so the effect is
+portable between card components.
+
 ### `ITEM_BURNING`
 
 Modifier toggled on the card while the canvas owns the hover.

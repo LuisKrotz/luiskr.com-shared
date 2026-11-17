@@ -33,6 +33,13 @@ The fanned deck region — pointer/swipe surface.
 Modifier on the deck while a drag gesture is live — kills CSS
 transitions so transforms track the pointer 1:1.
 
+### `CARD_STACK_DECK_PENDING`
+
+Modifier on the deck until the first measured pose pass settles —
+mount hides the pile (opacity 0) so no pre-settle geometry ever
+paints: the none→pose transition flight, the unstyled-tier rect
+guess and the fit re-poses all resolve before the reveal.
+
 ### `CARD_STACK_CARD_ACTIVE`
 
 Front-card modifier — the lit, face-on card of the coverflow.

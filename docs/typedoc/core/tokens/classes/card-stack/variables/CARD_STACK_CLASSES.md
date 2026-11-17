@@ -14,6 +14,7 @@ const CARD_STACK_CLASSES: Readonly<{
   CARD_STACK_TOGGLE_COUNT: 'card-stack-toggle-count'
   CARD_STACK_DECK: 'card-stack-deck'
   CARD_STACK_DECK_DRAGGING: 'card-stack-deck--dragging'
+  CARD_STACK_DECK_PENDING: 'card-stack-deck--pending'
   CARD_STACK_CARD: 'card-stack-card'
   CARD_STACK_CARD_ACTIVE: 'card-stack-card--active'
   CARD_STACK_CARD_HIDDEN: 'card-stack-card--hidden'

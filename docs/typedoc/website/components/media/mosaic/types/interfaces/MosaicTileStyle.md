@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/media/mosaic/types](../README.md) / MosaicTileStyle
 
-Defined in: website/components/media/mosaic/types.ts:26
+Defined in: website/components/media/mosaic/types.d.ts:26
 
 Style objects emitted per placed tile.
 
@@ -16,6 +16,6 @@ Style objects emitted per placed tile.
 tile: Record<string, string>
 ```
 
-Defined in: website/components/media/mosaic/types.ts:28
+Defined in: website/components/media/mosaic/types.d.ts:28
 
 Absolutely-positioned tile shell box (top/left/width/height).

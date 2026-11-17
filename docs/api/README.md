@@ -183,6 +183,7 @@ _Admin bundle — editors for every database node._
 | [`cms-deep-coverage-cmsdashboard-branches.test.js`](cms\tests\coverage\app/cms-deep-coverage-cmsdashboard-branches.test.md)         | Split from cms-deep-coverage.test.js — covers the "CmsDashboard branches" describe.     |
 | [`cms-deep-coverage-cmsdashboard-registration.test.js`](cms\tests\coverage\app/cms-deep-coverage-cmsdashboard-registration.test.md) | Split from cms-deep-coverage.test.js — covers the "CmsDashboard registration" describe. |
 | [`cms-main-auth-fail-tails.test.js`](cms\tests\coverage\app/cms-main-auth-fail-tails.test.md)                                       | Coverage tails for cms/main.ts — the boot catch arm: when                               |
+| [`cms-main-nulluser-tails.test.js`](cms\tests\coverage\app/cms-main-nulluser-tails.test.md)                                         | Coverage tail for cms/main.ts — the auth callback's                                     |
 | [`cms-main-prod-tails.test.js`](cms\tests\coverage\app/cms-main-prod-tails.test.md)                                                 | Coverage tails for cms/main.ts — the `env.PROD` arm: a                                  |
 | [`cms-main-watchdog-armed-tails.test.js`](cms\tests\coverage\app/cms-main-watchdog-armed-tails.test.md)                             | Coverage tails for cms/main.ts — the watchdog's disarmed                                |
 | [`cms-main-watchdog-idle-tails.test.js`](cms\tests\coverage\app/cms-main-watchdog-idle-tails.test.md)                               | Coverage tails for cms/main.ts — the boot watchdog's armed                              |
@@ -534,6 +535,7 @@ _Shared primitives every surface builds on — no direct UI._
 | [`close-button-init-tails.test.js`](core\tests\coverage\canvas\widgets/close-button-init-tails.test.md)                                                                                         | Coverage tail for close-button/init.ts — the exported                                                           |
 | [`close-button-render-tails.test.js`](core\tests\coverage\canvas\widgets/close-button-render-tails.test.md)                                                                                     | Coverage tail for close-button/render.ts — the                                                                  |
 | [`close-button-wasm-tails.test.js`](core\tests\coverage\canvas\widgets/close-button-wasm-tails.test.md)                                                                                         | Coverage tail for the WebGPU/wasm close button path —                                                           |
+| [`flag-shaders-tails.test.js`](core\tests\coverage\canvas\widgets/flag-shaders-tails.test.md)                                                                                                   | Coverage tail for the FlagWebGL GLSL sources — importing                                                        |
 | [`flag-texture-wasm-tails.test.js`](core\tests\coverage\canvas\widgets/flag-texture-wasm-tails.test.md)                                                                                         | Coverage tails for the worker-decoded flag texture path:                                                        |
 | [`flag-wasm-tails.test.js`](core\tests\coverage\canvas\widgets/flag-wasm-tails.test.md)                                                                                                         | Coverage tail for the WebGPU/wasm flag path — init's                                                            |
 | [`paint-2d-palette-fallback-tails.test.js`](core\tests\coverage\canvas\widgets/paint-2d-palette-fallback-tails.test.md)                                                                         | Coverage tail for carousel-controls/paint-2d.ts — the                                                           |
@@ -668,23 +670,25 @@ _Shared primitives every surface builds on — no direct UI._
 
 _Shared primitives every surface builds on — no direct UI._
 
-| File                                                                           | What it does                                                |
-| ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| [`last-arms-tails.test.js`](core\tests\coverage\sweep/last-arms-tails.test.md) | Final coverage arms: nav-glyph's default loader/canvas-null |
-| [`misc-arms-tails.test.js`](core\tests\coverage\sweep/misc-arms-tails.test.md) | Sweep coverage tails: ui.ts toggleSearchModal's             |
-| [`residual2-tails.test.js`](core\tests\coverage\sweep/residual2-tails.test.md) | Residual branch arms: schema.ts carousel targetUrl          |
+| File                                                                                   | What it does                                                |
+| -------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`last-arms-tails.test.js`](core\tests\coverage\sweep/last-arms-tails.test.md)         | Final coverage arms: nav-glyph's default loader/canvas-null |
+| [`misc-arms-tails.test.js`](core\tests\coverage\sweep/misc-arms-tails.test.md)         | Sweep coverage tails: ui.ts toggleSearchModal's             |
+| [`residual2-tails.test.js`](core\tests\coverage\sweep/residual2-tails.test.md)         | Residual branch arms: schema.ts carousel targetUrl          |
+| [`token-barrels-tails.test.js`](core\tests\coverage\sweep/token-barrels-tails.test.md) | Coverage tails for the barrel/shim token modules that       |
 
 ## Core engine
 
 _Shared primitives every surface builds on — no direct UI._
 
-| File                                                                                    | What it does                                                               |
-| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [`cyrillic-font-tails.test.js`](core\tests\coverage\ui/cyrillic-font-tails.test.md)     | Covers core/locale/cyrillic-font.ts — the ru→Fira Sans                     |
-| [`reader-content-tails.test.js`](core\tests\coverage\ui/reader-content-tails.test.md)   | Covers core/locale/reader-content.ts — holder creation and                 |
-| [`starfield-names.test.js`](core\tests\coverage\ui/starfield-names.test.md)             | Coverage for core/locale/starfield-names — the shared                      |
-| [`ui-text-tails-test-js.test.js`](core\tests\coverage\ui/ui-text-tails-test-js.test.md) | Split from coverage-tails.test.js — covers the "ui-text tails" describe.   |
-| [`ui-text-tails.test.js`](core\tests\coverage\ui/ui-text-tails.test.md)                 | Split from coverage-tails-4.test.js — covers the "ui-text tails" describe. |
+| File                                                                                                  | What it does                                                               |
+| ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`cyrillic-font-tails.test.js`](core\tests\coverage\ui/cyrillic-font-tails.test.md)                   | Covers core/locale/cyrillic-font.ts — the ru→Fira Sans                     |
+| [`reader-content-tails.test.js`](core\tests\coverage\ui/reader-content-tails.test.md)                 | Covers core/locale/reader-content.ts — holder creation and                 |
+| [`starfield-names-enfail-tails.test.js`](core\tests\coverage\ui/starfield-names-enfail-tails.test.md) | Coverage tail for core/locale/starfield-names — the                        |
+| [`starfield-names.test.js`](core\tests\coverage\ui/starfield-names.test.md)                           | Coverage for core/locale/starfield-names — the shared                      |
+| [`ui-text-tails-test-js.test.js`](core\tests\coverage\ui/ui-text-tails-test-js.test.md)               | Split from coverage-tails.test.js — covers the "ui-text tails" describe.   |
+| [`ui-text-tails.test.js`](core\tests\coverage\ui/ui-text-tails.test.md)                               | Split from coverage-tails-4.test.js — covers the "ui-text tails" describe. |
 
 ## Core engine
 
@@ -698,20 +702,9 @@ _Shared primitives every surface builds on — no direct UI._
 
 _Shared primitives every surface builds on — no direct UI._
 
-| File                                                                                              | What it does                                                                |
-| ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`db-tails-2.test.js`](core\tests\coverage\utils\data/db-tails-2.test.md)                         | Split from coverage-tails-4.test.js — covers the "db tails 2" describe.     |
-| [`db-tails.test.js`](core\tests\coverage\utils\data/db-tails.test.md)                             | Split from coverage-tails-2.test.js — covers the "db tails" describe.       |
-| [`legal-links-tails.test.js`](core\tests\coverage\utils\data/legal-links-tails.test.md)           | Coverage tails for utils/data/legal-links.ts —                              |
-| [`sanitize-tails-test-js.test.js`](core\tests\coverage\utils\data/sanitize-tails-test-js.test.md) | Split from coverage-tails.test.js — covers the "sanitize tails" describe.   |
-| [`sanitize-tails.test.js`](core\tests\coverage\utils\data/sanitize-tails.test.md)                 | Split from coverage-tails-4.test.js — covers the "sanitize tails" describe. |
-
-## Core engine
-
-_Shared primitives every surface builds on — no direct UI._
-
 | File                                                                                                           | What it does                                                                 |
 | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`burn-types-tails.test.js`](core\tests\coverage\utils/burn-types-tails.test.md)                               | Coverage tail for utils/burn/types.ts — the shared                           |
 | [`dom-arm-guard-tails.test.js`](core\tests\coverage\utils/dom-arm-guard-tails.test.md)                         | Coverage tails for the residual-input guard in core/utils/dom.ts —           |
 | [`dom-utils-tails.test.js`](core\tests\coverage\utils/dom-utils-tails.test.md)                                 | Split from coverage-tails-5.test.js — covers the "dom-utils tails" describe. |
 | [`media-manifest-encode-tails.test.js`](core\tests\coverage\utils/media-manifest-encode-tails.test.md)         | Coverage tail for the percent-decoded lookup arm of                          |
@@ -727,6 +720,18 @@ _Shared primitives every surface builds on — no direct UI._
 | [`service-worker-tails.test.js`](core\tests\coverage\utils/service-worker-tails.test.md)                       | Coverage tail for utils/service-worker.ts — the local                        |
 | [`share-gallery-tails.test.js`](core\tests\coverage\utils/share-gallery-tails.test.md)                         | Coverage for core/utils/share-gallery.ts — the playground                    |
 | [`string-tails.test.js`](core\tests\coverage\utils/string-tails.test.md)                                       | Coverage tails for core/utils/string.ts — iterated HTML                      |
+
+## Core engine
+
+_Shared primitives every surface builds on — no direct UI._
+
+| File                                                                                              | What it does                                                                |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`db-tails-2.test.js`](core\tests\coverage\utils\data/db-tails-2.test.md)                         | Split from coverage-tails-4.test.js — covers the "db tails 2" describe.     |
+| [`db-tails.test.js`](core\tests\coverage\utils\data/db-tails.test.md)                             | Split from coverage-tails-2.test.js — covers the "db tails" describe.       |
+| [`legal-links-tails.test.js`](core\tests\coverage\utils\data/legal-links-tails.test.md)           | Coverage tails for utils/data/legal-links.ts —                              |
+| [`sanitize-tails-test-js.test.js`](core\tests\coverage\utils\data/sanitize-tails-test-js.test.md) | Split from coverage-tails.test.js — covers the "sanitize tails" describe.   |
+| [`sanitize-tails.test.js`](core\tests\coverage\utils\data/sanitize-tails.test.md)                 | Split from coverage-tails-4.test.js — covers the "sanitize tails" describe. |
 
 ## Core engine
 
@@ -1050,7 +1055,6 @@ _Shared primitives every surface builds on — no direct UI._
 | [`primitives.ts`](core\tokens/primitives.md) | Primitive string tokens — typeof results, punctuation,       |
 | [`routes.ts`](core\tokens/routes.md)         | Routing tokens — URL path segments, route names, localized   |
 | [`selectors.ts`](core\tokens/selectors.md)   | Centralized DOM query selectors — every querySelector/       |
-| [`starfield.ts`](core\tokens/starfield.md)   | Star-field experiment registries — texture public URLs and   |
 | [`styles.ts`](core\tokens/styles.md)         | BASE_HOST_STYLES — a compiled-in stylesheet injected into    |
 | [`theme.ts`](core\tokens/theme.md)           | Theme & preference tokens — the dark/light/system registry,  |
 
@@ -1943,7 +1947,6 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`scale.ts`](experiments\star-field\engine/scale.md)                   | Multi-tier astronomical scale model for the star-field      |
 | [`scene.ts`](experiments\star-field\engine/scene.md)                   | Scene-graph foundation for the star-field engine: the       |
 | [`screenshot.ts`](experiments\star-field\engine/screenshot.md)         | PNG capture for the star-field engine: renders one frame,   |
-| [`spiral.ts`](experiments\star-field\engine/spiral.md)                 | —                                                           |
 | [`star-cloud.ts`](experiments\star-field\engine/star-cloud.md)         | Real-catalogue deep field — decodes                         |
 | [`state.ts`](experiments\star-field\engine/state.md)                   | Factory for the star-field engine state bag — one mutable   |
 | [`types.ts`](experiments\star-field\engine/types.md)                   | Shared types for the star-field engine — the static body    |
@@ -1962,7 +1965,6 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`mask.ts`](experiments\star-field\engine\bodies/mask.md)             | Photo-texture edge feathering for deep-sky billboards.   |
 | [`plumes.ts`](experiments\star-field\engine\bodies/plumes.md)         | Cryovolcanic and volcanic plume systems — the moving     |
 | [`primitives.ts`](experiments\star-field\engine\bodies/primitives.md) | Per-body mesh builders for the scene-graph assembler in  |
-| [`procedural.ts`](experiments\star-field\engine\bodies/procedural.md) | —                                                        |
 | [`structures.ts`](experiments\star-field\engine\bodies/structures.md) | Cosmic-hierarchy bodies — boundary spheres + member      |
 | [`weather.ts`](experiments\star-field\engine\bodies/weather.md)       | Living-planet systems — everything that makes Earth (and |
 
@@ -2449,7 +2451,6 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`observer.ts`](website\components\carousel\mentions-deck/observer.md)         | —            |
 | [`print.ts`](website\components\carousel\mentions-deck/print.md)               | —            |
 | [`render.tsx`](website\components\carousel\mentions-deck/render.md)            | —            |
-| [`types.ts`](website\components\carousel\mentions-deck/types.md)               | —            |
 
 ## Entry points
 
@@ -2553,7 +2554,6 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`print.ts`](website\components\home\cardstack/print.md)               | —            |
 | [`render.tsx`](website\components\home\cardstack/render.md)            | —            |
 | [`timer.ts`](website\components\home\cardstack/timer.md)               | —            |
-| [`types.ts`](website\components\home\cardstack/types.md)               | —            |
 
 ## Entry points
 
@@ -2602,7 +2602,6 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`mounts.ts`](website\components\media\anim-demo/mounts.md)     | —            |
 | [`registry.ts`](website\components\media\anim-demo/registry.md) | —            |
 | [`stages.tsx`](website\components\media\anim-demo/stages.md)    | —            |
-| [`types.ts`](website\components\media\anim-demo/types.md)       | —            |
 | [`widgets.ts`](website\components\media\anim-demo/widgets.md)   | —            |
 
 ## Entry points
@@ -2650,13 +2649,12 @@ _Boot surfaces: what the user sees first on each bundle._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                      | What it does                                                    |
-| --------------------------------------------------------- | --------------------------------------------------------------- |
-| [`events.ts`](website\components\media\mosaic/events.md)  | Scoped listener bindings for &lt;media-mosaic&gt; — the         |
-| [`layout.ts`](website\components\media\mosaic/layout.md)  | Layout passes for &lt;media-mosaic&gt; — measures the wall (or  |
-| [`pack.ts`](website\components\media\mosaic/pack.md)      | Natural-size masonry packing engine for &lt;media-mosaic&gt;.   |
-| [`render.tsx`](website\components\media\mosaic/render.md) | JSX for &lt;media-mosaic&gt;: the packed tile wall (one         |
-| [`types.ts`](website\components\media\mosaic/types.md)    | Shared shapes for &lt;media-mosaic&gt;: the media item contract |
+| File                                                      | What it does                                                   |
+| --------------------------------------------------------- | -------------------------------------------------------------- |
+| [`events.ts`](website\components\media\mosaic/events.md)  | Scoped listener bindings for &lt;media-mosaic&gt; — the        |
+| [`layout.ts`](website\components\media\mosaic/layout.md)  | Layout passes for &lt;media-mosaic&gt; — measures the wall (or |
+| [`pack.ts`](website\components\media\mosaic/pack.md)      | Natural-size masonry packing engine for &lt;media-mosaic&gt;.  |
+| [`render.tsx`](website\components\media\mosaic/render.md) | JSX for &lt;media-mosaic&gt;: the packed tile wall (one        |
 
 ## Entry points
 
@@ -2914,26 +2912,6 @@ _Boot surfaces: what the user sees first on each bundle._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                                      | What it does |
-| ------------------------------------------------------------------------- | ------------ |
-| [`block-navigation.js`](website\reports\coverage-run/block-navigation.md) | —            |
-| [`prettify.js`](website\reports\coverage-run/prettify.md)                 | —            |
-| [`sorter.js`](website\reports\coverage-run/sorter.md)                     | —            |
-
-## Entry points
-
-_Boot surfaces: what the user sees first on each bundle._
-
-| File                                                                                  | What it does |
-| ------------------------------------------------------------------------------------- | ------------ |
-| [`block-navigation.js`](website\reports\coverage-run\lcov-report/block-navigation.md) | —            |
-| [`prettify.js`](website\reports\coverage-run\lcov-report/prettify.md)                 | —            |
-| [`sorter.js`](website\reports\coverage-run\lcov-report/sorter.md)                     | —            |
-
-## Entry points
-
-_Boot surfaces: what the user sees first on each bundle._
-
 | File                                                                  | What it does |
 | --------------------------------------------------------------------- | ------------ |
 | [`block-navigation.js`](website\reports\coverage/block-navigation.md) | —            |
@@ -3179,6 +3157,7 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`awardsmentions-tails-2.test.js`](website\tests\coverage\components\home/awardsmentions-tails-2.test.md)                           | Split from coverage-tails-6.test.js — covers the "AwardsMentions tails 2" describe. |
 | [`awardsmentions-tails.test.js`](website\tests\coverage\components\home/awardsmentions-tails.test.md)                               | Split from coverage-tails-3.test.js — covers the "AwardsMentions tails" describe.   |
 | [`cardstack-print-wrapup-tails.test.js`](website\tests\coverage\components\home/cardstack-print-wrapup-tails.test.md)               | Coverage tails for home/cardstack/print.ts — the                                    |
+| [`cardstack-settle-tails.test.js`](website\tests\coverage\components\home/cardstack-settle-tails.test.md)                           | Coverage tails for &lt;card-stack&gt;'s mount settle gate:                          |
 | [`cardstack-tails.test.js`](website\tests\coverage\components\home/cardstack-tails.test.md)                                         | Coverage tails for &lt;card-stack&gt;: manifest-loaded media                        |
 | [`contactsection-reregister.test.js`](website\tests\coverage\components\home/contactsection-reregister.test.md)                     | Covers the custom-elements registration guard's else arm —                          |
 | [`contactsection-tails-test-js.test.js`](website\tests\coverage\components\home/contactsection-tails-test-js.test.md)               | Split from coverage-tails.test.js — covers the "ContactSection tails" describe.     |
@@ -3250,6 +3229,7 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`nav-menu-keys-tails.test.js`](website\tests\coverage\components\nav/nav-menu-keys-tails.test.md)             | Coverage tails for components/nav/menu.tsx keyboard roving   |
 | [`nav-menu-render-tails.test.js`](website\tests\coverage\components\nav/nav-menu-render-tails.test.md)         | Coverage tails for components/nav/menu.tsx +                 |
 | [`nav-render-notfound-tails.test.js`](website\tests\coverage\components\nav/nav-render-notfound-tails.test.md) | Coverage tails for components/nav/render.tsx — the 404-route |
+| [`nav-scroll-tails.test.js`](website\tests\coverage\components\nav/nav-scroll-tails.test.md)                   | Coverage tails for components/nav/scroll.ts —                |
 
 ## Entry points
 
@@ -3308,6 +3288,14 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`render-related-tails.test.js`](website\tests\coverage\sweep/render-related-tails.test.md)       | Sweep tails: nav render's onDark binary arms (bottom-of-   |
 | [`residual-arms-tails.test.js`](website\tests\coverage\sweep/residual-arms-tails.test.md)         | Last-arm sweep: SearchModal's pre-open render/setter arms, |
 | [`search-wip-tails.test.js`](website\tests\coverage\sweep/search-wip-tails.test.md)               | Sweep tails for the route-search WIP: route-search/data    |
+
+## Entry points
+
+_Boot surfaces: what the user sees first on each bundle._
+
+| File                                                                                    | What it does                                |
+| --------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`home-defined-tails.test.js`](website\tests\coverage\views/home-defined-tails.test.md) | Coverage tail for views/home/Home.tsx — the |
 
 ## Entry points
 

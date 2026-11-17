@@ -19,3 +19,9 @@ site — consumers import members (zero-hardcoding rule). The parameter
 bags are split across `./params/*.ts` by domain (camera/scale/bodies/
 spiral/worker/catalog/scene); this module re-exports them all so
 existing `@core/tokens/starfield/params.js` imports stay stable.
+
+### `SF_PARAMS`
+
+The complete parameter surface in one frozen flat map — every `SF_*`
+bag member keyed by name, for consumers (devtools dumps, registries)
+that iterate the whole parameter set instead of importing members.
