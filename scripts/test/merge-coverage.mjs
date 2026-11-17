@@ -101,11 +101,25 @@ const byFile = new Map()
 for (const { name, mtime, data } of rawMaps) {
   for (const [file, fc] of Object.entries(data)) {
     const inner = fc.data || fc
-    let list = byFile.get(file)
+
+    // The jest transformer renames `.js` sources to `.jsx` for the parser
+    // (jsx-transformer.js) and istanbul propagates that alias into the
+    // coverage key via the source map. The `.jsx` file does not exist —
+    // remap the entry to its real `.js` path so authored `.js` sources
+    // (the Node-ESM shims/constants) stay in the merged report instead of
+    // being dropped by the existsSync filter below.
+    const real =
+      file.endsWith('.jsx') && !fs.existsSync(file) && fs.existsSync(file.slice(0, -1))
+        ? file.slice(0, -1)
+        : file
+
+    inner.path = real
+
+    let list = byFile.get(real)
 
     if (!list) {
       list = []
-      byFile.set(file, list)
+      byFile.set(real, list)
     }
 
     list.push({ name, mtime, fc: inner })
