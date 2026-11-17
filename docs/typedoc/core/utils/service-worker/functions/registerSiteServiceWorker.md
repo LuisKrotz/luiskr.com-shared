@@ -8,7 +8,7 @@
 function registerSiteServiceWorker(swUrl, hooks?): Promise<void>
 ```
 
-Defined in: core/utils/service-worker.ts:126
+Defined in: core/utils/service-worker.ts:129
 
 Registers `swUrl` and reports lifecycle through `hooks`. No-ops when
 `navigator.serviceWorker` is unavailable. Local hosts get the

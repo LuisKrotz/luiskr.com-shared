@@ -8,7 +8,7 @@
 function carouselOnTrackClick(c, e): void
 ```
 
-Defined in: website/components/carousel/custom-carousel/nav.ts:474
+Defined in: website/components/carousel/custom-carousel/nav.ts:480
 
 Delegated clone-slide click — clones are `inert`, so hit-testing skips
 their whole subtree and a click on one lands on the track itself. When

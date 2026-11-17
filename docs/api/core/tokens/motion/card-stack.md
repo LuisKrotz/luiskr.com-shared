@@ -234,7 +234,12 @@ one band early: the desktop-style .card-stack-info column carries
 the copy on the left while the deck keeps the MOBILE pile pose on
 the right — image-only 16:9 landscape sheets like the fan tiers,
 sized by the deck column's width (the height budget only bites on
-very short windows).
+very short windows). The pile stair is MIRRORED right here, not
+the portrait up-left: the deck column abuts the text column on its
+left edge, and a left-climbing stair stepped each deeper card
+~6–31% of a card width past that edge — over the copy (the iPad
+landscape text/cards overlap). Right-climbing bleeds into the
+page's right margin like the portrait bands bleed into theirs.
 
 ### (module scope)
 
@@ -339,6 +344,15 @@ advances one card. Any manual nav (prev/next/dots, card click,
 drag/swipe, view-all) kills it until re-armed by the play
 control; the section's IntersectionObserver holds it off-screen
 so a scrolled-away deck never advances unseen.
+
+### `FIT_SETTLE_MS`
+
+Settle window (ms) for the front-fit ResizeObserver — the
+description typewriter grows the observed info column every
+frame, so each notification resets this timer and the fit lands
+once when the growth burst ends instead of writing per notify
+(the write→notify cycle browsers report as undelivered
+notifications).
 
 ### `TIMER_INSET`
 

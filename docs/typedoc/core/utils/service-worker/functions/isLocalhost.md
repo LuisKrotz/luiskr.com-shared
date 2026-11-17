@@ -8,7 +8,7 @@
 function isLocalhost(): boolean
 ```
 
-Defined in: core/utils/service-worker.ts:110
+Defined in: core/utils/service-worker.ts:113
 
 True on local origins — localhost names, loopback IPs, and [::1].
 The original package treated these as "probably dev" and probed

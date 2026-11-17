@@ -834,6 +834,12 @@ Re-exports [SW_EVENTS](tokens/events/dom/variables/SW_EVENTS.md)
 
 ---
 
+### SW\_TIMING
+
+Re-exports [SW_TIMING](tokens/events/dom/variables/SW_TIMING.md)
+
+---
+
 ### SW\_STRINGS
 
 Re-exports [SW_STRINGS](tokens/events/dom/variables/SW_STRINGS.md)

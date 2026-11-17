@@ -102,6 +102,12 @@ Re-exports [SW_EVENTS](dom/variables/SW_EVENTS.md)
 
 ---
 
+### SW\_TIMING
+
+Re-exports [SW_TIMING](dom/variables/SW_TIMING.md)
+
+---
+
 ### SW\_STRINGS
 
 Re-exports [SW_STRINGS](dom/variables/SW_STRINGS.md)

@@ -8,6 +8,7 @@
 const SW_EVENTS: Readonly<{
   UPDATE_FOUND: 'updatefound'
   STATE_CHANGE: 'statechange'
+  CONTROLLER_CHANGE: 'controllerchange'
   ONLINE: 'online'
   OFFLINE: 'offline'
 }>

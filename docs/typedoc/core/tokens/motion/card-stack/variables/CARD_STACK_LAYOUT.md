@@ -20,6 +20,7 @@ const CARD_STACK_LAYOUT: Readonly<{
   FRONT_EPS: 0.5
   FRONT_SCALE: 1.18
   AUTOPLAY_MS: 10000
+  FIT_SETTLE_MS: 120
   TIMER_INSET: 2
   PAD: 2
   EAGER_TILES: 2
@@ -30,7 +31,7 @@ const CARD_STACK_LAYOUT: Readonly<{
 }>
 ```
 
-Defined in: core/tokens/motion/card-stack.ts:389
+Defined in: core/tokens/motion/card-stack.ts:394
 
 Coverflow constants shared by every tier — the per-card pose numbers
 are computed in JS (cardstack/deck.ts) and written as inline

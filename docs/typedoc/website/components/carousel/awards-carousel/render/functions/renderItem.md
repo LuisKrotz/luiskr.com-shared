@@ -8,13 +8,14 @@
 function renderItem(host, item): Element | null
 ```
 
-Defined in: website/components/carousel/awards-carousel/render.tsx:32
+Defined in: website/components/carousel/awards-carousel/render.tsx:33
 
 JSX for one slide — two shapes by variant: `awards` renders an outbound
 link (target=_blank + rel=noopener — external sites get no opener
 access, a tabnabbing fix per MDN) with an icon span or `<img>`; the
-`selected` variant renders plain content text. `loading=lazy` +
-`decoding=async` keep award images off the critical path.
+`selected` variant renders plain content text. `loading=eager` keeps
+award images immune to the iOS lazy-in-transformed-track stall;
+`decoding=async` keeps their decode off the paint path.
 
 ## Parameters
 

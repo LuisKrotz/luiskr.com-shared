@@ -20,3 +20,7 @@ A joust chip: `joust` root button hosting a `joust-label` span.
 ### `clickChip`
 
 Dispatches a real MouseEvent click and returns the gate result the handler saw.
+
+### `press`
+
+A minimal pointerdown-shaped event — happy-dom has no PointerEvent.

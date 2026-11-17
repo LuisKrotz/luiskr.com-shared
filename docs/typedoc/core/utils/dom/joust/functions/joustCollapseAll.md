@@ -8,7 +8,7 @@
 function joustCollapseAll(): void
 ```
 
-Defined in: core/utils/dom/joust.ts:85
+Defined in: core/utils/dom/joust.ts:118
 
 Collapses every pinned chip and disarms the listeners — also called
 when an owning surface takes over the screen (menu open, host destroy)

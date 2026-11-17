@@ -2361,6 +2361,7 @@ _Boot surfaces: what the user sees first on each bundle._
 | --------------------------------------------------------------------- | ---------------------------------------------------------- |
 | [`a11y-checker.mjs`](shared\scripts\verify/a11y-checker.md)           | —                                                          |
 | [`chunk-budget.mjs`](shared\scripts\verify/chunk-budget.md)           | Minified chunk-size gate                                   |
+| [`clarity-insights.mjs`](shared\scripts\verify/clarity-insights.md)   | Pulls the Microsoft Clarity "project-live-insights" Data   |
 | [`console-scan.mjs`](shared\scripts\verify/console-scan.md)           | Scans every .ts/.tsx/.js file under src/ for console usage |
 | [`coverage-gaps.mjs`](shared\scripts\verify/coverage-gaps.md)         | —                                                          |
 | [`coverage-gate.mjs`](shared\scripts\verify/coverage-gate.md)         | Per-file coverage enforcement, per module                  |

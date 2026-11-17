@@ -21,4 +21,5 @@
 - [CLIPBOARD\_EVENTS](variables/CLIPBOARD_EVENTS.md)
 - [PRINT\_EVENTS](variables/PRINT_EVENTS.md)
 - [SW\_EVENTS](variables/SW_EVENTS.md)
+- [SW\_TIMING](variables/SW_TIMING.md)
 - [SW\_STRINGS](variables/SW_STRINGS.md)

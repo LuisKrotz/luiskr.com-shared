@@ -505,10 +505,10 @@ Defined in: website/components/home/CardStack.tsx:101
 
 ---
 
-### \_fitRaf
+### \_fitTimer
 
 ```ts
-_fitRaf: number = 0
+_fitTimer: number = 0
 ```
 
 Defined in: website/components/home/CardStack.tsx:102

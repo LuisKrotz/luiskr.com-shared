@@ -13,6 +13,34 @@
 
 Chips currently pinned open by a joust tap — one member in practice (single-open).
 
+### `_lastPointerType`
+
+Pointer type of the most recent pointerdown — the click a tap produces
+carries no pointerType of its own, so callers splitting tap-vs-pointer
+activation read this instead of the device-level has_touch flag (which
+a stylus or earlier mouse press can flip on hybrid hardware). Fed by
+the app's global pointerdown listener via joustRecordPointer — the
+record must precede the click it classifies, so it can't be armed
+lazily inside a gate call.
+
+### `joustRecordPointer`
+
+Records a pointerdown's pointer type for the activation that follows.
+The app's input listeners already classify every press — this just
+keeps the last type where the click handlers can reach it.
+
+- `@param` e The pointerdown event.
+
+### `joustDirectTap`
+
+True when the current activation followed a touch or pen pointerdown —
+direct-manipulation presses that must bypass the joust pour outright
+(a first tap that only expands the label reads as a dead press). A
+stale value can only ever widen the bypass by one activation — the
+next real pointer press refreshes it.
+
+- `@returns` True for touch/pen-originated input.
+
 ### `_hoverless`
 
 Hover-less-primary check — `(hover: none)` marks devices whose primary

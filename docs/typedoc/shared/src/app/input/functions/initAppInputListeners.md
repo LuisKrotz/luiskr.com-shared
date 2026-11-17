@@ -1,14 +1,14 @@
 [**luiskr.com**](../../../../../README.md)
 
-***
+---
 
 [luiskr.com](../../../../../README.md) / [shared/src/app/input](../README.md) / initAppInputListeners
 
 ```ts
-function initAppInputListeners(c): void;
+function initAppInputListeners(c): void
 ```
 
-Defined in: shared/src/app/input.ts:17
+Defined in: shared/src/app/input.ts:18
 
 Initializes app input listeners.
 

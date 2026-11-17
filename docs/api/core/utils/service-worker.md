@@ -35,6 +35,11 @@ A new SW version installed — fresh content is ready.
 
 ### (module scope)
 
+The new worker claimed this client — the only moment old page +
+new precache are guaranteed consistent (safe reload point).
+
+### (module scope)
+
 Window went offline.
 
 ### (module scope)

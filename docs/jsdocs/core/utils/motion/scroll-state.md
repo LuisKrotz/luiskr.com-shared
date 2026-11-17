@@ -45,6 +45,17 @@ An orphan scrollend while idle is a no-op — it never latches the flag.
 
 True while a window scroll gesture is in progress.
 
+### `noteScrollActivity`
+
+Flags a scroll-class gesture as in progress — for element scrollers
+(carousel tracks) and drag decks (the card-stack swipe) whose scrolls/
+pans never emit a window scroll event. Without this marker the
+is-scrolling state misses their gestures entirely, so parked work —
+media-layer publishes, DOM-bitmap encodes, LOADED-class flips — fires
+mid-swipe and eats the frame budget. Re-arms the same settle debounce
+a window scroll uses; call it from the element's own scroll/move
+stream.
+
 ### `onScrollStop`
 
 Queues a one-shot callback for the next scroll stop; fires immediately

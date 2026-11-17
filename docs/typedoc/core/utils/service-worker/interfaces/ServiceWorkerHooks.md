@@ -122,13 +122,36 @@ A new SW version installed — fresh content is ready.
 
 ---
 
+### controllerchange?
+
+```ts
+optional controllerchange?: (registration) => void;
+```
+
+Defined in: core/utils/service-worker.ts:35
+
+The new worker claimed this client — the only moment old page +
+new precache are guaranteed consistent (safe reload point).
+
+#### Parameters
+
+##### registration
+
+`ServiceWorkerRegistration`
+
+#### Returns
+
+`void`
+
+---
+
 ### offline?
 
 ```ts
 optional offline?: () => void;
 ```
 
-Defined in: core/utils/service-worker.ts:34
+Defined in: core/utils/service-worker.ts:37
 
 Window went offline.
 
@@ -144,7 +167,7 @@ Window went offline.
 optional online?: () => void;
 ```
 
-Defined in: core/utils/service-worker.ts:36
+Defined in: core/utils/service-worker.ts:39
 
 Window came back online.
 
@@ -160,7 +183,7 @@ Window came back online.
 optional error?: (error) => void;
 ```
 
-Defined in: core/utils/service-worker.ts:38
+Defined in: core/utils/service-worker.ts:41
 
 Registration or the localhost validity probe failed.
 

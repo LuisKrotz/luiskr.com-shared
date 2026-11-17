@@ -8,7 +8,7 @@
 function joustChip(chip, pointerInitiated?): boolean
 ```
 
-Defined in: core/utils/dom/joust.ts:132
+Defined in: core/utils/dom/joust.ts:165
 
 The joust gate for a chip element — returns `true` when the chip's
 action should fire, `false` when this tap was consumed to pour the

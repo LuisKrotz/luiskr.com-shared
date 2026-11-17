@@ -8,7 +8,7 @@
 function registerServiceWorker(env): void
 ```
 
-Defined in: shared/src/registerServiceWorker.ts:23
+Defined in: shared/src/registerServiceWorker.ts:28
 
 Registers `<base>service-worker.js` on window load when `env.PROD` is set.
 Exported (and env-injected) so the prod-only branch is exercisable in

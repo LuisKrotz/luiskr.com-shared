@@ -40,6 +40,15 @@ the collected deltas (ms) for the harness to reduce.
 - `@param` {number} scrollMs — scroll duration, passed in because evaluate
 - `@returns` {Promise<number[]>} per-frame deltas in milliseconds
 
+### (module scope)
+
+Measures the host display's frame ceiling — the fastest rAF cadence
+any page can present under vsync. Probed once per session on a blank
+page; enforced floors never exceed it (scaled by DISPLAY_FLOOR_RATIO).
+
+- `@param` {import('puppeteer-core').Browser} browser — the launched browser
+- `@returns` {Promise<number>} achievable fps ceiling
+
 ### `summarize`
 
 Reduces raw frame deltas into the gate metrics.

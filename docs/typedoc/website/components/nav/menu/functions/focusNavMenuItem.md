@@ -8,7 +8,7 @@
 function focusNavMenuItem(host, idx): void
 ```
 
-Defined in: website/components/nav/menu.tsx:337
+Defined in: website/components/nav/menu.tsx:342
 
 Moves focus to a menu item by index, wrapping past the ends. No-op
 while the overlay is closed — the items only exist in the open

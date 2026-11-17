@@ -8,7 +8,7 @@
 function onScrollStop(callback): void
 ```
 
-Defined in: core/utils/motion/scroll-state.ts:99
+Defined in: core/utils/motion/scroll-state.ts:113
 
 Queues a one-shot callback for the next scroll stop; fires immediately
 when the window isn't scrolling right now.

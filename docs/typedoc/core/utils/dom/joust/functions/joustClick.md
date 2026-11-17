@@ -8,7 +8,7 @@
 function joustClick(e): boolean
 ```
 
-Defined in: core/utils/dom/joust.ts:167
+Defined in: core/utils/dom/joust.ts:200
 
 Event-flavored gate for DOM click handlers — resolves the chip from
 `currentTarget` and derives pointer-vs-keyboard from `detail`, so a

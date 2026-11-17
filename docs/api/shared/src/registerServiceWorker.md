@@ -9,6 +9,12 @@ Registers the Workbox-generated service worker in production
 
 ## Members
 
+### `reloadArmed`
+
+One-shot reload gate — armed by an update install, disarmed on the
+claim that fires it. Module-scoped: a reloaded page re-runs this
+module fresh, so the flag resets for the next deploy cycle.
+
 ### `registerServiceWorker`
 
 Registers `<base>service-worker.js` on window load when `env.PROD` is set.

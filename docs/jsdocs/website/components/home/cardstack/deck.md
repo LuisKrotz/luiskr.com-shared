@@ -18,6 +18,14 @@ the previous pass and is visible now seeds its rise-and-fade entrance.
 Keyed by element so a re-rendered card starts a fresh baseline (no
 entrance on first paint).
 
+### `_sizeWrite`
+
+The last stacked height/min-height pair applied to each card.
+applyPoses runs per gesture frame, and re-writing identical box
+values every frame is a per-frame layout invalidation — the
+mid-swipe relayout storm. The cache guards the writes so a drag
+only touches transforms/opacity; geometry changes land once.
+
 ### `deckItems`
 
 Every pushed item fans in the deck — the full portfolio list in order

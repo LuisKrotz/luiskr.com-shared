@@ -8,7 +8,7 @@
 function navMenuKeyDown(host, e): boolean
 ```
 
-Defined in: website/components/nav/menu.tsx:355
+Defined in: website/components/nav/menu.tsx:360
 
 Arrow/Home/End roving inside the open overlay — Up/Left step back,
 Down/Right step forward (both wrap), Home/End jump to the ends. The

@@ -1,9 +1,9 @@
 # `website\components\carousel\awards-carousel\render.tsx`
 
-| | |
-|---|---|
-| **Source** | `src/website\components\carousel\awards-carousel\render.tsx` |
-| **UX surface** | Boot surfaces: what the user sees first on each bundle. |
+|                |                                                              |
+| -------------- | ------------------------------------------------------------ |
+| **Source**     | `src/website\components\carousel\awards-carousel\render.tsx` |
+| **UX surface** | Boot surfaces: what the user sees first on each bundle.      |
 
 ## Members
 
@@ -12,8 +12,10 @@
 JSX for one slide — two shapes by variant: `awards` renders an outbound
 link (target=_blank + rel=noopener — external sites get no opener
 access, a tabnabbing fix per MDN) with an icon span or `<img>`; the
-`selected` variant renders plain content text. `loading=lazy` +
-`decoding=async` keep award images off the critical path.
+`selected` variant renders plain content text. `loading=eager` keeps
+award images immune to the iOS lazy-in-transformed-track stall;
+`decoding=async` keeps their decode off the paint path.
+
 - `@param` host The AwardsCarousel element.
 - `@param` item Slide data; null-safe (clones render undefined).
 - `@returns` Slide JSX or null.
@@ -37,4 +39,5 @@ JSX template for the component's shadow DOM — the track is
 `[clone(last)] …real slides… [clone(first)]`; the clone ends are what
 make the infinite wrap seamless (see nav.ts). An empty item list still
 emits the root wrapper so the element keeps its box for layout.
+
 - `@param` host The AwardsCarousel element.

@@ -8,7 +8,7 @@
 function dropStaleServiceWorkers(): void
 ```
 
-Defined in: core/utils/service-worker.ts:169
+Defined in: core/utils/service-worker.ts:194
 
 Unregisters every service worker bound to the current origin. No-op
 outside browsers and where `getRegistrations` is unavailable; failures

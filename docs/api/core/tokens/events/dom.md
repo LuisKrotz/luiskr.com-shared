@@ -123,6 +123,13 @@ Frozen service-worker event/state map — registration lifecycle
 installing worker) plus window online/offline. Local replacement for
 the retired `register-service-worker` dependency.
 
+### `SW_TIMING`
+
+ServiceWorker update-check cadence — how often a live page asks the
+browser to look for a new worker so an open tab cannot sit on a stale
+module graph across a deploy (the renamed-chunk "x is not defined"
+sessions in the error feed).
+
 ### `SW_STRINGS`
 
 ServiceWorker state strings + registration plumbing constants.
