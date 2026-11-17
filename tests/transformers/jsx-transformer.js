@@ -61,6 +61,22 @@ const transformer = {
       throw new Error(`JSX transform failed for ${sourcePath}:\n${errMsg}`)
     }
 
+    // oxc leaves multiline template-literal interiors — including the
+    // closing-backtick line — unmapped. istanbul resolves every
+    // statement's start AND end through the map; a statement ending
+    // inside an unmapped span is dropped, and a file whose statements
+    // all drop vanishes from coverage entirely (istanbul-lib-source-maps
+    // reports "nothing could be mapped" and emits no entry). Filling
+    // each empty generated line with an `AAAA` segment (generated
+    // column 0 → previous source position) gives statement ends a
+    // resolvable position without touching real mappings.
+    if (result.map && typeof result.map.mappings === 'string') {
+      result.map.mappings = result.map.mappings
+        .split(';')
+        .map((line) => line || 'AAAA')
+        .join(';')
+    }
+
     return { code: result.code, map: result.map }
   },
 
