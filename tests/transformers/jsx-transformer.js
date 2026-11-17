@@ -41,6 +41,11 @@ const transformer = {
     const result = transformSync(filename, sourceText, {
       lang,
       jsx: { runtime: 'classic', pragma: 'h', pragmaFrag: 'Fragment' },
+      // Emit the source map — jest's coverage instrumenter (istanbul) maps
+      // its counters back through it. Without one, transpiled positions are
+      // attributed as source positions and coverage lines drift wherever the
+      // transform stripped types/comments.
+      sourcemap: true,
       // `import.meta.env` / `import.meta.hot` are Vite compile-time globals —
       // under Jest they do not exist, so map them to runtime globals tests can
       // populate per-file (undefined by default, which keeps every env/HMR
