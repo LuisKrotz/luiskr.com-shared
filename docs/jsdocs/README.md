@@ -183,6 +183,7 @@ _Admin bundle — editors for every database node._
 | [`cms-deep-coverage-cmsdashboard-branches.test.js`](cms\tests\coverage\app/cms-deep-coverage-cmsdashboard-branches.test.md)         | Split from cms-deep-coverage.test.js — covers the "CmsDashboard branches" describe.     |
 | [`cms-deep-coverage-cmsdashboard-registration.test.js`](cms\tests\coverage\app/cms-deep-coverage-cmsdashboard-registration.test.md) | Split from cms-deep-coverage.test.js — covers the "CmsDashboard registration" describe. |
 | [`cms-main-auth-fail-tails.test.js`](cms\tests\coverage\app/cms-main-auth-fail-tails.test.md)                                       | Coverage tails for cms/main.ts — the boot catch arm: when                               |
+| [`cms-main-nulluser-tails.test.js`](cms\tests\coverage\app/cms-main-nulluser-tails.test.md)                                         | Coverage tail for cms/main.ts — the auth callback's                                     |
 | [`cms-main-prod-tails.test.js`](cms\tests\coverage\app/cms-main-prod-tails.test.md)                                                 | Coverage tails for cms/main.ts — the `env.PROD` arm: a                                  |
 | [`cms-main-watchdog-armed-tails.test.js`](cms\tests\coverage\app/cms-main-watchdog-armed-tails.test.md)                             | Coverage tails for cms/main.ts — the watchdog's disarmed                                |
 | [`cms-main-watchdog-idle-tails.test.js`](cms\tests\coverage\app/cms-main-watchdog-idle-tails.test.md)                               | Coverage tails for cms/main.ts — the boot watchdog's armed                              |
@@ -678,13 +679,14 @@ _Shared primitives every surface builds on — no direct UI._
 
 _Shared primitives every surface builds on — no direct UI._
 
-| File                                                                                    | What it does                                                               |
-| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [`cyrillic-font-tails.test.js`](core\tests\coverage\ui/cyrillic-font-tails.test.md)     | Covers core/locale/cyrillic-font.ts — the ru→Fira Sans                     |
-| [`reader-content-tails.test.js`](core\tests\coverage\ui/reader-content-tails.test.md)   | Covers core/locale/reader-content.ts — holder creation and                 |
-| [`starfield-names.test.js`](core\tests\coverage\ui/starfield-names.test.md)             | Coverage for core/locale/starfield-names — the shared                      |
-| [`ui-text-tails-test-js.test.js`](core\tests\coverage\ui/ui-text-tails-test-js.test.md) | Split from coverage-tails.test.js — covers the "ui-text tails" describe.   |
-| [`ui-text-tails.test.js`](core\tests\coverage\ui/ui-text-tails.test.md)                 | Split from coverage-tails-4.test.js — covers the "ui-text tails" describe. |
+| File                                                                                                  | What it does                                                               |
+| ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`cyrillic-font-tails.test.js`](core\tests\coverage\ui/cyrillic-font-tails.test.md)                   | Covers core/locale/cyrillic-font.ts — the ru→Fira Sans                     |
+| [`reader-content-tails.test.js`](core\tests\coverage\ui/reader-content-tails.test.md)                 | Covers core/locale/reader-content.ts — holder creation and                 |
+| [`starfield-names-enfail-tails.test.js`](core\tests\coverage\ui/starfield-names-enfail-tails.test.md) | Coverage tail for core/locale/starfield-names — the                        |
+| [`starfield-names.test.js`](core\tests\coverage\ui/starfield-names.test.md)                           | Coverage for core/locale/starfield-names — the shared                      |
+| [`ui-text-tails-test-js.test.js`](core\tests\coverage\ui/ui-text-tails-test-js.test.md)               | Split from coverage-tails.test.js — covers the "ui-text tails" describe.   |
+| [`ui-text-tails.test.js`](core\tests\coverage\ui/ui-text-tails.test.md)                               | Split from coverage-tails-4.test.js — covers the "ui-text tails" describe. |
 
 ## Core engine
 
@@ -2914,26 +2916,6 @@ _Boot surfaces: what the user sees first on each bundle._
 
 _Boot surfaces: what the user sees first on each bundle._
 
-| File                                                                      | What it does |
-| ------------------------------------------------------------------------- | ------------ |
-| [`block-navigation.js`](website\reports\coverage-run/block-navigation.md) | —            |
-| [`prettify.js`](website\reports\coverage-run/prettify.md)                 | —            |
-| [`sorter.js`](website\reports\coverage-run/sorter.md)                     | —            |
-
-## Entry points
-
-_Boot surfaces: what the user sees first on each bundle._
-
-| File                                                                                  | What it does |
-| ------------------------------------------------------------------------------------- | ------------ |
-| [`block-navigation.js`](website\reports\coverage-run\lcov-report/block-navigation.md) | —            |
-| [`prettify.js`](website\reports\coverage-run\lcov-report/prettify.md)                 | —            |
-| [`sorter.js`](website\reports\coverage-run\lcov-report/sorter.md)                     | —            |
-
-## Entry points
-
-_Boot surfaces: what the user sees first on each bundle._
-
 | File                                                                  | What it does |
 | --------------------------------------------------------------------- | ------------ |
 | [`block-navigation.js`](website\reports\coverage/block-navigation.md) | —            |
@@ -3250,6 +3232,7 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`nav-menu-keys-tails.test.js`](website\tests\coverage\components\nav/nav-menu-keys-tails.test.md)             | Coverage tails for components/nav/menu.tsx keyboard roving   |
 | [`nav-menu-render-tails.test.js`](website\tests\coverage\components\nav/nav-menu-render-tails.test.md)         | Coverage tails for components/nav/menu.tsx +                 |
 | [`nav-render-notfound-tails.test.js`](website\tests\coverage\components\nav/nav-render-notfound-tails.test.md) | Coverage tails for components/nav/render.tsx — the 404-route |
+| [`nav-scroll-tails.test.js`](website\tests\coverage\components\nav/nav-scroll-tails.test.md)                   | Coverage tails for components/nav/scroll.ts —                |
 
 ## Entry points
 
@@ -3308,6 +3291,14 @@ _Boot surfaces: what the user sees first on each bundle._
 | [`render-related-tails.test.js`](website\tests\coverage\sweep/render-related-tails.test.md)       | Sweep tails: nav render's onDark binary arms (bottom-of-   |
 | [`residual-arms-tails.test.js`](website\tests\coverage\sweep/residual-arms-tails.test.md)         | Last-arm sweep: SearchModal's pre-open render/setter arms, |
 | [`search-wip-tails.test.js`](website\tests\coverage\sweep/search-wip-tails.test.md)               | Sweep tails for the route-search WIP: route-search/data    |
+
+## Entry points
+
+_Boot surfaces: what the user sees first on each bundle._
+
+| File                                                                                    | What it does                                |
+| --------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`home-defined-tails.test.js`](website\tests\coverage\views/home-defined-tails.test.md) | Coverage tail for views/home/Home.tsx — the |
 
 ## Entry points
 
