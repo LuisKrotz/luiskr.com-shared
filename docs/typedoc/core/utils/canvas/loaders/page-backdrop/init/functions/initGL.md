@@ -8,7 +8,7 @@
 function initGL(host): void
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop/init.ts:27
+Defined in: core/utils/canvas/loaders/page-backdrop/init.ts:26
 
 Creates the WebGL context + lobe-field program and resolves its
 uniforms; any failure (no canvas, context refused, shader/link error,

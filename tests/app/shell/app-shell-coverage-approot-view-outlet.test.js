@@ -80,13 +80,45 @@ describe('AppRoot — view outlet', () => {
     await flush(60)
 
     const outlet = el.shadowRoot.querySelector(`#${APP_IDS.VIEW_OUTLET}`)
-    const current = outlet.firstElementChild
+
+    // The mount's own cross-fade can still be mid-flight (the outlet
+    // holds the fading outgoing alongside the incoming view) — wait for
+    // the removal timer so the single surviving view is the target.
+    await waitFor(() => outlet.children.length === 1)
+
+    const current = outlet.lastElementChild
 
     current.onRouteParamChange = jest.fn()
     el.currentViewTag = current.tagName.toLowerCase()
     el._updateViewContent({ meta: {} })
 
     expect(current.onRouteParamChange).toHaveBeenCalled()
+
+    globalThis.fetch = origFetch
+  })
+
+  test('same-tag view without onRouteParamChange still skips the swap', async () => {
+    const origFetch = stableFetch()
+
+    const el = new AppRoot()
+    cleanups.push(mount(el))
+
+    await flush(60)
+
+    const outlet = el.shadowRoot.querySelector(`#${APP_IDS.VIEW_OUTLET}`)
+
+    await waitFor(() => outlet.children.length === 1)
+
+    const current = outlet.lastElementChild
+
+    // A defined custom element of the same tag whose prototype lacks the
+    // delegator — the guard's non-function arm must fall through to the
+    // early return without flipping or throwing.
+    current.onRouteParamChange = null
+    el.currentViewTag = current.tagName.toLowerCase()
+    el._updateViewContent({ meta: {} })
+
+    expect(outlet.lastElementChild).toBe(current)
 
     globalThis.fetch = origFetch
   })

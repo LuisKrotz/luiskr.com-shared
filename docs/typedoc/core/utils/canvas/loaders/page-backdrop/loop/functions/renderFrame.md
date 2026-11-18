@@ -5,15 +5,15 @@
 [luiskr.com](../../../../../../../README.md) / [core/utils/canvas/loaders/page-backdrop/loop](../README.md) / renderFrame
 
 ```ts
-function renderFrame(host, staticTime?): void
+function renderFrame(host): void
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:121
+Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:94
 
-Draws the lobe field. `staticTime` renders one settled pose (reduced
-motion); otherwise the field clock advances by the clamped frame
-delta so a backgrounded tab resumes without a jump. A theme flip
-mid-loop resamples the palette; dirty flags gate the uploads.
+Draws the lobe field once — a static pose: no field clock, no
+animation. A theme flip resamples the palette before the upload;
+dirty flags gate the buffer writes so a steady frame is one
+`drawArrays` and nothing else.
 
 ## Parameters
 
@@ -22,12 +22,6 @@ mid-loop resamples the palette; dirty flags gate the uploads.
 [`PageBackdropWebGL`](../../../page-backdrop-webgl/classes/PageBackdropWebGL.md)
 
 the backdrop instance to draw
-
-### staticTime?
-
-`number` \| `null`
-
-fixed field time for a single static frame
 
 ## Returns
 

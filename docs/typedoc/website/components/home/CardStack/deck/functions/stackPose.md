@@ -8,7 +8,7 @@
 function stackPose(s, len, w, h, tier, peek?): CardPose
 ```
 
-Defined in: website/components/home/cardstack/deck.ts:198
+Defined in: website/components/home/cardstack/deck.ts:187
 
 The stacked-layout pose for signed offset `s` — the "entire card"
 pile of the phone/portrait tiers, modelled as a dealt deck:

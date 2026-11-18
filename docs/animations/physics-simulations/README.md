@@ -303,8 +303,8 @@ never per-frame.
 - **Genie** (`core/utils/motion/genie.ts`) — transform-origin scale
   tween timed by `ANIMATION_DURATIONS`; compositor-only (`transform`),
   skipped entirely under `prefers-reduced-motion`.
-- **Scroll easing** (`wasm-scroll.ts`) — parallax progress through
-  spring smoothing, batched in WASM where available.
+- **Scroll easing** (`wasm-scroll.ts`) — scroll-to-target progress
+  through spring smoothing, batched in WASM where available.
 - **DrawText** — stroke-dashoffset reveal; the dash schedule is a
   wasm-pool text-timing batch.
 

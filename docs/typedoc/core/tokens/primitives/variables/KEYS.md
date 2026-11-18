@@ -24,7 +24,7 @@ const KEYS: Readonly<{
 }>
 ```
 
-Defined in: core/tokens/primitives.ts:56
+Defined in: core/tokens/primitives.ts:60
 
 Frozen keys key map — sole declaration site for these tokens; consumers read members and
 never re-declare the strings (zero-hardcoding rules 4–5). Object.freeze makes the token

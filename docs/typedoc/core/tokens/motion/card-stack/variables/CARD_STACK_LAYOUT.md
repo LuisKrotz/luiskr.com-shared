@@ -29,6 +29,7 @@ const CARD_STACK_LAYOUT: Readonly<{
   STACKED_DECK_PAD: 0.1
   FAN_DIM_STEP: 0.1
   FAN_DIM_FLOOR: 0.32
+  PARK_DIM_STEP: 0.55
 }>
 ```
 

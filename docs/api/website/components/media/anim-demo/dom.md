@@ -70,7 +70,7 @@ on long beats so each phase reads.
 
 ### `mountGlowDemo`
 
-Body-glow demo — the staged glow surface drifts entirely in CSS
+Body-glow demo — the staged glow surface is a static CSS wash
 (the ::before wash mirrors the document-level glow); mounted for
 completeness so the registry covers every id.
 

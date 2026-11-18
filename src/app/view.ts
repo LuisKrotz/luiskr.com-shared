@@ -10,7 +10,6 @@ import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { devError } from '@core/devlog.js'
-import { flushLayout } from '@core/utils/dom.js'
 import { notifyLoadFailed } from '@core/utils/notify.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
@@ -38,7 +37,10 @@ export function updateAppViewContent(
   // No outlet yet (pre-render frame) — nothing to reconcile.
   if (!outlet) return
 
-  const current = outlet.firstElementChild
+  // The live view is the LAST child — a mid-crossfade outlet still
+  // carries the fading leavings ahead of the mounted incoming view, and
+  // a same-tag param change must reach the surviving view, not a corpse.
+  const current = outlet.lastElementChild
 
   const targetTag = c.currentViewTag.toLowerCase()
 
@@ -80,9 +82,13 @@ const parkReaderArticle = (): void => {
  * View swap: lazy-imports the target view's chunk (each import is in its
  * own branch so bundlers keep per-route code-splitting), then either
  * instant-replaces the outlet (reduced motion / empty outlet) or plays
- * the two-leg cross-fade — fade-out for PAGE_FADE_HALF, then mount the
- * incoming view with a fade-in class removed on the next frame.
- * `_sectionsMeasured` resets so the new view's sections re-measure lazily.
+ * the OVERLAPPING cross-fade — the incoming view mounts in flow beneath
+ * the outgoing view, which lifts to an absolute overlay and fades on
+ * top for PAGE_FADE_HALF before being removed. The overlap is the
+ * no-void contract: the outlet never sits empty between the out-leg
+ * and the incoming first paint, so the page background can never flash
+ * through (the dark-mode black frame). `_sectionsMeasured` resets so
+ * the new view's sections re-measure lazily.
  * @param c The AppRoot element.
  * @param outlet The #view-outlet element.
  * @param _to Destination descriptor — the tag is read from c.currentViewTag.
@@ -143,27 +149,25 @@ export async function flipAppView(
     return
   }
 
-  const outgoing = outlet.firstElementChild
+  // Every existing child leaves — a rapid second nav mid-crossfade can
+  // stack an older outgoing AND a still-revealing incoming, and both
+  // must fade out under the newest mount (the leaked-sibling fix).
+  const leaving = Array.from(outlet.children)
 
-  // Leg one: fade the outgoing view. The swap itself waits
-  // PAGE_FADE_HALF so the out-leg finishes before the DOM changes.
-  outgoing.classList.add(STATE_CLASSES.PAGE_FADE_OUT)
+  leaving.forEach((el) => el.classList.add(STATE_CLASSES.PAGE_FADE_OUT))
+
+  // The incoming view mounts in flow IMMEDIATELY — fully laid out and
+  // painted underneath before the outgoing's opacity drops, so the
+  // reveal is the fade itself and no empty-outlet frame can paint.
+  const incoming = document.createElement(toTag)
+
+  outlet.appendChild(incoming)
+
+  parkReaderArticle()
 
   setTimeout(() => {
-    const incoming = document.createElement(toTag)
-
-    // Mount hidden via the fade-in class, reveal by removing it —
-    // the CSS transition paints the in-leg.
-    incoming.classList.add(STATE_CLASSES.PAGE_FADE_IN)
-
-    outlet.replaceChildren(incoming)
-
-    parkReaderArticle()
-
-    // Intentional transition-restart flush — committed styles are needed
-    // before removing the fade-in class in the same frame.
-    flushLayout(incoming)
-
-    incoming.classList.remove(STATE_CLASSES.PAGE_FADE_IN)
+    // Fade complete — the absolute overlays leave; the incoming view
+    // owns the outlet's flow alone.
+    leaving.forEach((el) => el.remove())
   }, ANIMATION_DURATIONS.PAGE_FADE_HALF)
 }

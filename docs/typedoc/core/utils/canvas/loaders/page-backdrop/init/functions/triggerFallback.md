@@ -8,11 +8,11 @@
 function triggerFallback(host): void
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop/init.ts:112
+Defined in: core/utils/canvas/loaders/page-backdrop/init.ts:108
 
 Switches to the CSS lobe path — used on context loss, init failure, or
-an unparseable palette. Cancels the pending frame, releases every GL
-resource, and clears the document marker so `--bg-glow*` paint again.
+an unparseable palette. Releases every GL resource and clears the
+document marker so `--bg-glow*` paint again.
 
 ## Parameters
 

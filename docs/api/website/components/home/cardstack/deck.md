@@ -18,21 +18,20 @@ the previous pass and is visible now seeds its rise-and-fade entrance.
 Keyed by element so a re-rendered card starts a fresh baseline (no
 entrance on first paint).
 
-### `_sizeWrite`
+### `_poseSig`
 
-The last stacked height/min-height pair applied to each card.
-applyPoses runs per gesture frame, and re-writing identical box
-values every frame is a per-frame layout invalidation — the
-mid-swipe relayout storm. The cache guards the writes so a drag
-only touches transforms/opacity; geometry changes land once.
+Last pose signature (transform|opacity|z|visibility|active) applied
+to each card element. applyPoses runs per gesture frame and once per
+observer re-delivery; a pass whose pose values match the last write
+skips every DOM write so the converged deck costs compares only —
+the write→notify churn browsers report as ResizeObserver loops.
 
-### `writeStackSize`
+### `_measureSig`
 
-Applies a stacked card's box pair when it changed since the last pose
-pass — the value guard that keeps a per-frame applyPoses from
-invalidating layout with identical geometry. `sizesToCopy` (the
-committed front on a copy-carrying tier) frees the box to its copy;
-every other card locks to the shared live pile height.
+Last measure signature per host — a ResizeObserver hop whose inputs
+(tier, card box, stage budget, deck rect) are unchanged skips the
+field publishes entirely, so an unchanged delivery is a compare and
+a return instead of a host write burst downstream code can observe.
 
 ### `deckItems`
 
@@ -183,10 +182,12 @@ counter and the index rows.
 Writes every card's pose for the current virtual front `f` — derived
 from `activeIdx - _dragX/_step`, so a live drag slides the whole
 coverflow continuously and `activeIdx` alone reproduces the rest pose.
-Card width/height and the deck perspective (the tier's camera
-distance) write once per measure() (_sizesDirty); the --active class
-rides the same pass. Runs inside the gesture rAF — reads are cached
-fields, writes are transform/opacity/zIndex/visibility only.
+Every DOM write is value-guarded: card box properties and the deck
+perspective (the tier's camera distance) compare against the current
+inline value before touching it, and a card whose whole pose
+signature matched the last pass is skipped outright — re-delivered
+observer passes cost compares, not relayouts. Runs inside the
+gesture rAF — reads are cached fields and inline-style values.
 
 - `@param` host The CardStack element.
 

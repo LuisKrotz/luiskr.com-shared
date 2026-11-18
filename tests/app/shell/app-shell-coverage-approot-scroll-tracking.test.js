@@ -11,8 +11,9 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
 
 import { ROUTE_NAMES, SECTIONS } from '@core/constants.js'
+import { APP_IDS } from '@core/tokens/ids/app.js'
 import { SECTION_IDS } from '@core/tokens/ids/sections.js'
-import { deepQuerySelector } from '@core/utils/dom.js'
+import { deepQuerySelectorAll } from '@core/utils/dom.js'
 
 // Microtask+timer flush — mount/store effects settle across macrotasks.
 const flush = (ms = 0) => new Promise((r) => setTimeout(r, ms))
@@ -72,7 +73,18 @@ describe('AppRoot — scroll tracking', () => {
     const el = new AppRoot()
     cleanups.push(mount(el))
 
+    // The cross-fade keeps the outgoing view mounted behind the incoming
+    // one for PAGE_FADE_HALF (the no-void overlap); its removal timer must
+    // drain before the marker queries below or they see duplicate #about/
+    // #contact nodes from both views. Poll the outlet — the flip timer
+    // arms inside async mount work, so a fixed wait can still race it.
     await flush(60)
+
+    const outlet = document.getElementById(APP_IDS.VIEW_OUTLET)
+
+    for (let i = 0; outlet && outlet.children.length > 1 && i < 60; i++) {
+      await flush(25)
+    }
 
     // Non-home route → nav state push + early return.
     router.currentRoute = { name: 'Project', view: VIEW_TAGS.VIEW_PROJECT, meta: {} }
@@ -133,9 +145,11 @@ describe('AppRoot — scroll tracking', () => {
     // No #about/#contact markers in the document → updateSectionTops'
     // missing-marker else arms leave the tops at their fallbacks. The
     // markers live inside the view's shadow root — removal has to go
-    // through the same deep query the measure uses.
-    deepQuerySelector(`#${SECTION_IDS.ABOUT}`)?.remove()
-    deepQuerySelector(`#${SECTION_IDS.CONTACT}`)?.remove()
+    // through the same deep query the measure uses, and must clear EVERY
+    // copy (the overlap cross-fade can leave a fading outgoing view +
+    // parked reader-content replicas mounted alongside the live one).
+    deepQuerySelectorAll(`#${SECTION_IDS.ABOUT}`).forEach((m) => m.remove())
+    deepQuerySelectorAll(`#${SECTION_IDS.CONTACT}`).forEach((m) => m.remove())
     el.updateSectionTops()
 
     expect(el._sectionsMeasured).toBe(false)

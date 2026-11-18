@@ -8,10 +8,10 @@
 function stop(host): void
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:63
+Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:52
 
-Stops the pooled loop and clears the document marker so the CSS glow
-layers paint again while the canvas is idle/hidden.
+Stops rendering and clears the document marker so the CSS glow layers
+paint again while the canvas is idle/hidden.
 
 ## Parameters
 

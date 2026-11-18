@@ -22,18 +22,6 @@ Per-axis backing-store cap in device pixels — 4K-wide at 1× or a
 2× laptop panel both fit; beyond this the browser's bilinear
 downsample of a 32-bit-dithered field is still band-free.
 
-### `PERIOD_1`
-
-Drift periods (seconds) for the three lobe layers — pairwise
-coprime so the layers never phase-lock into a repeating pose; these
-mirror the former CSS keyframe durations (16/21/27s).
-
-### `PERIOD_KEY`
-
-Key-light drift period (seconds) — coprime with the three field
-periods so the right-side specular pool never phase-locks into a
-repeating pose.
-
 ### `KEY_GAIN_DARK`
 
 Key-light peak gains — the right-side specular lobe. Dark is dimmer
@@ -67,8 +55,8 @@ luminance to read the same very-fine speckle in both themes.
 ### `DARK_GAIN`
 
 Dark-theme alpha gain applied to every lobe peak — the dark field
-keeps the same parallax structure at ember strength (≈0.04 peak)
-so the near-black canvas never lights up.
+keeps the same lobe structure at ember strength (≈0.04 peak) so
+the near-black canvas never lights up.
 
 ### `LIGHT_GAIN`
 

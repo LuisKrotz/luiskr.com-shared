@@ -24,17 +24,9 @@ Fullscreen canvas — created by the constructor, parked as the container's firs
 
 Element the canvas mounts into (document.body in production).
 
-### `_frameTick`
-
-Bound per-frame tick — allocated once so the pooled re-arm never allocs.
-
 ### `width`
 
 Backing-store size in device pixels.
-
-### `_elapsed`
-
-Field clock in seconds — accumulates clamped frame deltas.
 
 ### `_base`
 
@@ -92,9 +84,9 @@ Samples `--field-*` + `--bg-primary` + specular/ink into the uniform buffers.
 
 ### `_onRootClass`
 
-Root class flip — high contrast pauses the field (the HC surface is
-flat by contract); leaving it resumes. Dark/light flips are caught
-per frame by renderFrame, so only the HC edge needs the observer.
+Root class flip — high contrast stops the field (the HC surface is
+flat by contract); leaving it resumes. A dark/light flip redraws the
+static pose with the resampled palette; only the HC edge stops it.
 
 ### `start`
 
@@ -106,17 +98,11 @@ Stops the loop and clears the document marker.
 
 ### `_handleResize`
 
-Syncs the backing store with the viewport.
-
-### `_loop`
-
-Pooled rAF callback — draws the field each frame.
+Syncs the backing store with the viewport and redraws.
 
 ### `_renderFrame`
 
-Draws one frame; a fixed `staticTime` renders one settled pose.
-
-- `@param` staticTime - field time for a static frame
+Draws the one static field pose.
 
 ### `purge`
 

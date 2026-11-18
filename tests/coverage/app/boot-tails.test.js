@@ -7,11 +7,8 @@
 
 import { afterEach, jest } from '@jest/globals'
 import { mountAppShell } from '@/app/boot.js'
-import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { APP_CLASSES } from '@core/tokens/classes/app.js'
-import { UI_MUTATIONS } from '@core/tokens/events/mutations.js'
-import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
@@ -182,7 +179,7 @@ describe('app boot tails', () => {
     }
   })
 
-  test('mountAppShell — touch input skips the WebGL page backdrop', () => {
+  test('mountAppShell — gpu-budget device skips the WebGL page backdrop', () => {
     const c = {
       initInputListeners: jest.fn(),
       loadData: jest.fn(),
@@ -198,17 +195,76 @@ describe('app boot tails', () => {
     }
 
     const prevRoute = router.currentRoute
+    const prevMatchMedia = window.matchMedia
 
     router.currentRoute = null
 
-    store.commit(UI_MUTATIONS.SET_INPUT_METHOD, INPUT_STRINGS.TOUCH)
+    // GPU-budget surface (coarse pointer / <=1023px) — the mount gate
+    // reads MEDIA_QUERIES.GPU_BUDGET, so the stub must answer for that
+    // query rather than relying on the input-method field.
+    window.matchMedia = jest.fn(() => ({ matches: true }))
 
     try {
       mountAppShell(c)
 
       expect(c._pageBackdrop).toBeNull()
     } finally {
-      store.commit(UI_MUTATIONS.SET_INPUT_METHOD, INPUT_STRINGS.POINTER)
+      window.matchMedia = prevMatchMedia
+      router.currentRoute = prevRoute
+    }
+  })
+
+  test('mountAppShell — non-budget device mounts the backdrop; missing matchMedia also mounts', () => {
+    const c = {
+      initInputListeners: jest.fn(),
+      loadData: jest.fn(),
+      subscribe: jest.fn(),
+      $: jest.fn(() => null),
+      addScopedListener: jest.fn(),
+      _updateViewContent: jest.fn(),
+      updateSectionTops: jest.fn(),
+      checkScroll: jest.fn(),
+      routeLoading: false,
+      currentViewTag: null,
+      _pageBackdrop: null,
+    }
+
+    const c2 = {
+      initInputListeners: jest.fn(),
+      loadData: jest.fn(),
+      subscribe: jest.fn(),
+      $: jest.fn(() => null),
+      addScopedListener: jest.fn(),
+      _updateViewContent: jest.fn(),
+      updateSectionTops: jest.fn(),
+      checkScroll: jest.fn(),
+      routeLoading: false,
+      currentViewTag: null,
+      _pageBackdrop: null,
+    }
+
+    const prevRoute = router.currentRoute
+    const prevMatchMedia = window.matchMedia
+
+    router.currentRoute = null
+
+    // Fine-pointer >=1024px desktop — the budget query does not match, so
+    // the ambient GL mount proceeds.
+    window.matchMedia = jest.fn(() => ({ matches: false }))
+
+    try {
+      mountAppShell(c)
+
+      expect(c._pageBackdrop).not.toBeNull()
+
+      // Engines without matchMedia keep the desktop contract — the gate
+      // only suppresses on a positive budget match.
+      window.matchMedia = undefined
+      mountAppShell(c2)
+
+      expect(c2._pageBackdrop).not.toBeNull()
+    } finally {
+      window.matchMedia = prevMatchMedia
       router.currentRoute = prevRoute
     }
   })

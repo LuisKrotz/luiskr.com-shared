@@ -100,7 +100,7 @@ Related project tiles — hover lift/zoom spring + border sheen (CSS linear() sp
 
 ### `BODY_GLOW`
 
-Document ambient glow — slow radial drift behind content (CSS).
+Document ambient glow — static radial wash behind content (CSS).
 
 ### `PROGRESS_BAR`
 

@@ -8,13 +8,13 @@
 function start(host): void
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:24
+Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:22
 
 Begins rendering: samples the palette (an unparseable surface colour
 falls back to CSS), sizes the buffer, stamps the document marker that
-pins the CSS glow layers to `none`, and either starts the pooled loop
-or — under reduced motion — draws one static dithered frame.
-High contrast keeps the flat surface: nothing starts while it is on.
+pins the CSS glow layers to `none`, and draws the one static dithered
+frame. High contrast keeps the flat surface: nothing starts while it
+is on.
 
 ## Parameters
 

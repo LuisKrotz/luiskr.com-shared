@@ -15,6 +15,12 @@ Frozen media media-query map — sole declaration site for these tokens; consume
 members and never re-declare the strings (zero-hardcoding rules 4–5). Object.freeze makes
 the token contract immutable at runtime.
 
+### `GPU_BUDGET`
+
+The stylesheet's `gpu-budget` mixin in JS form — coarse pointers or
+≤1023px viewports: the mobile compositing-budget surface where
+ambient layers, persistent compositing, and oversized shadows drop.
+
 ### `HOVER_NONE`
 
 Primary input cannot hold :hover — the joust (tap-to-reveal) trigger.

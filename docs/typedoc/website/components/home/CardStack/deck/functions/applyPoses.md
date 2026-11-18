@@ -8,15 +8,17 @@
 function applyPoses(host): void
 ```
 
-Defined in: website/components/home/cardstack/deck.ts:480
+Defined in: website/components/home/cardstack/deck.ts:501
 
 Writes every card's pose for the current virtual front `f` — derived
 from `activeIdx - _dragX/_step`, so a live drag slides the whole
 coverflow continuously and `activeIdx` alone reproduces the rest pose.
-Card width/height and the deck perspective (the tier's camera
-distance) write once per measure() (_sizesDirty); the --active class
-rides the same pass. Runs inside the gesture rAF — reads are cached
-fields, writes are transform/opacity/zIndex/visibility only.
+Every DOM write is value-guarded: card box properties and the deck
+perspective (the tier's camera distance) compare against the current
+inline value before touching it, and a card whose whole pose
+signature matched the last pass is skipped outright — re-delivered
+observer passes cost compares, not relayouts. Runs inside the
+gesture rAF — reads are cached fields and inline-style values.
 
 ## Parameters
 

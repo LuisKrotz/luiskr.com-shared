@@ -8,12 +8,14 @@
 function handleResize(host): void
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:82
+Defined in: core/utils/canvas/loaders/page-backdrop/loop.ts:67
 
-Syncs the backing store with the viewport. The canvas is fixed and
-fullscreen, so the viewport IS its box — no layout read needed. DPR is
-capped (the dither only needs device pixels, not supersampling) and
-each axis is capped so a 4K×2 display never allocates a giant buffer.
+Syncs the backing store with the viewport — then redraws the static
+frame so the resized buffer never presents a stretched stale pose.
+The canvas is fixed and fullscreen, so the viewport IS its box — no
+layout read needed. DPR is capped (the dither only needs device
+pixels, not supersampling) and each axis is capped so a 4K×2 display
+never allocates a giant buffer.
 
 ## Parameters
 

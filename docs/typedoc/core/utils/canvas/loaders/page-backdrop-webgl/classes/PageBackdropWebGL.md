@@ -19,7 +19,7 @@ purge/restore it and user actions retry a fallen-back instance.
 new PageBackdropWebGL(container): PageBackdropWebGL;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:90
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:83
 
 #### Parameters
 
@@ -89,33 +89,13 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:47
 
 ---
 
-### animId
-
-```ts
-animId: number | null = null;
-```
-
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:48
-
----
-
-### uTime
-
-```ts
-uTime: WebGLUniformLocation | null = null;
-```
-
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:51
-
----
-
 ### uRes
 
 ```ts
 uRes: WebGLUniformLocation | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:52
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:48
 
 ---
 
@@ -125,7 +105,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:52
 uBase: WebGLUniformLocation | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:53
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:49
 
 ---
 
@@ -135,7 +115,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:53
 uCol: WebGLUniformLocation | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:54
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:50
 
 ---
 
@@ -145,7 +125,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:54
 uGain: WebGLUniformLocation | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:55
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:51
 
 ---
 
@@ -155,7 +135,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:55
 uKey: WebGLUniformLocation | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:56
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:52
 
 ---
 
@@ -165,7 +145,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:56
 uShade: WebGLUniformLocation | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:57
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:53
 
 ---
 
@@ -175,7 +155,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:57
 width: number = 0
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:59
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:55
 
 Backing-store size in device pixels.
 
@@ -187,7 +167,7 @@ Backing-store size in device pixels.
 height: number = 0
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:60
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:56
 
 ---
 
@@ -197,7 +177,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:60
 isActive: boolean = false
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:61
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:57
 
 ---
 
@@ -207,29 +187,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:61
 useWebGL: boolean = false
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:62
-
----
-
-### \_lastFrame
-
-```ts
-_lastFrame: number = 0
-```
-
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:63
-
----
-
-### \_elapsed
-
-```ts
-_elapsed: number = 0
-```
-
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:65
-
-Field clock in seconds — accumulates clamped frame deltas.
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:58
 
 ---
 
@@ -239,7 +197,7 @@ Field clock in seconds — accumulates clamped frame deltas.
 _base: Float32Array<ArrayBuffer>
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:67
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:60
 
 Surface colour (`--bg-primary`) as an RGB float triple.
 
@@ -251,7 +209,7 @@ Surface colour (`--bg-primary`) as an RGB float triple.
 _colors: Float32Array<ArrayBuffer>
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:69
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:62
 
 Seven field hues, flat RGB — the `u_col` uniform array payload.
 
@@ -263,7 +221,7 @@ Seven field hues, flat RGB — the `u_col` uniform array payload.
 _key: Float32Array<ArrayBuffer>
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:71
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:64
 
 Key light — specular RGB + theme gain packed for one `uniform4fv`.
 
@@ -275,7 +233,7 @@ Key light — specular RGB + theme gain packed for one `uniform4fv`.
 _shade: Float32Array<ArrayBuffer>
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:73
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:66
 
 Counter-shade — ink RGB + theme gain packed for one `uniform4fv`.
 
@@ -287,7 +245,7 @@ Counter-shade — ink RGB + theme gain packed for one `uniform4fv`.
 _gain: number = 1
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:75
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:68
 
 Lobe strength multiplier — light 1, dark ember gain.
 
@@ -299,7 +257,7 @@ Lobe strength multiplier — light 1, dark ember gain.
 _darkAtStart: boolean = false
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:76
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:69
 
 ---
 
@@ -309,7 +267,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:76
 _paletteDirty: boolean = true
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:78
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:71
 
 Upload gates — set by sampleTheme/handleResize, cleared by the draw.
 
@@ -321,7 +279,7 @@ Upload gates — set by sampleTheme/handleResize, cleared by the draw.
 _resDirty: boolean = true
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:79
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:72
 
 ---
 
@@ -331,7 +289,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:79
 _onContextLost: EventListener | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:80
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:73
 
 ---
 
@@ -341,7 +299,7 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:80
 _purged: boolean = false
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:81
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:74
 
 ---
 
@@ -351,27 +309,11 @@ Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:81
 _rootObserver: MutationObserver | null = null;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:83
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:76
 
 Watches the root class list for high-contrast flips.
 
 ## Methods
-
-### \_frameTick()
-
-```ts
-_frameTick(): void;
-```
-
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:50
-
-Bound per-frame tick — allocated once so the pooled re-arm never allocs.
-
-#### Returns
-
-`void`
-
----
 
 ### \_onResize()
 
@@ -379,7 +321,7 @@ Bound per-frame tick — allocated once so the pooled re-arm never allocs.
 _onResize(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:85
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:78
 
 Bound passive resize handler — allocated once.
 
@@ -395,7 +337,7 @@ Bound passive resize handler — allocated once.
 _initGL(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:120
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:113
 
 Creates the WebGL context + lobe program; falls back to the CSS lobes on failure.
 
@@ -411,7 +353,7 @@ Creates the WebGL context + lobe program; falls back to the CSS lobes on failure
 _triggerFallback(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:125
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:118
 
 Switches to the CSS lobe path — context loss, init failure, bad palette.
 
@@ -427,7 +369,7 @@ Switches to the CSS lobe path — context loss, init failure, bad palette.
 _releaseGL(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:130
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:123
 
 Frees the quad program/buffer and force-loses the context (listener detached first).
 
@@ -443,7 +385,7 @@ Frees the quad program/buffer and force-loses the context (listener detached fir
 _sampleTheme(): boolean;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:140
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:133
 
 Samples `--field-*` + `--bg-primary` + specular/ink into the uniform buffers.
 
@@ -461,11 +403,11 @@ true when the surface colour parsed
 _onRootClass(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:149
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:142
 
-Root class flip — high contrast pauses the field (the HC surface is
-flat by contract); leaving it resumes. Dark/light flips are caught
-per frame by renderFrame, so only the HC edge needs the observer.
+Root class flip — high contrast stops the field (the HC surface is
+flat by contract); leaving it resumes. A dark/light flip redraws the
+static pose with the resampled palette; only the HC edge stops it.
 
 #### Returns
 
@@ -479,7 +421,7 @@ per frame by renderFrame, so only the HC edge needs the observer.
 start(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:162
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:161
 
 Starts the field (see page-backdrop/loop.ts).
 
@@ -495,7 +437,7 @@ Starts the field (see page-backdrop/loop.ts).
 stop(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:167
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:166
 
 Stops the loop and clears the document marker.
 
@@ -511,25 +453,9 @@ Stops the loop and clears the document marker.
 _handleResize(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:172
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:171
 
-Syncs the backing store with the viewport.
-
-#### Returns
-
-`void`
-
----
-
-### \_loop()
-
-```ts
-_loop(): void;
-```
-
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:177
-
-Pooled rAF callback — draws the field each frame.
+Syncs the backing store with the viewport and redraws.
 
 #### Returns
 
@@ -540,20 +466,12 @@ Pooled rAF callback — draws the field each frame.
 ### \_renderFrame()
 
 ```ts
-_renderFrame(staticTime?): void;
+_renderFrame(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:185
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:176
 
-Draws one frame; a fixed `staticTime` renders one settled pose.
-
-#### Parameters
-
-##### staticTime?
-
-`number` \| `null`
-
-field time for a static frame
+Draws the one static field pose.
 
 #### Returns
 
@@ -567,7 +485,7 @@ field time for a static frame
 purge(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:193
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:184
 
 webglPool hook — GPU pressure or an offscreen canvas: tears the GL
 resources down and clears the marker so the CSS lobes cover the gap.
@@ -584,7 +502,7 @@ resources down and clears the marker so the CSS lobes cover the gap.
 restore(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:206
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:197
 
 webglPool hook — recreates the context + restarts after a purge.
 
@@ -600,7 +518,7 @@ webglPool hook — recreates the context + restarts after a purge.
 destroy(): void;
 ```
 
-Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:219
+Defined in: core/utils/canvas/loaders/page-backdrop-webgl.ts:210
 
 Releases everything — context, listeners, observer, the canvas itself.
 

@@ -399,3 +399,11 @@ toward the deck edges (the reference's progressive darkening).
 
 Opacity floor for the deepest visible fan card — low enough that
 the outermost slivers fade into the dark stage like the reference.
+
+### `PARK_DIM_STEP`
+
+Opacity drop per parked level on the stacked tiers — the card a
+swipe carries under the pile fades in step with the drag fraction
+(a is continuous, so a cancel scrubs the dim back to 1 instead of
+snapping it), ending at 0.45 once parked so the stale sheet reads
+recessed behind the front card instead of ghost-lit.

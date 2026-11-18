@@ -18,7 +18,7 @@ throw) routes to `_triggerFallback` so the CSS lobes stay authoritative.
 ### `triggerFallback`
 
 Switches to the CSS lobe path — used on context loss, init failure, or
-an unparseable palette. Cancels the pending frame, releases every GL
-resource, and clears the document marker so `--bg-glow*` paint again.
+an unparseable palette. Releases every GL resource and clears the
+document marker so `--bg-glow*` paint again.
 
 - `@param` host - the backdrop instance falling back
