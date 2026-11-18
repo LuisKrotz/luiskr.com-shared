@@ -38,7 +38,11 @@ top for PAGE_FADE_HALF before being removed. The overlap is the
 no-void contract: the outlet never sits empty between the out-leg
 and the incoming first paint, so the page background can never flash
 through (the dark-mode black frame). `_sectionsMeasured` resets so
-the new view's sections re-measure lazily.
+the new view's sections re-measure lazily. After the awaited import
+the outlet is revalidated: a flip superseded mid-flight aborts, and
+an outlet whose live child already IS the target (the shell's JSX
+seats <CurrentView> before the chunk upgrades) receives the route
+params and skips the swap — never a double mount.
 
 - `@param` c The AppRoot element.
 - `@param` outlet The #view-outlet element.

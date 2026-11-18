@@ -8,7 +8,7 @@
 function onHomeStoreUpdate(view): void
 ```
 
-Defined in: website/views/home/data.ts:219
+Defined in: website/views/home/data.ts:223
 
 Store change → reload all data on locale switch.
 

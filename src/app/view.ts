@@ -88,7 +88,11 @@ const parkReaderArticle = (): void => {
  * no-void contract: the outlet never sits empty between the out-leg
  * and the incoming first paint, so the page background can never flash
  * through (the dark-mode black frame). `_sectionsMeasured` resets so
- * the new view's sections re-measure lazily.
+ * the new view's sections re-measure lazily. After the awaited import
+ * the outlet is revalidated: a flip superseded mid-flight aborts, and
+ * an outlet whose live child already IS the target (the shell's JSX
+ * seats <CurrentView> before the chunk upgrades) receives the route
+ * params and skips the swap — never a double mount.
  * @param c The AppRoot element.
  * @param outlet The #view-outlet element.
  * @param _to Destination descriptor — the tag is read from c.currentViewTag.
@@ -135,6 +139,36 @@ export async function flipAppView(
     devError('[view] view chunk import failed:', err)
 
     notifyLoadFailed()
+
+    return
+  }
+
+  // The chunk fetch gave a render-mounted element time to upgrade: the
+  // shell's JSX already seats <CurrentView> inside the outlet, so on first
+  // boot the live view can BE the target by the time the import lands —
+  // appending a second instance would double-mount it (two live decks,
+  // two data waves, a self-crossfade: the load flicker).
+  //
+  // A newer navigation may also have superseded this flip mid-flight:
+  // currentViewTag is committed synchronously by the route handler
+  // before each flip starts, so a value that no longer matches toTag
+  // means a fresher flip owns the outlet — this one must not mount.
+  if (c.currentViewTag !== toTag) return
+
+  const live = outlet.lastElementChild as RoutableView | null
+
+  if (
+    live &&
+    live.tagName.toLowerCase() === toTag.toLowerCase() &&
+    typeof customElements !== TYPE_STRINGS.UNDEFINED &&
+    customElements.get(toTag)
+  ) {
+    // Already the target — the upgrade finished in place during the
+    // import; deliver the route params the same-tag path would have and
+    // skip the swap entirely.
+    live.onRouteParamChange?.(_to || router.currentRoute)
+
+    parkReaderArticle()
 
     return
   }
