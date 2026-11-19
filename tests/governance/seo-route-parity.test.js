@@ -426,18 +426,32 @@ describe('SEO route parity', () => {
     // stamp written onto the slug's database.json node (modified, or
     // date when the project never changed). Synthetic dates stay banned.
     const db = JSON.parse(read(path.join(ROOT_DIR, 'database.json')))
+    const projects = db.translations?.en?.projects || {}
     const stamps = new Map(
-      Object.entries(db.translations?.en?.projects || {}).map(([slug, node]) => [
-        slug,
-        node?.modified || node?.date,
-      ])
+      Object.entries(projects).map(([slug, node]) => [slug, node?.modified || node?.date])
     )
 
     for (const locale of ['en', ...NON_EN]) {
       const sitemap = read(path.join(META_DIR, `sitemap-${locale}.xml`))
 
       expect(sitemap).not.toMatch(/<video:duration>/)
-      expect(sitemap).not.toMatch(/<video:publication_date>/)
+
+      // <video:publication_date> is emitted only when the slug carries a
+      // real `date` stamp — the same source VideoObject.uploadDate uses;
+      // an invented date fails here.
+      let videoDated = 0
+
+      for (const urlBlock of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+        const slug = urlBlock[1].match(/<loc>[^<]*\/portfolio\/([^/<]+)/)?.[1]
+
+        for (const m of urlBlock[1].matchAll(/<video:publication_date>([^<]+)</g)) {
+          videoDated += 1
+          expect(slug).toBeTruthy()
+          expect(m[1]).toBe(projects[slug]?.date)
+        }
+      }
+
+      expect(videoDated).toBeGreaterThan(0)
 
       // Every lastmod must sit on a portfolio URL whose slug carries the
       // exact stamp — a dated non-portfolio route or a mismatched value
