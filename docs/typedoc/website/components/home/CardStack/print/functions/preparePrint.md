@@ -8,7 +8,7 @@
 function preparePrint(host): void
 ```
 
-Defined in: website/components/home/cardstack/print.ts:119
+Defined in: website/components/home/cardstack/print.ts:120
 
 Arms the printable form: freezes the posers and fills every card's
 description slot with its item copy. Called from the `printprepare`

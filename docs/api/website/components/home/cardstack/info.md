@@ -38,7 +38,8 @@ every tier (visually hidden on stacked layouts but present in the
 DOM), so search engines index the long-form copy as the canonical
 description while the card copy reads as its summary — same content
 at two lengths, both valid. A description with no sentence break
-passes through whole (the ≤4-line CSS clamp bounds the visual box).
+passes through whole — the uniform pile height sizes every card to
+the tallest summary, so nothing truncates.
 
 - `@param` body The full CMS description (may carry `<br>` markup).
 - `@returns` The leading-sentence summary, or the input unchanged when

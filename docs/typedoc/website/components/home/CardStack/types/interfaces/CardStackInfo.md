@@ -40,10 +40,11 @@ Full CMS description (`<br>` markup kept for <draw-text>).
 summary: string
 ```
 
-Defined in: website/components/home/cardstack/types.d.ts:69
+Defined in: website/components/home/cardstack/types.d.ts:70
 
-First-sentence summary of `body` — the stacked cards' ≤4-line
-mobile description (the desktop column keeps the full text).
+First-sentence summary of `body` — the stacked cards' in-card
+description (plain static text; the desktop column keeps the
+full <draw-text> body).
 
 ---
 
@@ -53,6 +54,6 @@ mobile description (the desktop column keeps the full text).
 href: string
 ```
 
-Defined in: website/components/home/cardstack/types.d.ts:71
+Defined in: website/components/home/cardstack/types.d.ts:72
 
 Localized project route ('' without a slug).

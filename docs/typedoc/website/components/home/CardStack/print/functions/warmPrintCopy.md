@@ -8,7 +8,7 @@
 function warmPrintCopy(host): void
 ```
 
-Defined in: website/components/home/cardstack/print.ts:74
+Defined in: website/components/home/cardstack/print.ts:75
 
 Idle-warms each deck item's `projects/<slug>` node into
 `host._printCopy` — one boot chunk resolves every project, and the

@@ -8,7 +8,7 @@
 function armOutgoingTitleBurn(host): void
 ```
 
-Defined in: website/components/home/cardstack/info.ts:360
+Defined in: website/components/home/cardstack/info.ts:361
 
 Arms the outgoing front's burn-out BEFORE the pose pass drops
 --active — goTo calls it ahead of applyPoses. The flip bottom-anchors

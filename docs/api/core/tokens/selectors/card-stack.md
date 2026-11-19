@@ -32,8 +32,9 @@ injected copy re-runs the stage-cap fit.
 
 ### `CARD_STACK_CARD_INFO_DESC`
 
-The in-card description slot — its <draw-text> writer re-arms on
-every front change (stacked tiers animate the body text per card).
+The in-card description slot — plain static text mounted at render
+(draw-text is desktop-only); never rewritten on nav, so a card's
+measured box stays constant through the whole gesture lifecycle.
 
 ### `CARD_STACK_NAV_INDEX_NUM`
 

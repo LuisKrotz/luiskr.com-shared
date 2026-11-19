@@ -8,7 +8,7 @@
 function restorePrint(host): void
 ```
 
-Defined in: website/components/home/cardstack/print.ts:192
+Defined in: website/components/home/cardstack/print.ts:193
 
 Tears the printable form down: the poser gate drops first, the
 injected description fills leave the shadow DOM, and applyPoses()
