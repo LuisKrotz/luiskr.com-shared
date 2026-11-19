@@ -8,7 +8,7 @@
 function teardownTrigger(host): void
 ```
 
-Defined in: website/components/media/draw-text/trigger.ts:72
+Defined in: website/components/media/draw-text/trigger.ts:76
 
 Drops the element from the ordered session; resets the shared clock
 when the set empties so the next view starts a fresh cascade.

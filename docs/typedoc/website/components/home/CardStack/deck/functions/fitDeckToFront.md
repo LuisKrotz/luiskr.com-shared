@@ -8,18 +8,18 @@
 function fitDeckToFront(host): void
 ```
 
-Defined in: website/components/home/cardstack/deck.ts:820
+Defined in: website/components/home/cardstack/deck.ts:845
 
-Re-fits the stacked deck's min-height to the FRONT card's rendered
-height — applyPoses lets the front card auto-grow past the ratio
-height so its copy never truncates and never scrolls (the page
-itself absorbs the overflow); the measured delta parks as
-_frontExtra (pileH's input — the behind sheets match the front's
-live height) and the deck row stretches to the taller card so it
-never collides with the foot. The front card's ResizeObserver
-re-runs the fit when fonts/locale change the copy after mount.
-Fan tiers just clear the artifact. One layout read per nav/mount —
-same class as measure(), never per-frame.
+Re-fits the stacked deck's height to the TALLEST card's natural box —
+never truncate, always fit: applyPoses gives every stacked card the
+same pileH (ratio height + _frontExtra), and the measured max delta
+parks as _frontExtra so a copy-heavy description sizes the WHOLE
+pile, not just the card carrying it. Card border-boxes are then
+invariant under gestures, navs, and class flips — the page absorbs
+the overflow. The front card's ResizeObserver re-runs the fit when
+fonts/locale/typewriter change the copy after mount. Fan tiers just
+clear the artifact. One layout read per nav/mount — same class as
+measure(), never per-frame.
 
 ## Parameters
 

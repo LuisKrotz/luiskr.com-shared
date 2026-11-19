@@ -40,6 +40,15 @@ In-flight mount — restore() must not double-mount on re-entry.
 
 Last wasm-painted t — frame(dt) consumes deltas, not absolutes.
 
+### `_fireOnFill`
+
+Pour-armed click — set by onClick, consumed by animate() once the
+liquid fill is visibly up. On touch there is no hover to warm the
+pour, so an immediate close would hide the button's liquid
+signature entirely; while armed, animate() also pins the pour
+target at 1 so the finger-lift's synthesized mouseleave can't
+decay it before the fire point.
+
 ### `constructor`
 
 - `@param` canvas - overlay canvas inside the host

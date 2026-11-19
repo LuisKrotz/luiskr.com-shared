@@ -8,7 +8,7 @@
 function animate(host): void
 ```
 
-Defined in: core/utils/canvas/widgets/close-button/render.ts:55
+Defined in: core/utils/canvas/widgets/close-button/render.ts:72
 
 Starts the shared-pool render loop (skipped under reduced motion).
 

@@ -8,7 +8,7 @@
 function syncPaper(s): void
 ```
 
-Defined in: core/utils/burn/paper.ts:456
+Defined in: core/utils/burn/paper.ts:464
 
 Anchors the canvas once at arm size AND arm position — the raster
 burns exactly where the glyphs stood when they caught fire. The

@@ -8,7 +8,7 @@
 function bindEvents(host): void
 ```
 
-Defined in: website/components/dialogs/lang-dialog/events.ts:136
+Defined in: website/components/dialogs/lang-dialog/events.ts:150
 
 Repositions the follower after each open/re-render and binds the
 once-only window + delegated listeners. Option/backdrop/close clicks

@@ -317,7 +317,9 @@ vertical page scroll).
 
 ### `DRAG_THRESHOLD`
 
-Drag fraction of one step that triggers a nav on release.
+Drag fraction of the card's own width that triggers a nav on
+release — the same travel that walks the incoming neighbour fully
+into the front pose.
 
 ### `FLICK_VEL`
 

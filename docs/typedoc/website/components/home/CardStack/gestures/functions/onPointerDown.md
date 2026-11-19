@@ -8,7 +8,7 @@
 function onPointerDown(host, e): void
 ```
 
-Defined in: website/components/home/cardstack/gestures.ts:53
+Defined in: website/components/home/cardstack/gestures.ts:54
 
 Pointer-down on the deck — arms gesture bookkeeping only. Pointer
 capture is deliberately NOT taken here: capturing on down retargets

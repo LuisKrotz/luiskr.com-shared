@@ -8,7 +8,7 @@
 function renderWasm(host, now): void
 ```
 
-Defined in: core/utils/canvas/widgets/close-button/render.ts:127
+Defined in: core/utils/canvas/widgets/close-button/render.ts:159
 
 Per-frame wasm render: pushes the three eased channels + one frame tick.
 

@@ -8,7 +8,7 @@
 function renderStatic(host): void
 ```
 
-Defined in: core/utils/canvas/widgets/close-button/render.ts:39
+Defined in: core/utils/canvas/widgets/close-button/render.ts:56
 
 Draws one settled frame with the X fully drawn — used under reduced
 motion or when the loop is stopped so the button stays visible and

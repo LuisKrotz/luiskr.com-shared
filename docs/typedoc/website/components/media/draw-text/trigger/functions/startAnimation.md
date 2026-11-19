@@ -8,7 +8,7 @@
 function startAnimation(host): void
 ```
 
-Defined in: website/components/media/draw-text/trigger.ts:156
+Defined in: website/components/media/draw-text/trigger.ts:166
 
 Runs the reveal sequence (see file header for the timing math).
 

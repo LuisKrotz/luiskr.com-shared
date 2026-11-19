@@ -30,6 +30,17 @@ loop may stop without changing a single pixel.
 
 Click shockwave window in seconds — matches the shader's `clickElapsed < 0.4` gate.
 
+### `CLICK_FIRE_LIQUID`
+
+Liquid level that releases a pour-armed click — the fill is
+unmistakably read (~half the circle) before the action runs. From 0
+at LIQUID_RATE that lands ~0.7s after the tap: the pour IS the close
+signature the click asked to show.
+
+### `consumeFireOnFill`
+
+Releases a pending pour-fire inline — the loop paths that can't pour.
+
 ### `renderStatic`
 
 Draws one settled frame with the X fully drawn — used under reduced
