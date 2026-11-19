@@ -369,10 +369,12 @@ const breadcrumbEntity = (items, id) => ({
 
 /**
  * VideoObject for one media descriptor — mp4 contentUrl + poster thumb
- * and eligibility flags. Unknown dates, duration, and player URLs stay
+ * and eligibility flags. `date` carries the project's git-derived
+ * publication stamp as uploadDate — the required field Google's video
+ * enhancement report gates on. Unknown durations and player URLs stay
  * absent instead of being fabricated from build time or a placeholder.
  */
-const videoEntity = (folder, m, title, description, manifest, bcp = 'en') => {
+const videoEntity = (folder, m, title, description, manifest, bcp = 'en', date) => {
   const { source, thumb } = mediaUrls(folder, m, manifest)
 
   return {
@@ -382,6 +384,7 @@ const videoEntity = (folder, m, title, description, manifest, bcp = 'en') => {
     description: description || `Showcase video for ${title}`,
     thumbnailUrl: [thumb],
     contentUrl: source,
+    ...(date ? { uploadDate: date } : {}),
     inLanguage: bcp,
     isFamilyFriendly: true,
     requiresSubscription: false,
@@ -1310,31 +1313,61 @@ export async function prefetchTranslations() {
  * @returns {object} locale → translations map
  */
 export function loadTranslations() {
+  let translations = {}
+
   if (liveTranslations) {
     console.log(
       `[locale-pages] translations source: live RTDB ` +
         `(${Object.keys(liveTranslations).length} locales)`
     )
 
-    return liveTranslations
+    translations = liveTranslations
+  } else {
+    const dbPath = path.join(ROOT, 'database.json')
+
+    if (fs.existsSync(dbPath)) {
+      const snapshot = JSON.parse(fs.readFileSync(dbPath, 'utf8')).translations || {}
+
+      console.log(
+        `[locale-pages] translations source: database.json snapshot ` +
+          `(${Object.keys(snapshot).length} locales)`
+      )
+
+      translations = snapshot
+    } else {
+      console.warn('[locale-pages] database.json missing — emitting English fallbacks only')
+    }
   }
 
-  const dbPath = path.join(ROOT, 'database.json')
+  // Git-derived `date`/`modified` stamps live in the committed snapshot —
+  // the live RTDB payload predates them, so undated project nodes inherit
+  // the snapshot stamps (same fallback contract as searchThemes). Without
+  // them, NewsArticle datePublished and VideoObject uploadDate never emit.
+  try {
+    const stamps =
+      JSON.parse(fs.readFileSync(path.join(ROOT, 'database.json'), 'utf8')).translations?.en
+        ?.projects || {}
 
-  if (fs.existsSync(dbPath)) {
-    const snapshot = JSON.parse(fs.readFileSync(dbPath, 'utf8')).translations || {}
+    for (const loc of Object.keys(translations)) {
+      const projects = translations[loc]?.projects
 
-    console.log(
-      `[locale-pages] translations source: database.json snapshot ` +
-        `(${Object.keys(snapshot).length} locales)`
-    )
+      if (!projects) continue
 
-    return snapshot
+      for (const slug of Object.keys(projects)) {
+        const node = projects[slug]
+        const snap = stamps[slug]
+
+        if (node && snap) {
+          if (!node.date && snap.date) node.date = snap.date
+          if (!node.modified && snap.modified) node.modified = snap.modified
+        }
+      }
+    }
+  } catch {
+    // Snapshot missing or unreadable — keep the live payload as-is.
   }
 
-  console.warn('[locale-pages] database.json missing — emitting English fallbacks only')
-
-  return {}
+  return translations
 }
 
 /**
@@ -1563,7 +1596,7 @@ export async function buildLocalePages(distDir = path.join(ROOT, 'dist'), templa
     // stays unambiguous to Google's classifier.
     if (!exclude && project.cover?.isVideo && project.cover.src) {
       entities.push({
-        ...videoEntity(folder, project.cover, title, description, mediaManifest, bcp),
+        ...videoEntity(folder, project.cover, title, description, mediaManifest, bcp, project.date),
         ...mediaProvenanceOf(loc, undefined, undefined, title),
       })
     }
@@ -1610,7 +1643,7 @@ export async function buildLocalePages(distDir = path.join(ROOT, 'dist'), templa
     if (!exclude) {
       for (const m of media.filter((x) => x.isVideo && x.src)) {
         entities.push({
-          ...videoEntity(folder, m, title, description, mediaManifest, bcp),
+          ...videoEntity(folder, m, title, description, mediaManifest, bcp, project.date),
           ...mediaProvenanceOf(loc, undefined, undefined, title),
         })
       }
@@ -3616,7 +3649,8 @@ export async function buildLocalePages(distDir = path.join(ROOT, 'dist'), templa
                       pageName,
                       mediaDesc,
                       mediaManifest,
-                      LOCALE_TAGS[loc].bcp
+                      LOCALE_TAGS[loc].bcp,
+                      project?.date
                     ),
                     ...mediaProvenanceOf(loc, undefined, undefined, pageName),
                     '@id': `${mediaUrl}#video`,

@@ -4,7 +4,7 @@
 
 [luiskr.com](../../../../../../README.md) / [website/components/media/expanded/genie](../README.md) / GenieRenderer
 
-Defined in: website/components/media/expanded/genie.ts:56
+Defined in: website/components/media/expanded/genie.ts:60
 
 One transition backend — `frame` draws the warp at eased funnel
 progress `f` after `dt` seconds; false reports a dead surface so the
@@ -18,7 +18,7 @@ driver force-settles instead of latching.
 frame(dt, p): boolean;
 ```
 
-Defined in: website/components/media/expanded/genie.ts:64
+Defined in: website/components/media/expanded/genie.ts:68
 
 Draws one frame.
 
@@ -51,7 +51,7 @@ False on a dead surface.
 dispose(): void;
 ```
 
-Defined in: website/components/media/expanded/genie.ts:66
+Defined in: website/components/media/expanded/genie.ts:70
 
 Releases every resource the backend owns (context refs, widget).
 

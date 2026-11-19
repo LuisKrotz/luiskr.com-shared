@@ -167,6 +167,9 @@ URLs Google's video crawler needs to index the asset. The eligibility
 flags (isFamilyFriendly / requiresSubscription / isAccessibleForFree)
 and the inLanguage/uploader fields feed the video rich-result
 classifiers so the clip stays indexable on every locale surface.
+`uploadDate` carries the project's git-derived publication stamp —
+the required field Google's video enhancement report gates on;
+undated projects still omit it rather than inventing one.
 
 ### `generateProjectArticleSchema`
 

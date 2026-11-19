@@ -92,7 +92,9 @@ Ordered crumbs → BreadcrumbList entity (positions are 1-based per spec).
 ### `videoEntity`
 
 VideoObject for one media descriptor — mp4 contentUrl + poster thumb
-and eligibility flags. Unknown dates, duration, and player URLs stay
+and eligibility flags. `date` carries the project's git-derived
+publication stamp as uploadDate — the required field Google's video
+enhancement report gates on. Unknown durations and player URLs stay
 absent instead of being fabricated from build time or a placeholder.
 
 ### (module scope)

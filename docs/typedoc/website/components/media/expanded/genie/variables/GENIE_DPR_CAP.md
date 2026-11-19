@@ -8,7 +8,7 @@
 const GENIE_DPR_CAP: 2 = 2
 ```
 
-Defined in: website/components/media/expanded/genie.ts:121
+Defined in: website/components/media/expanded/genie.ts:125
 
 Overlay device-pixel cap — a fullscreen transition canvas at raw
 devicePixelRatio triples fill cost on dpr-3 phones; 2 keeps the warp

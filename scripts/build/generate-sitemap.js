@@ -323,6 +323,23 @@ async function run() {
 
   if (!data || !Object.keys(data).length) data = translations.en?.projects || {}
 
+  // `date`/`modified` are CMS snapshot stamps — the live RTDB payload
+  // predates them, so undated nodes inherit the snapshot stamps (same
+  // fallback contract as loadTranslations in build-locale-pages).
+  {
+    const snapProjects = translations.en?.projects || {}
+
+    for (const slug of Object.keys(data)) {
+      const node = data[slug]
+      const snap = snapProjects[slug]
+
+      if (node && snap) {
+        if (!node.date && snap.date) node.date = snap.date
+        if (!node.modified && snap.modified) node.modified = snap.modified
+      }
+    }
+  }
+
   let homeList = null
 
   try {
@@ -570,8 +587,11 @@ async function run() {
   /** XML media tags for one media item — image:image or video:video.
    *  `themes` is the parent page's localized searchThemes list: images
    *  get it as <image:caption>, videos as <video:tag> elements. `loc`
-   *  resolves the license page the <image:license> badge links. */
-  const mediaTagXml = (folder, m, label, projectTitle, themes = [], loc = 'en') => {
+   *  resolves the license page the <image:license> badge links. `date`
+   *  carries the project's git-derived publication stamp onto
+   *  <video:publication_date> — the field Google's video index report
+   *  gates on; undated nodes omit it rather than inventing one. */
+  const mediaTagXml = (folder, m, label, projectTitle, themes = [], loc = 'en', date) => {
     const { source, thumb, isVideo } = resolveMediaUrls(folder, m, manifest)
 
     if (!source || (isVideo && !thumb)) return []
@@ -585,6 +605,7 @@ async function run() {
             titleOf(`${projectTitle} — ${label || projectTitle}`, 2048)
           )}</video:description>` +
           `\n      <video:content_loc>${escXml(encLoc(`${CDN_BASE}${source}`))}</video:content_loc>` +
+          (date ? `\n      <video:publication_date>${escXml(date)}</video:publication_date>` : '') +
           `\n      <video:family_friendly>yes</video:family_friendly>` +
           `\n      <video:requires_subscription>no</video:requires_subscription>` +
           `\n      <video:uploader info="${escXml(base)}">Luis Krötz</video:uploader>${videoThemeTags(themes)}\n    </video:video>`,
@@ -611,7 +632,9 @@ async function run() {
       if (!source || seenSources.has(source)) return
 
       seenSources.add(source)
-      tags.push(...mediaTagXml(folder, m, label || m?.label, projectTitle, themes, loc))
+      tags.push(
+        ...mediaTagXml(folder, m, label || m?.label, projectTitle, themes, loc, projectData?.date)
+      )
     }
 
     if (projectData?.cover) pushMediaTag(projectData.cover)
@@ -660,7 +683,10 @@ async function run() {
       const mediaPath = `/portfolio/${projectSlug}/${mediaSlug}`
 
       urlSet.add(mediaPath)
-      addTags(mediaPath, mediaTagXml(folder, m, m.label, projectTitle, themes))
+      addTags(
+        mediaPath,
+        mediaTagXml(folder, m, m.label, projectTitle, themes, 'en', projectData?.date)
+      )
     }
   }
 
@@ -681,14 +707,34 @@ async function run() {
 
       addTags(
         `/${lang}/portfolio/${projectSlug}`,
-        projectPageTags(folder, { ...locNode, [SEARCH_THEMES_KEY]: locThemes }, projectTitle, lang)
+        projectPageTags(
+          folder,
+          {
+            ...locNode,
+            date: locNode?.date || data?.[projectSlug]?.date,
+            [SEARCH_THEMES_KEY]: locThemes,
+          },
+          projectTitle,
+          lang
+        )
       )
 
       for (const { slug: mediaSlug, media: m } of mediaRowsOf(locNode)) {
         const locMedia = `/${lang}/portfolio/${projectSlug}/${mediaSlug}`
 
         urlSet.add(locMedia)
-        addTags(locMedia, mediaTagXml(folder, m, m.label, projectTitle, locThemes, lang))
+        addTags(
+          locMedia,
+          mediaTagXml(
+            folder,
+            m,
+            m.label,
+            projectTitle,
+            locThemes,
+            lang,
+            locNode?.date || data?.[projectSlug]?.date
+          )
+        )
       }
     }
   }
@@ -936,7 +982,7 @@ async function run() {
 
   /** Emits root or localized crawl policy with its sitemap discovery URLs. */
   const robotsDoc = (sitemapUrl, extraUrls = []) =>
-    `User-agent: *\nDisallow: /cms\nDisallow: /admin\nDisallow: /langs/\nDisallow: /docs-content/\nDisallow: /deploy-info/\nDisallow: /meta/\n\nSitemap: ${sitemapUrl}${extraUrls.map((u) => `\nSitemap: ${u}`).join('')}\n`
+    `User-agent: *\nDisallow: /cms\nDisallow: /admin\nDisallow: /langs/\nDisallow: /docs-content/\nDisallow: /deploy-info/\nDisallow: /meta/\nDisallow: /docs/coverage\n\nSitemap: ${sitemapUrl}${extraUrls.map((u) => `\nSitemap: ${u}`).join('')}\n`
 
   fs.writeFileSync(path.join(META_DIR, 'sitemap-en.xml'), sitemapDoc(enUrls), 'utf-8')
 

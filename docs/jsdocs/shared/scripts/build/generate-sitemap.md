@@ -102,7 +102,10 @@ prefix) ride the same per-locale vocabulary.
 XML media tags for one media item — image:image or video:video.
 `themes` is the parent page's localized searchThemes list: images
 get it as <image:caption>, videos as <video:tag> elements. `loc`
-resolves the license page the <image:license> badge links.
+resolves the license page the <image:license> badge links. `date`
+carries the project's git-derived publication stamp onto
+<video:publication_date> — the field Google's video index report
+gates on; undated nodes omit it rather than inventing one.
 
 ### `projectPageTags`
 
